@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : group.xml
+    Created on : June 17, 2004, 1:34 AM
+    Author     : kurt
+    Description:
+        Purpose of the document follows.
+-->
+
+<group>
+            <segment description="FUNCTIONAL GROUP HEADER" id="GS" level="Header" maxuse="1"
+                name="Functional Group Header" position="002" repeat="1" requirement="Mandatory" usage="REQUIRED">
+                <element data_type="ID" data_element="479" max="2" min="2"
+                    name="Functional Group Header Code" ref_des="GS01" requirement="M" usage="REQUIRED">
+                    <code_definition code="HC" code_source="" description="Health Care Claim (837)"/>
+                </element>
+                <element data_type="AN" data_element="142" max="15" min="2"
+                    name="Application Sender's code" ref_des="GS02" requirement="M" usage="REQUIRED"/>
+                <element data_type="AN" data_element="124" max="15" min="2"
+                    name="Application Recievers Code" ref_des="GS03" requirement="M" usage="REQUIRED"/>
+                <element data_type="DT" data_element="373" max="8" min="8" name="Date" ref_des="GS04"
+                    requirement="M" usage="REQUIRED"/>
+                <element data_type="TM" data_element="337" max="8" min="4" name="Time" ref_des="GS05"
+                    requirement="M" usage="REQUIRED"/>
+                <element data_type="NO" data_element="28" max="9" min="1" name="Group Control Number"
+                    ref_des="GS06" requirement="M" usage="REQUIRED"/>
+                <element data_type="ID" data_element="455" max="2" min="1"
+                    name="Responsible Agency Code" ref_des="GS07" requirement="M" usage="REQUIRED">
+                    <code_definition code="X" code_source="" description="Accredited Standards Committee X12"/>
+                </element>
+                <element data_type="AN" data_element="480" max="12" min="1"
+                    name="Version/Release/Industry Identifier Code" ref_des="GS08" requirement="M" usage="REQUIRED"/>
+            </segment>
+            <segment description="FUNCTIONAL GROUP TRAILER" id="GE" level="Header" maxuse="1"
+                name="Functional Group Trailer" position="560" repeat="1" requirement="Mandatory" usage="REQUIRED">
+                <element data_type="NO" data_element="97" max="6" min="1"
+                    name="Number of Included Transaction Sets" ref_des="GE01" requirement="M" usage="REQUIRED"/>
+                <element data_type="NO" data_element="28" max="9" min="1" name="Group Control Number"
+                    ref_des="GE02" requirement="M" usage="REQUIRED"/>
+            </segment>
+</group>

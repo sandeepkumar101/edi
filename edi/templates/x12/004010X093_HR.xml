@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction version="004010X093" code="HR" type="276">
+    <segment description="TRANSACTION SET HEADER" name="Transaction Set Header" id="ST" repeat="1"
+        usage="REQUIRED" level="Header" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Identifier Code" usage="REQUIRED" ref_des="ST01"
+            data_element="143" requirement="M" min="3" max="3" dat_type="ID"/>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="ST02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+    <segment description="BEGINNING OF HIERARCHICAL" name="Beginning of Hierarchical Transaction"
+        id="BHT" repeat="1" usage="REQUIRED" level="Header" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Hierarchical Structure Code" usage="REQUIRED" ref_des="BHT01"
+            data_element="1005" requirement="M" min="4" max="4" dat_type="ID">
+            <code_definition code="0010"
+                description="Information Source, Information Receiver, Provider of Service, Subscriber, Dependent " code_source=""/>
+        </element>
+        <element name="Transaction Set Purpose Code" usage="REQUIRED" ref_des="BHT02"
+            data_element="353" requirement="M" min="2" max="2" dat_type="ID">
+            <code_definition code="13" description="Request " code_source=""/>
+        </element>
+        <element usage="NOT USED" ref_des="BHT03"/>
+        <element name="Date" usage="REQUIRED" ref_des="BHT04" data_element="373" requirement="O"
+            min="8" max="8" dat_type="DT">
+            <description>Transaction Set Creation Date </description>
+        </element>
+        <element usage="NOT USED" ref_des="BHT05"/>
+        <element usage="NOT USED" ref_des="BHT06"/>
+    </segment>
+    <loop name="INFORMATION SOURCE LEVEL " id="2000A" repeat="&gt;1"
+        level="Detail, Information Source Level" occurrence="">
+        <loop name="PAYER NAME " id="2100A" repeat="&gt;1"
+            level="Detail, Information Source Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="PR" description="Payer " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Payer Name </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM104"/>
+                <element usage="NOT USED" ref_des="NM105"/>
+                <element usage="NOT USED" ref_des="NM106"/>
+                <element usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="21" description="Health Industry Number (HIN) " code_source=""/>
+                    <code_definition code="AD"
+                        description="Blue Cross Blue Shield Association Plan Code " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="NI"
+                        description="National Association of Insurance Commissioners (NAIC) Identification " code_source=""/>
+                    <code_definition code="PI" description="Payor Identification " code_source=""/>
+                    <code_definition code="PP" description="Pharmacy Processor Number " code_source=""/>
+                    <code_definition code="XV"
+                        description="Health Care Financing Administration National PlanID " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Payer Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM110"/>
+                <element usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="PAYER CONTACT INFORMATION"
+                name="Administrative Communications Contact" id="PER" repeat="1" usage="SITUATIONAL"
+                level="Detail" position="080" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="IC" description="Information Contact " code_source=""/>
+                </element>
+                <element name="Name" usage="SITUATIONAL" ref_des="PER02" data_element="93"
+                    requirement="O" min="1" max="60" dat_type="AN">
+                    <description>Payer Contact Name </description>
+                </element>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="ED"
+                        description="Electronic Data Interchange Access Number " code_source=""/>
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                    <alias>Payer Contact Communication Number </alias>
+                </element>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                    <alias>Payer Contact Communication Number </alias>
+                </element>
+                <element usage="NOT USED" ref_des="PER09"/>
+            </segment>
+        </loop>
+        <segment description="INFORMATION SOURCE LEVEL" name="Hierarchical Level" id="HL" repeat="1"
+            usage="REQUIRED" level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element usage="NOT USED" ref_des="HL02"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="20" description="Information Source " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+    </loop>
+    <loop name="INFORMATION RECEIVER LEVEL " id="2000B" repeat="&gt;1"
+        level="Detail, Information Receiver Level" occurrence="">
+        <loop name="INFORMATION RECEIVER NAME " id="2100B" repeat="&gt;1"
+            level="Detail, Information Receiver Level" occurrence="">
+            <segment description="INFORMATION RECEIVER NAME"
+                name="Individual or Organizational Name" id="NM1" repeat="1" usage="REQUIRED"
+                level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="41" description="Submitter " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Information Receiver Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Information Receiver First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Information Receiver Middle Name </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Information Receiver Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="46"
+                        description="Electronic Transmitter Identification Number (ETIN) " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="XX"
+                        description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Information Receiver Identification Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM110"/>
+                <element usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <segment description="INFORMATION RECEIVER LEVEL" name="Hierarchical Level" id="HL"
+            repeat="1" usage="REQUIRED" level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="21" description="Information Receiver " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+    </loop>
+    <loop name="SERVICE PROVIDER LEVEL " id="2000C" repeat="&gt;1"
+        level="Detail, Service Provider Level" occurrence="">
+        <loop name="PROVIDER NAME " id="2100C" repeat="&gt;1"
+            level="Detail, Service Provider Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1P" description="Provider " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Provider Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Provider First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Provider Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Provider Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Provider Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="SV" description="Service Provider Number " code_source=""/>
+                    <code_definition code="XX"
+                        description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Provider Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM110"/>
+                <element usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <segment description="SERVICE PROVIDER LEVEL" name="Hierarchical Level" id="HL" repeat="1"
+            usage="REQUIRED" level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="19" description="Provider of Service " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+    </loop>
+    <loop name="SUBSCRIBER LEVEL " id="2000D" repeat="&gt;1" level="Detail, Subscriber Level" occurrence="">
+        <loop name="CLAIM SUBMITTER TRACE NUMBER " id="2200D" repeat="&gt;1"
+            level="Detail, Subscriber Level" occurrence="">
+            <loop name="SERVICE LINE INFORMATION " id="2210D" repeat="&gt;1"
+                level="Detail, Subscriber Level" occurrence="">
+                <segment description="" name="Service Information" id="SVC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="130" requirement="OPTIONAL" maxuse="1">
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="REQUIRED"
+                        ref_des="SVC01" data_element="C003" requirement="MANDATORY" min="*" max="*" dat_type="*">
+                        <subelement name="Product/Service ID Qualifier" usage="REQUIRED"
+                            ref_des="SVC01-1" data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="CI"
+                                description="Common Language Equipment Identifier (CLEI) " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NH"
+                                description="National Health Related Item Code " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                        </subelement>
+                        <subelement name="Product/Service ID" usage="REQUIRED" ref_des="SVC01-2"
+                            data_element="234" requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Service Identification Code </description>
+                        </subelement>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement usage="NOT USED" ref_des="SVC01-7"/>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="SVC03"/>
+                    <element name="Product/Service ID" usage="SITUATIONAL" ref_des="SVC04"
+                        data_element="234" requirement="O" min="1" max="48" dat_type="AN">
+                        <description>Revenue Code </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="SVC05"/>
+                    <element usage="NOT USED" ref_des="SVC06"/>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC07" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Original Units of Service Count </description>
+                    </element>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="140" requirement="OPTIONAL" maxuse="1">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="FJ" description="Line Item Control Number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Line Item Control Number </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="REF03"/>
+                    <element usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                    usage="REQUIRED" level="Detail" position="150" requirement="OPTIONAL" maxuse="1">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="472" description="Service " code_source=""/>
+                    </element>
+                    <element name="Date Time Period Format Qualifier" usage="REQUIRED"
+                        ref_des="DTP02" data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="RD8"
+                            description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    </element>
+                    <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                        data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                        <description>Service Line Date </description>
+                    </element>
+                </segment>
+            </loop>
+            <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Detail"
+                position="090" requirement="OPTIONAL" maxuse="1">
+                <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+                    requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="1" description="Current Transaction Trace Numbers " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02"
+                    data_element="127" requirement="M" min="1" max="30" dat_type="AN">
+                    <description>Trace Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="TRN03"/>
+                <element usage="NOT USED" ref_des="TRN04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1K" description="Payor's Claim Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Payer Claim Control Number </description>
+                    <alias>Patient Account Number </alias>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="BLT" description="Billing Type " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Bill Type Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="EA" description="Medical Record Identification Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Medical Record Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Monetary Amount" id="AMT" repeat="1" usage="SITUATIONAL"
+                level="Detail" position="110" requirement="OPTIONAL" maxuse="1">
+                <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                    data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                    <code_definition code="T3" description="Total Submitted Charges " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Total Claim Charge Amount </description>
+                </element>
+                <element usage="NOT USED" ref_des="AMT03"/>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="120" requirement="OPTIONAL" maxuse="2">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="232" description="Claim Statement Period Start " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="RD8"
+                        description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Claim Service Period </description>
+                </element>
+            </segment>
+        </loop>
+        <loop name="SUBSCRIBER NAME " id="2100D" repeat="&gt;1" level="Detail, Subscriber Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="IL" description="Insured or Subscriber " code_source=""/>
+                    <code_definition code="QC" description="Patient " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Subscriber Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="24" description="Employer's Identification Number " code_source=""/>
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Subscriber Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM110"/>
+                <element usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="22" description="Subscriber " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="0"
+                    description="No Subordinate HL Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+        <segment description="" name="Demographic Information" id="DMG" repeat="1"
+            usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+            <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02" data_element="1251"
+                requirement="X" min="1" max="35" dat_type="AN">
+                <description>Subscriber Birth Date </description>
+                <alias>Date of Birth - Subscriber </alias>
+            </element>
+            <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                requirement="O" min="1" max="1" dat_type="ID">
+                <description>Subscriber Gender Code </description>
+                <alias>Gender - Subscriber </alias>
+                <code_definition code="F" description="Female " code_source=""/>
+                <code_definition code="M" description="Male " code_source=""/>
+                <code_definition code="U" description="Unknown " code_source=""/>
+            </element>
+            <element usage="NOT USED" ref_des="DMG04"/>
+            <element usage="NOT USED" ref_des="DMG05"/>
+            <element usage="NOT USED" ref_des="DMG06"/>
+            <element usage="NOT USED" ref_des="DMG07"/>
+            <element usage="NOT USED" ref_des="DMG08"/>
+            <element usage="NOT USED" ref_des="DMG09"/>
+        </segment>
+    </loop>
+    <loop name="DEPENDENT LEVEL " id="2000E" repeat="&gt;1" level="Detail, Dependent Level" occurrence="">
+        <loop name="CLAIM SUBMITTER TRACE NUMBER " id="2200E" repeat="&gt;1"
+            level="Detail, Dependent Level" occurrence="">
+            <loop name="SERVICE LINE INFORMATION " id="2210E" repeat="&gt;1"
+                level="Detail, Dependent Level" occurrence="">
+                <segment description="" name="Service Information" id="SVC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="130" requirement="OPTIONAL" maxuse="1">
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="REQUIRED"
+                        ref_des="SVC01" data_element="C003" requirement="MANDATORY" min="*" max="*" dat_type="*">
+                        <subelement name="Product/Service ID Qualifier" usage="REQUIRED"
+                            ref_des="SVC01-1" data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="CI"
+                                description="Common Language Equipment Identifier (CLEI) " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NH"
+                                description="National Health Related Item Code " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                        </subelement>
+                        <subelement name="Product/Service ID" usage="REQUIRED" ref_des="SVC01-4"
+                            data_element="234" requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Service Identification Code </description>
+                        </subelement>
+                        <subelement name=" Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Procedure Modifier" usage="SITUATIONAL" ref_des="SVC01-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement usage="NOT USED" ref_des="SVC01-7"/>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="SVC03"/>
+                    <element name="Product/Service ID" usage="SITUATIONAL" ref_des="SVC04"
+                        data_element="234" requirement="O" min="1" max="48" dat_type="AN">
+                        <description>Revenue Code </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="SVC05"/>
+                    <element usage="NOT USED" ref_des="SVC06"/>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC07" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Original Units of Service Count </description>
+                    </element>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="140" requirement="OPTIONAL" maxuse="1">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="FJ" description="Line Item Control Number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Line Item Control Number </description>
+                    </element>
+                    <element usage="NOT USED" ref_des="REF03"/>
+                    <element usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="150" requirement="OPTIONAL" maxuse="1">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="472" description="Service " code_source=""/>
+                    </element>
+                    <element name="Date Time Period Format Qualifier" usage="REQUIRED"
+                        ref_des="DTP02" data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="RD8"
+                            description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    </element>
+                    <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                        data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                        <description>Service Date </description>
+                    </element>
+                </segment>
+            </loop>
+            <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Detail"
+                position="090" requirement="OPTIONAL" maxuse="1">
+                <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+                    requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="1" description="Current Transaction Trace Numbers " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02"
+                    data_element="127" requirement="M" min="1" max="30" dat_type="AN">
+                    <description>Trace Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="TRN03"/>
+                <element usage="NOT USED" ref_des="TRN04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1K" description="Payor's Claim Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Payer Claim Control Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="BLT" description="Billing Type " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Bill Type Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="EA" description="Medical Record Identification Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Medical Record Number </description>
+                </element>
+                <element usage="NOT USED" ref_des="REF03"/>
+                <element usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Monetary Amount" id="AMT" repeat="1" usage="SITUATIONAL"
+                level="Detail" position="110" requirement="OPTIONAL" maxuse="1">
+                <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                    data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                    <code_definition code="T3" description="Total Submitted Charges " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Total Claim Charge Amount </description>
+                </element>
+                <element usage="NOT USED" ref_des="AMT03"/>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="120" requirement="OPTIONAL" maxuse="2">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="232" description="Claim Statement Period Start " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="RD8"
+                        description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    <code_definition code="1024"
+                        description="If the date is a single date of service, the begin date " code_source=""/>
+                    <code_definition code="equals" description="the end date. " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Claim Service Period </description>
+                </element>
+            </segment>
+        </loop>
+        <loop name="DEPENDENT NAME " id="2100E" repeat="&gt;1" level="Detail, Dependent Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="QC" description="Patient " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Patient Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Patient Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Patient Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Patient Primary Identifier </description>
+                </element>
+                <element usage="NOT USED" ref_des="NM110"/>
+                <element usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="SITUATIONAL"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="23" description="Dependent " code_source=""/>
+            </element>
+        </segment>
+        <segment description="" name="Demographic Information" id="DMG" repeat="1" usage="REQUIRED"
+            level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+            <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02" data_element="1251"
+                requirement="X" min="1" max="35" dat_type="AN">
+                <description>Patient Birth Date </description>
+                <alias>Date of Birth - Patient </alias>
+            </element>
+            <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                requirement="O" min="1" max="1" dat_type="ID">
+                <description>Patient Gender Code </description>
+                <alias>Gender - Patient </alias>
+                <code_definition code="F" description="Female " code_source=""/>
+                <code_definition code="M" description="Male " code_source=""/>
+                <code_definition code="U" description="Unknown " code_source=""/>
+            </element>
+            <element usage="NOT USED" ref_des="DMG04"/>
+            <element usage="NOT USED" ref_des="DMG05"/>
+            <element usage="NOT USED" ref_des="DMG06"/>
+            <element usage="NOT USED" ref_des="DMG07"/>
+            <element usage="NOT USED" ref_des="DMG08"/>
+            <element usage="NOT USED" ref_des="DMG09"/>
+        </segment>
+    </loop>
+    <segment description="TRANSACTION SET TRAILER" name="Transaction Set Trailer" id="SE" repeat="1"
+        usage="REQUIRED" level="Detail" position="160" requirement="MANDATORY" maxuse="1">
+        <element name="Number of Included Segments" usage="REQUIRED" ref_des="SE01"
+            data_element="96" requirement="M" min="1" max="10" dat_type="N0">
+            <description>Transaction Segment Count </description>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="SE02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+</transaction>

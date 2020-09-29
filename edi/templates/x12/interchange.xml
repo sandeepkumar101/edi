@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : interchange.xml
+    Created on : June 17, 2004, 1:33 AM
+    Author     : kurt
+    Description:
+        Purpose of the document follows.
+-->
+
+ <interchange>
+        <segment description="INTERCHANGE CONTROL HEADER" id="ISA" level="Header" maxuse="1"
+            name="Interchange Control Header" position="001" repeat="1" requirement="Mandatory" usage="REQUIRED">
+            <element data_type="ID" data_element="I01" max="2" min="2"
+                name="Authorization Information Qualifier" ref_des="ISA01" requirement="M" usage="REQUIRED">
+                <code_definition code="00" code_source="" description="No Authorization Information Present "/>
+                <code_definition code="03" code_source="" description="Additional Data Identification"/>
+            </element>
+            <element data_type="AN" data_element="I02" max="10" min="10"
+                name="Authorization Information" ref_des="ISA02" requirement="M" usage="REQUIRED"/>
+            <element data_type="ID" data_element="I03" max="2" min="2"
+                name="Security Information Qualifier" ref_des="ISA03" requirement="M" usage="REQUIRED">
+                <code_definition code="00" code_source="" description="No Security Information Present "/>
+                <code_definition code="01" code_source="" description="Password"/>
+            </element>
+            <element data_type="AN" data_element="I05" max="10" min="10" name="Security Information"
+                ref_des="ISA04" requirement="M" usage="REQUIRED"/>
+            <element data_type="ID" data_element="I06" max="2" min="2"
+                name="Interchange ID Qualifier" ref_des="ISA05" requirement="M" usage="REQUIRED">
+                <code_definition code="01" code_source="" description="Duns (Dun &amp; Bradstreet)"/>
+                <code_definition code="14" code_source="" description="Duns Plus Suffix"/>
+                <code_definition code="20" code_source="" description="Health Industry Number (HIN)"/>
+                <code_definition code="27" code_source="" description="Carrier Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="28" code_source="" description="Fiscal Intermediary Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="29" code_source="" description="Medicare Provider and Supplier Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="30" code_source="" description="U.S. Federal Tax Identification Number"/>
+                <code_definition code="33" code_source="" description="National Association of Insurance Commissioners Company Code (NAIC)"/>
+                <code_definition code="ZZ" code_source="" description="Mutually Defined"/>
+            </element>
+            <element data_type="AN" data_element="I06" max="15" min="15" name="Interchange Sender ID"
+                ref_des="ISA06" requirement="M" usage="REQUIRED"/>
+            <element data_type="ID" data_element="I05" max="2" min="2"
+                name="Interchange ID Qualifier" ref_des="ISA07" requirement="M" usage="REQUIRED">
+                <code_definition code="01" code_source="" description="Duns (Dun &amp; Bradstreet)"/>
+                <code_definition code="14" code_source="" description="Duns Plus Suffix"/>
+                <code_definition code="20" code_source="" description="Health Industry Number (HIN)"/>
+                <code_definition code="27" code_source="" description="Carrier Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="28" code_source="" description="Fiscal Intermediary Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="29" code_source="" description="Medicare Provider and Supplier Identification Number as assigned by Health Care Financing Administration (HCFA)"/>
+                <code_definition code="30" code_source="" description="U.S. Federal Tax Identification Number"/>
+                <code_definition code="33" code_source="" description="National Association of Insurance Commissioners Company Code (NAIC)"/>
+                <code_definition code="ZZ" code_source="" description="Mutually Defined"/>
+            </element>
+            <element data_type="AN" data_element="I07" max="15" min="15"
+                name="Interchange Reciever ID" ref_des="ISA08" requirement="M" usage="REQUIRED"/>
+            <element data_type="DT" data_element="I08" max="6" min="6" name="Interchange Date"
+                ref_des="ISA09" requirement="M" usage="REQUIRED"/>
+            <element data_type="TM" data_element="I09" max="4" min="4" name="Interchange Time"
+                ref_des="ISA10" requirement="M" usage="REQUIRED"/>
+            <element data_type="ID" data_element="I10" max="1" min="1"
+                name="Interchange Control Standards Identifier" ref_des="ISA11" requirement="M" usage="REQUIRED">
+                <code_definition code="U" code_source="" description="U.S. EDI Community of ASC X12, TDCC, and UCS"/>
+            </element>
+            <element data_type="ID" data_element="I11" max="5" min="5"
+                name="Interchange Control Version Number" ref_des="ISA12" requirement="M" usage="REQUIRED">
+                <code_definition code="00401" code_source="" description="Draft Standards for Trial Use Approved for Publication by ASC X12 Procedures Review Board through October 1997"/>
+            </element>
+            <element data_type="NO" data_element="I12" max="9" min="9"
+                name="Interchange Control Number" ref_des="ISA13" requirement="M" usage="REQUIRED"/>
+            <element data_type="ID" data_element="I13" max="1" min="1"
+                name="Acknowledgment Requested" ref_des="ISA14" requirement="M" usage="REQUIRED">
+                <code_definition code="0" code_source="" description="No Acknowledgment Requested"/>
+                <code_definition code="1" code_source="" description="Interchange Acknowledgment Requested"/>
+            </element>
+            <element data_type="ID" data_element="I14" max="1" min="1" name="Test Indicator"
+                ref_des="ISA15" requirement="M" usage="REQUIRED">
+                <code_definition code="P" code_source="" description="Production Data"/>
+                <code_definition code="T" code_source="" description="Test Data"/>
+            </element>
+            <element data_type="I15" data_element="ID" max="1" min="1" name="Subelement Separator"
+                ref_des="ISA16" requirement="M" usage="REQUIRED"/>
+        </segment>
+         <segment description="INTERCHANGE CONTROL TRAILER" id="IEA" level="Header" maxuse="1"
+            name="Interchange Contol Number" position="570" repeat="1" requirement="Mandatory" usage="REQUIRED">
+            <element data_type="NO" data_element="I16" max="5" min="1"
+                name="Number of Included Functional Groups" ref_des="IEA01" requirement="M" usage="REQUIRED"/>
+            <element data_type="NO" data_element="I17" max="9" min="9"
+                name="Interchange Control Number" ref_des="IEA02" requirement="M" usage="REQUIRED">
+                <alias>Transaction Set Control Number </alias>
+            </element>
+        </segment>
+</interchange>

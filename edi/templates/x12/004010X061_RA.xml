@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction version="004010X061" code="RA" type="820">
+    <segment description="" name="Transaction Set Header" id="ST" repeat="1" usage="REQUIRED"
+        level="Header" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Identifier Code" usage="REQUIRED" ref_des="ST01"
+            data_element="143" requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="820" description="Payment Order/Remittance Advice " code_source=""/>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="ST02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+    <segment description="" name="Beginning Segment for Payment Order/Remittance Advice" id="BPR"
+        repeat="1" usage="REQUIRED" level="Header" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Handling Code" usage="REQUIRED" ref_des="BPR01"
+            data_element="305" requirement="M" min="1" max="2" dat_type="ID">
+            <code_definition code="C" description="Payment Accompanies Remittance Advice " code_source=""/>
+            <code_definition code="D" description="Make Payment Only " code_source=""/>
+            <code_definition code="I" description="Remittance Information Only " code_source=""/>
+            <code_definition code="P" description="Prenotification of Future Transfers " code_source=""/>
+            <code_definition code="U" description="Split Payment and Remittance " code_source=""/>
+            <code_definition code="X"
+                description="Handling Party's Option to Split Payment and Remittance " code_source=""/>
+        </element>
+        <element name="Monetary Amount" usage="REQUIRED" ref_des="BPR02" data_element="782"
+            requirement="M" min="1" max="18" dat_type="R"/>
+        <element name="Credit/Debit Flag Code" usage="REQUIRED" ref_des="BPR03" data_element="478"
+            requirement="M" min="1" max="1" dat_type="ID">
+            <code_definition code="C" description="Credit " code_source=""/>
+            <code_definition code="D" description="Debit " code_source=""/>
+        </element>
+        <element name="Payment Method Code" usage="REQUIRED" ref_des="BPR04" data_element="591"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="ACH" description="Automated Clearing House (ACH) " code_source=""/>
+            <code_definition code="BOP" description="Financial Institution Option " code_source=""/>
+            <code_definition code="CHK" description="Check " code_source=""/>
+            <code_definition code="FWT"
+                description="Federal Reserve Funds/Wire Transfer - Nonrepetitive " code_source=""/>
+            <code_definition code="SWT"
+                description="Society for Worldwide Interbank Financial Telecommunications (S.W.I.F.T.) " code_source=""/>
+        </element>
+        <element name="Payment Format Code" usage="SITUATIONAL" ref_des="BPR05" data_element="812"
+            requirement="O" min="1" max="10" dat_type="ID">
+            <code_definition code="CCP"
+                description="Cash Concentration/Disbursement plus Addenda (CCD+) (ACH) " code_source=""/>
+            <code_definition code="CTX" description="Corporate Trade Exchange (CTX) (ACH) " code_source=""/>
+        </element>
+        <element name="(DFI) ID Number Qualifier" usage="SITUATIONAL" ref_des="BPR06"
+            data_element="506" requirement="X" min="2" max="2" dat_type="ID">
+            <code_definition code="01"
+                description="ABA Transit Routing Number Including Check Digits (9 digits) " code_source=""/>
+            <code_definition code="04" description="Canadian Bank Branch and Institution Number " code_source=""/>
+        </element>
+        <element name="(DFI) Identification Number" usage="SITUATIONAL" ref_des="BPR07"
+            data_element="507" requirement="X" min="3" max="12" dat_type="AN"/>
+        <element name="Account Number Qualifier" usage="SITUATIONAL" ref_des="BPR08"
+            data_element="569" requirement="O" min="1" max="3" dat_type="ID">
+            <code_definition code="ALC" description="Agency Location Code (ALC) " code_source=""/>
+            <code_definition code="DA" description="Demand Deposit " code_source=""/>
+        </element>
+        <element name="Account Number" usage="SITUATIONAL" ref_des="BPR09" data_element="508"
+            requirement="X" min="1" max="35" dat_type="AN"/>
+        <element name="Originating Company Identifier" usage="SITUATIONAL" ref_des="BPR10"
+            data_element="509" requirement="O" min="10" max="10" dat_type="AN"/>
+        <element name="Originating Company Supplemental Code" usage="SITUATIONAL" ref_des="BPR11"
+            data_element="510" requirement="O" min="9" max="9" dat_type="AN"/>
+        <element name="(DFI) ID Number Qualifier" usage="SITUATIONAL" ref_des="BPR12"
+            data_element="506" requirement="X" min="2" max="2" dat_type="ID">
+            <code_definition code="01"
+                description="ABA Transit Routing Number Including Check Digits (9 digits) " code_source=""/>
+            <code_definition code="04" description="Canadian Bank Branch and Institution Number " code_source=""/>
+        </element>
+        <element name="(DFI) Identification Number" usage="SITUATIONAL" ref_des="BPR13"
+            data_element="507" requirement="X" min="3" max="12" dat_type="AN"/>
+        <element name="Account Number Qualifier" usage="SITUATIONAL" ref_des="BPR14"
+            data_element="569" requirement="O" min="1" max="3" dat_type="ID">
+            <code_definition code="DA" description="Demand Deposit " code_source=""/>
+            <code_definition code="SG" description="Savings " code_source=""/>
+        </element>
+        <element name="Account Number" usage="SITUATIONAL" ref_des="BPR15" data_element="508"
+            requirement="X" min="1" max="35" dat_type="AN"/>
+        <element name="Date" usage="REQUIRED" ref_des="BPR16" data_element="373" requirement="O"
+            min="8" max="8" dat_type="DT"/>
+        <element name="Business Function Code" usage="NOT USED" ref_des="BPR17"/>
+        <element name="(DFI) ID Number Qualifier" usage="NOT USED" ref_des="BPR18"/>
+        <element name="(DFI) Identification Number" usage="NOT USED" ref_des="BPR19"/>
+        <element name="Account Number Qualifier" usage="NOT USED" ref_des="BPR20"/>
+        <element name="Account Number" usage="NOT USED" ref_des="BPR21"/>
+    </segment>
+    <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Header"
+        position="035" requirement="OPTIONAL" maxuse="1">
+        <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+            requirement="M" min="1" max="2" dat_type="ID">
+            <code_definition code="1" description="Current Transaction Trace Numbers " code_source=""/>
+            <code_definition code="3" description="Financial Reassociation Trace Number " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02" data_element="127"
+            requirement="M" min="1" max="30" dat_type="AN"/>
+        <element name="Originating Company Identifier" usage="SITUATIONAL" ref_des="TRN03"
+            data_element="509" requirement="O" min="10" max="10" dat_type="AN"/>
+        <element name="Reference Identification" usage="SITUATIONAL" ref_des="TRN04"
+            data_element="127" requirement="O" min="1" max="30" dat_type="AN"/>
+    </segment>
+    <segment description="" name="Currency" id="CUR" repeat="1" usage="SITUATIONAL" level="Header"
+        position="040" requirement="OPTIONAL" maxuse="1">
+        <element name="Entity Identifier Code" usage="REQUIRED" ref_des="CUR01" data_element="98"
+            requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="2B" description="Third-Party Administrator " code_source=""/>
+            <code_definition code="PR" description="Payer " code_source=""/>
+        </element>
+        <element name="Currency Code" usage="REQUIRED" ref_des="CUR02" data_element="100"
+            requirement="M" min="3" max="3" dat_type="ID"/>
+        <element name="Exchange Rate" usage="SITUATIONAL" ref_des="CUR03" data_element="280"
+            requirement="O" min="4" max="10" dat_type="R"/>
+        <element name="Entity Identifier Code" usage="NOT USED" ref_des="CUR04"/>
+        <element name="Currency Code" usage="NOT USED" ref_des="CUR05"/>
+        <element name="Currency Market/Exchange Code" usage="NOT USED" ref_des="CUR06"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR07"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR08"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR09"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR10"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR11"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR12"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR13"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR14"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR15"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR16"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR17"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR18"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR19"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR20"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR21"/>
+    </segment>
+    <segment description="" name="Reference Identification" id="REF" repeat="&gt;1"
+        usage="SITUATIONAL" level="Header" position="050" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+            data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="14" description="Master Account Number " code_source=""/>
+            <code_definition code="18" description="Plan Number " code_source=""/>
+            <code_definition code="2F" description="Consolidated Invoice Number " code_source=""/>
+            <code_definition code="38" description="Master Policy Number " code_source=""/>
+            <code_definition code="72" description="Schedule Reference Number " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="REF02" data_element="127"
+            requirement="X" min="1" max="30" dat_type="AN"/>
+        <element name="Description" usage="NOT USED" ref_des="REF03"/>
+        <element name="" usage="NOT USED" ref_des="REF04"/>
+    </segment>
+    <segment description="" name="Date/Time Reference" id="DTM" repeat="1" usage="SITUATIONAL"
+        level="Header" position="060" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01" data_element="374"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="009" description="Process " code_source=""/>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="DTM02" data_element="373" requirement="X"
+            min="8" max="8" dat_type="DT"/>
+        <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+        <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+        <element name="Date Time Period Format Qualifier" usage="NOT USED" ref_des="DTM05"/>
+        <element name="Date Time Period" usage="NOT USED" ref_des="DTM06"/>
+    </segment>
+    <segment description="" name="Date/Time Reference" id="DTM" repeat="1" usage="SITUATIONAL"
+        level="Header" position="060" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01" data_element="374"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="035" description="Delivered " code_source=""/>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="DTM02" data_element="373" requirement="X"
+            min="8" max="8" dat_type="DT"/>
+        <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+        <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+        <element name="Date Time Period Format Qualifier" usage="NOT USED" ref_des="DTM05"/>
+        <element name="Date Time Period" usage="NOT USED" ref_des="DTM06"/>
+    </segment>
+    <segment description="" name="Date/Time Reference" id="DTM" repeat="1" usage="SITUATIONAL"
+        level="Header" position="060" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01" data_element="374"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="582" description="Report Period " code_source=""/>
+        </element>
+        <element name="Date" usage="NOT USED" ref_des="DTM02"/>
+        <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+        <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+        <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTM05"
+            data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+            <code_definition code="RD8"
+                description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+        </element>
+        <element name="Date Time Period" usage="REQUIRED" ref_des="DTM06" data_element="1251"
+            requirement="X" min="1" max="35" dat_type="AN"/>
+    </segment>
+    <loop name="PREMIUM RECEIVER'S NAME " id="1000A" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="070" requirement="OPTIONAL" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="PE" description="Payee " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN"/>
+            <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="1" description="D-U-N-S Number, Dun &amp; Bradstreet " code_source=""/>
+                <code_definition code="9"
+                    description="D-U-N-S+4, D-U-N-S Number with Four Character Suffix " code_source=""/>
+                <code_definition code="EQ"
+                    description="Insurance Company Assigned Identification Number " code_source=""/>
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+                <code_definition code="XV"
+                    description="Health Care Financing Administration National PlanID " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="SITUATIONAL" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN"/>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+        <segment description="" name="Additional Name Information" id="N2" repeat="1"
+            usage="SITUATIONAL" level="Header" position="080" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Name" usage="REQUIRED" ref_des="N201" data_element="93" requirement="M"
+                min="1" max="60" dat_type="AN"/>
+            <element name="Name" usage="NOT USED" ref_des="N202"/>
+        </segment>
+        <segment description="" name="Address Information" id="N3" repeat="1" usage="SITUATIONAL"
+            level="Header" position="090" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Address Information" usage="REQUIRED" ref_des="N301" data_element="166"
+                requirement="M" min="1" max="55" dat_type="AN"/>
+            <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                data_element="166" requirement="O" min="1" max="55" dat_type="AN"/>
+        </segment>
+        <segment description="" name="Geographic Location" id="N4" repeat="1" usage="SITUATIONAL"
+            level="Header" position="100" requirement="OPTIONAL" maxuse="1">
+            <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                requirement="O" min="2" max="30" dat_type="AN"/>
+            <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                data_element="156" requirement="O" min="2" max="2" dat_type="ID"/>
+            <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                requirement="O" min="3" max="15" dat_type="ID"/>
+            <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                requirement="O" min="2" max="3" dat_type="ID"/>
+            <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+            <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+        </segment>
+    </loop>
+    <loop name="PREMIUM PAYER'S NAME " id="1000B" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="070" requirement="OPTIONAL" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="PR" description="Payer " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN"/>
+            <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="1" description="D-U-N-S Number, Dun &amp; Bradstreet " code_source=""/>
+                <code_definition code="9"
+                    description="D-U-N-S+4, D-U-N-S Number with Four Character Suffix " code_source=""/>
+                <code_definition code="24" description="Employer's Identification Number " code_source=""/>
+                <code_definition code="75" description="State or Province Assigned Number " code_source=""/>
+                <code_definition code="EQ"
+                    description="Insurance Company Assigned Identification Number " code_source=""/>
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+                <code_definition code="PI" description="Payor Identification " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="SITUATIONAL" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN"/>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+        <segment description="" name="Additional Name Information" id="N2" repeat="1"
+            usage="SITUATIONAL" level="Header" position="080" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Name" usage="REQUIRED" ref_des="N201" data_element="93" requirement="M"
+                min="1" max="60" dat_type="AN"/>
+            <element name="Name" usage="NOT USED" ref_des="N202"/>
+        </segment>
+        <segment description="" name="Address Information" id="N3" repeat="1" usage="SITUATIONAL"
+            level="Header" position="090" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Address Information" usage="REQUIRED" ref_des="N301" data_element="166"
+                requirement="M" min="1" max="55" dat_type="AN"/>
+            <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                data_element="166" requirement="O" min="1" max="55" dat_type="AN"/>
+        </segment>
+        <segment description="" name="Geographic Location" id="N4" repeat="1" usage="SITUATIONAL"
+            level="Header" position="100" requirement="OPTIONAL" maxuse="1">
+            <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                requirement="O" min="2" max="30" dat_type="AN"/>
+            <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                data_element="156" requirement="O" min="2" max="2" dat_type="ID"/>
+            <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                requirement="O" min="3" max="15" dat_type="ID"/>
+            <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                requirement="O" min="2" max="3" dat_type="ID"/>
+            <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+            <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+        </segment>
+        <segment description="" name="Administrative Communications Contact" id="PER"
+            repeat="&gt;1" usage="SITUATIONAL" level="Header" position="120"
+            requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                <code_definition code="IC" description="Information Contact " code_source=""/>
+            </element>
+            <element name="Name" usage="REQUIRED" ref_des="PER02" data_element="93" requirement="O"
+                min="1" max="60" dat_type="AN"/>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER03"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                <code_definition code="FX" description="Facsimile " code_source=""/>
+                <code_definition code="TE" description="Telephone " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER04"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                <code_definition code="FX" description="Facsimile " code_source=""/>
+                <code_definition code="TE" description="Telephone " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                <code_definition code="FX" description="Facsimile " code_source=""/>
+                <code_definition code="TE" description="Telephone " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+            <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+        </segment>
+    </loop>
+    <loop name="ORGANIZATION SUMMARY REMITTANCE " id="2000A" repeat="1"
+        level="Detail, Organization Summary Remittance" occurrence="">
+        <segment description="" name="Entity" id="ENT" repeat="1" usage="SITUATIONAL" level="Detail"
+            position="010" requirement="OPTIONAL" maxuse="1">
+            <element name="Assigned Number" usage="REQUIRED" ref_des="ENT01" data_element="554"
+                requirement="O" min="1" max="6" dat_type="N0"/>
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="ENT02"
+                data_element="98" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="2L" description="Corporation " code_source=""/>
+            </element>
+            <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="ENT03"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="1" description="D-U-N-S Number, Dun &amp; Bradstreet " code_source=""/>
+                <code_definition code="9"
+                    description="D-U-N-S+4, D-U-N-S Number with Four Character Suffix " code_source=""/>
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="SITUATIONAL" ref_des="ENT04"
+                data_element="67" requirement="X" min="2" max="80" dat_type="AN"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="ENT05"/>
+            <element name="Identification Code Qualifier" usage="NOT USED" ref_des="ENT06"/>
+            <element name="Identification Code" usage="NOT USED" ref_des="ENT07"/>
+            <element name="Reference Identification Qualifier" usage="NOT USED" ref_des="ENT08"/>
+            <element name="Reference Identification" usage="NOT USED" ref_des="ENT09"/>
+        </segment>
+        <loop name="ORGANIZATION SUMMARY REMITTANCE DETAIL " id="2300A" repeat="&gt;1"
+            level="Detail, Organization Summary Remittance" occurrence="">
+            <segment description="" name="Remittance Advice Accounts Receivable Open Item Reference"
+                id="RMR" repeat="1" usage="REQUIRED" level="Detail" position="150"
+                requirement="OPTIONAL" maxuse="1">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="RMR01"
+                    data_element="128" requirement="X" min="2" max="3" dat_type="ID">
+                    <code_definition code="11" description="Account Number " code_source=""/>
+                    <code_definition code="1L" description="Group or Policy Number " code_source=""/>
+                    <code_definition code="CT" description="Contract Number " code_source=""/>
+                    <code_definition code="IK" description="Invoice Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="RMR02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN"/>
+                <element name="Payment Action Code" usage="SITUATIONAL" ref_des="RMR03"
+                    data_element="482" requirement="O" min="2" max="2" dat_type="ID">
+                    <code_definition code="PA" description="Payment in Advance " code_source=""/>
+                    <code_definition code="PI" description="Pay Item " code_source=""/>
+                    <code_definition code="PO" description="Payment on Account " code_source=""/>
+                    <code_definition code="PP" description="Partial Payment " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="RMR04" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R"/>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="RMR05"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R"/>
+                <element name="Monetary Amount" usage="NOT USED" ref_des="RMR06"/>
+                <element name="Adjustment Reason Code" usage="NOT USED" ref_des="RMR07"/>
+                <element name="Monetary Amount" usage="NOT USED" ref_des="RMR08"/>
+            </segment>
+            <loop name="SUMMARY LINE ITEM " id="2310A" repeat="1"
+                level="Detail, Organization Summary Remittance" occurrence="">
+                <segment description="" name="Baseline Item Data (Invoice)" id="IT1" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="190" requirement="OPTIONAL" maxuse="1">
+                    <element name="Assigned Identification" usage="REQUIRED" ref_des="IT101"
+                        data_element="350" requirement="O" min="1" max="20" dat_type="AN"/>
+                    <element name="Quantity Invoiced" usage="NOT USED" ref_des="IT102"/>
+                    <element name="Unit or Basis for Measurement Code" usage="NOT USED" ref_des="IT103"/>
+                    <element name="Unit Price" usage="NOT USED" ref_des="IT104"/>
+                    <element name="Basis of Unit Price Code" usage="NOT USED" ref_des="IT105"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT106"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT107"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT108"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT109"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT110"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT111"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT112"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT113"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT114"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT115"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT116"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT117"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT118"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT119"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT120"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT121"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT122"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT123"/>
+                    <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="IT124"/>
+                    <element name="Product/Service ID" usage="NOT USED" ref_des="IT125"/>
+                </segment>
+                <loop name="MEMBER COUNT " id="2315A" repeat="&gt;1"
+                    level="Detail, Organization Summary Remittance" occurrence="">
+                    <segment description="" name="Subline Item Detail" id="SLN" repeat="1"
+                        usage="SITUATIONAL" level="Detail" position="204" requirement="OPTIONAL" maxuse="1">
+                        <element name="Assigned Identification" usage="REQUIRED" ref_des="SLN01"
+                            data_element="350" requirement="M" min="1" max="20" dat_type="AN"/>
+                        <element name="Assigned Identification" usage="NOT USED" ref_des="SLN02"/>
+                        <element name="Relationship Code" usage="REQUIRED" ref_des="SLN03"
+                            data_element="662" requirement="M" min="1" max="1" dat_type="ID">
+                            <code_definition code="O" description="Information Only " code_source=""/>
+                        </element>
+                        <element name="Quantity" usage="REQUIRED" ref_des="SLN04" data_element="380"
+                            requirement="X" min="1" max="15" dat_type="R"/>
+                        <element name="COMPOSITE UNIT OF MEASURE" usage="REQUIRED" ref_des="SLN05"
+                            data_element="C001" requirement="M" min="*" max="*" dat_type="*">
+                            <subelement name="Code " usage="REQUIRED" ref_des="SLN05-1"
+                                data_element="355" requirement="M" min="2" max="2" dat_type="ID">
+                                <code_definition code="10" description="Group " code_source=""/>
+                                <code_definition code="IE" description="Person " code_source=""/>
+                                <code_definition code="PR" description="Pair " code_source=""/>
+                            </subelement>
+                            <subelement name="Exponent " usage="NOT USED" ref_des="SLN05-2" data_element="1018"/>
+                            <subelement name="Multiplier " usage="NOT USED" ref_des="SLN05-3" data_element="649"/>
+                            <subelement name="Code " usage="NOT USED" ref_des="SLN05-4" data_element="355"/>
+                            <subelement name="Exponent " usage="NOT USED" ref_des="SLN05-5" data_element="1018"/>
+                            <subelement name="Multiplier " usage="NOT USED" ref_des="SLN05-6" data_element="649"/>
+                            <subelement name="Code " usage="NOT USED" ref_des="SLN05-7" data_element="355"/>
+                            <subelement name="Exponent " usage="NOT USED" ref_des="SLN05-8" data_element="1018"/>
+                            <subelement name="Multiplier " usage="NOT USED" ref_des="SLN05-9" data_element="649"/>
+                            <subelement name="Code " usage="NOT USED" ref_des="SLN05-10" data_element="355"/>
+                            <subelement name="Exponent " usage="NOT USED" ref_des="SLN05-11" data_element="1018"/>
+                            <subelement name="Multiplier " usage="NOT USED" ref_des="SLN05-12" data_element="649"/>
+                            <subelement name="Code " usage="NOT USED" ref_des="SLN05-13" data_element="355"/>
+                            <subelement name="Exponent " usage="NOT USED" ref_des="SLN05-14" data_element="1018"/>
+                            <subelement name="Multiplier " usage="NOT USED" ref_des="SLN05-15" data_element="649"/>
+                        </element>
+                        <element name="Unit Price" usage="NOT USED" ref_des="SLN06"/>
+                        <element name="Basis of Unit Price Code" usage="NOT USED" ref_des="SLN07"/>
+                        <element name="Relationship Code" usage="NOT USED" ref_des="SLN08"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN09"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN10"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN11"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN12"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN13"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN14"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN15"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN16"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN17"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN18"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN19"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN20"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN21"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN22"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN23"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN24"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN25"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN26"/>
+                        <element name="Product/Service ID Qualifier" usage="NOT USED" ref_des="SLN27"/>
+                        <element name="Product/Service ID" usage="NOT USED" ref_des="SLN28"/>
+                    </segment>
+                </loop>
+            </loop>
+            <loop name="ORGANIZATION " id="2320A" repeat="SUMMARY"
+                level="Detail, Organization Summary Remittance" occurrence="">
+                <segment description="" name="Adjustment" id="ADX" repeat="1" usage="SITUATIONAL"
+                    level="Detail" position="210" requirement="OPTIONAL" maxuse="1">
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="ADX01"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R"/>
+                    <element name="Adjustment Reason Code" usage="REQUIRED" ref_des="ADX02"
+                        data_element="426" requirement="M" min="2" max="2" dat_type="ID">
+                        <code_definition code="20" description="Balance Due Declined " code_source=""/>
+                        <code_definition code="52" description="Credit for Previous Overpayment " code_source=""/>
+                        <code_definition code="53"
+                            description="Remittance for Previous Underpayment " code_source=""/>
+                        <code_definition code="AA" description="Prepaid Benefit or Advances " code_source=""/>
+                        <code_definition code="H1" description="Information Forthcoming " code_source=""/>
+                        <code_definition code="H6" description="Partial Payment Remitted " code_source=""/>
+                        <code_definition code="IA"
+                            description="Invoice Amount Does Not Match Account Analysis Statement " code_source=""/>
+                        <code_definition code="J3" description="Promised Adjustment Not Received " code_source=""/>
+                    </element>
+                    <element name="Reference Identification Qualifier" usage="NOT USED" ref_des="ADX03"/>
+                    <element name="Reference Identification" usage="NOT USED" ref_des="ADX04"/>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <loop name="INDIVIDUAL REMITTANCE " id="2000B" repeat="&gt;1"
+        level="Detail, Individual Remittance" occurrence="">
+        <segment description="" name="Entity" id="ENT" repeat="1" usage="SITUATIONAL" level="Detail"
+            position="010" requirement="OPTIONAL" maxuse="1">
+            <element name="Assigned Number" usage="REQUIRED" ref_des="ENT01" data_element="554"
+                requirement="O" min="1" max="6" dat_type="N0"/>
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="ENT02"
+                data_element="98" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="2J" description="Individual " code_source=""/>
+            </element>
+            <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="ENT03"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="34" description="Social Security Number " code_source=""/>
+                <code_definition code="EI" description="Employee Identification Number " code_source=""/>
+                <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="REQUIRED" ref_des="ENT04" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="ENT05"/>
+            <element name="Identification Code Qualifier" usage="NOT USED" ref_des="ENT06"/>
+            <element name="Identification Code" usage="NOT USED" ref_des="ENT07"/>
+            <element name="Reference Identification Qualifier" usage="NOT USED" ref_des="ENT08"/>
+            <element name="Reference Identification" usage="NOT USED" ref_des="ENT09"/>
+        </segment>
+        <loop name="INDIVIDUAL NAME " id="2100B" repeat="&gt;1"
+            level="Detail, Individual Remittance" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="020" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="EY" description="Employee Name " code_source=""/>
+                    <code_definition code="QE" description="Policyholder " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="SITUATIONAL" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN"/>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN"/>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN"/>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN"/>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="EI" description="Employee Identification Number " code_source=""/>
+                    <code_definition code="N" description="Insured's Unique Identification Number " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN"/>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <loop name="INDIVIDUAL PREMIUM REMITTANCE DETAIL " id="2300B" repeat="&gt;1"
+            level="Detail, Individual Remittance" occurrence="">
+            <segment description="" name="Remittance Advice Accounts Receivable Open Item Reference"
+                id="RMR" repeat="1" usage="SITUATIONAL" level="Detail" position="150"
+                requirement="OPTIONAL" maxuse="1">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="RMR01"
+                    data_element="128" requirement="X" min="2" max="3" dat_type="ID">
+                    <code_definition code="11" description="Account Number " code_source=""/>
+                    <code_definition code="9J" description="Pension Contract " code_source=""/>
+                    <code_definition code="AZ" description="Health Insurance Policy Number " code_source=""/>
+                    <code_definition code="B7" description="Life Insurance Policy Number " code_source=""/>
+                    <code_definition code="CT" description="Contract Number " code_source=""/>
+                    <code_definition code="ID" description="Insurance Certificate Number " code_source=""/>
+                    <code_definition code="IG" description="Insurance Policy Number " code_source=""/>
+                    <code_definition code="IK" description="Invoice Number " code_source=""/>
+                    <code_definition code="KW" description="Certification " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="RMR02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN"/>
+                <element name="Payment Action Code" usage="SITUATIONAL" ref_des="RMR03"
+                    data_element="482" requirement="O" min="2" max="2" dat_type="ID">
+                    <code_definition code="PI" description="Pay Item " code_source=""/>
+                    <code_definition code="PP" description="Partial Payment " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="RMR04" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R"/>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="RMR05"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R"/>
+                <element name="Monetary Amount" usage="NOT USED" ref_des="RMR06"/>
+                <element name="Adjustment Reason Code" usage="NOT USED" ref_des="RMR07"/>
+                <element name="Monetary Amount" usage="NOT USED" ref_des="RMR08"/>
+            </segment>
+            <segment description="" name="Date/Time Reference" id="DTM" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="180" requirement="OPTIONAL" maxuse="&gt;1">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <code_definition code="582" description="Report Period " code_source=""/>
+                </element>
+                <element name="Date" usage="NOT USED" ref_des="DTM02"/>
+                <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+                <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTM05"
+                    data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                    <code_definition code="RD8"
+                        description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTM06"
+                    data_element="1251" requirement="X" min="1" max="35" dat_type="AN"/>
+            </segment>
+            <loop name="INDIVIDUAL PREMIUM ADJUSTMENT " id="2320B" repeat="&gt;1"
+                level="Detail, Individual Remittance" occurrence="">
+                <segment description="" name="Adjustment" id="ADX" repeat="1" usage="SITUATIONAL"
+                    level="Detail" position="210" requirement="OPTIONAL" maxuse="1">
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="ADX01"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R"/>
+                    <element name="Adjustment Reason Code" usage="REQUIRED" ref_des="ADX02"
+                        data_element="426" requirement="M" min="2" max="2" dat_type="ID">
+                        <code_definition code="20" description="Balance Due Declined " code_source=""/>
+                        <code_definition code="52" description="Credit for Previous Overpayment " code_source=""/>
+                        <code_definition code="53"
+                            description="Remittance for Previous Underpayment " code_source=""/>
+                        <code_definition code="AA" description="Prepaid Benefit or Advances " code_source=""/>
+                        <code_definition code="AX" description="Person No Longer Employed " code_source=""/>
+                        <code_definition code="H1" description="Information Forthcoming " code_source=""/>
+                        <code_definition code="H6" description="Partial Payment Remitted " code_source=""/>
+                        <code_definition code="IA"
+                            description="Invoice Amount Does Not Match Account Analysis Statement " code_source=""/>
+                        <code_definition code="J3" description="Promised Adjustment Not Received " code_source=""/>
+                    </element>
+                    <element name="Reference Identification Qualifier" usage="NOT USED" ref_des="ADX03"/>
+                    <element name="Reference Identification" usage="NOT USED" ref_des="ADX04"/>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <segment description="" name="Transaction Set Trailer" id="SE" repeat="1" usage="REQUIRED"
+        level="Summary" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Number of Included Segments" usage="REQUIRED" ref_des="SE01"
+            data_element="96" requirement="M" min="1" max="10" dat_type="N0"/>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="SE02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+</transaction>

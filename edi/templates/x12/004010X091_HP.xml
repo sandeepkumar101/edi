@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction version="004010X091" code="HP" type="835">
+    <segment description="" name="Transaction Set Header" id="ST" repeat="1" usage="REQUIRED"
+        level="Header" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Identifier Code" usage="REQUIRED" ref_des="ST01"
+            data_element="143" requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="835" description="Health Care Claim Payment/Advice " code_source=""/>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="ST02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+    <segment description="" name="Beginning Segment for Payment Order/Remittance Advice" id="BPR"
+        repeat="1" usage="REQUIRED" level="Header" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Handling Code" usage="REQUIRED" ref_des="BPR01"
+            data_element="305" requirement="M" min="1" max="2" dat_type="ID">
+            <code_definition code="C" description="Payment Accompanies Remittance Advice " code_source=""/>
+            <code_definition code="D" description="Make Payment Only " code_source=""/>
+            <code_definition code="H" description="Notification Only " code_source=""/>
+            <code_definition code="I" description="Remittance Information Only " code_source=""/>
+            <code_definition code="P" description="Prenotification of Future Transfers " code_source=""/>
+            <code_definition code="U" description="Split Payment and Remittance " code_source=""/>
+            <code_definition code="X"
+                description="Handling Party's Option to Split Payment and Remittance " code_source=""/>
+        </element>
+        <element name="Monetary Amount" usage="REQUIRED" ref_des="BPR02" data_element="782"
+            requirement="M" min="1" max="18" dat_type="R">
+            <description>Total Actual Provider Payment Amount </description>
+        </element>
+        <element name="Credit/Debit Flag Code" usage="REQUIRED" ref_des="BPR03" data_element="478"
+            requirement="M" min="1" max="1" dat_type="ID">
+            <description>Credit or Debit Flag Code </description>
+            <code_definition code="C" description="Credit " code_source=""/>
+            <code_definition code="D" description="Debit " code_source=""/>
+        </element>
+        <element name="Payment Method Code" usage="REQUIRED" ref_des="BPR04" data_element="591"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="ACH" description="Automated Clearing House (ACH) " code_source=""/>
+            <code_definition code="BOP" description="Financial Institution Option " code_source=""/>
+            <code_definition code="CHK" description="Check " code_source=""/>
+            <code_definition code="FWT"
+                description="Federal Reserve Funds/Wire Transfer - Nonrepetitive " code_source=""/>
+            <code_definition code="NON" description="Non-Payment Data " code_source=""/>
+        </element>
+        <element name="Payment Format Code" usage="SITUATIONAL" ref_des="BPR05" data_element="812"
+            requirement="O" min="1" max="10" dat_type="ID">
+            <code_definition code="CCP"
+                description="Cash Concentration/Disbursement plus Addenda (CCD+) (ACH) " code_source=""/>
+            <code_definition code="CTX" description="Corporate Trade Exchange (CTX) (ACH) " code_source=""/>
+        </element>
+        <element name="(DFI) ID Number Qualifier" usage="SITUATIONAL" ref_des="BPR06"
+            data_element="506" requirement="X" min="2" max="2" dat_type="ID">
+            <description>Depository Financial Institution (DFI) Identification Number </description>
+            <code_definition code="01"
+                description="ABA Transit Routing Number Including Check Digits (9 digits) " code_source=""/>
+            <code_definition code="04" description="Canadian Bank Branch and Institution Number " code_source=""/>
+        </element>
+        <element name="(DFI) Identification Number" usage="SITUATIONAL" ref_des="BPR07"
+            data_element="507" requirement="X" min="3" max="12" dat_type="AN">
+            <description>Sender DFI Identifier </description>
+        </element>
+        <element name="Account Number Qualifier" usage="SITUATIONAL" ref_des="BPR08"
+            data_element="569" requirement="O" min="1" max="3" dat_type="ID">
+            <code_definition code="DA" description="Demand Deposit " code_source=""/>
+        </element>
+        <element name="Account Number" usage="SITUATIONAL" ref_des="BPR09" data_element="508"
+            requirement="X" min="1" max="35" dat_type="AN">
+            <description>Sender Bank Account Number </description>
+        </element>
+        <element name="Originating Company Identifier" usage="SITUATIONAL" ref_des="BPR10"
+            data_element="509" requirement="O" min="10" max="10" dat_type="AN">
+            <description>Payer Identifier </description>
+        </element>
+        <element name="Originating Company Supplemental Code" usage="SITUATIONAL" ref_des="BPR11"
+            data_element="510" requirement="O" min="9" max="9" dat_type="AN"/>
+        <element name="(DFI) ID Number Qualifier" usage="SITUATIONAL" ref_des="BPR12"
+            data_element="506" requirement="X" min="2" max="2" dat_type="ID">
+            <description>Depository Financial Institution (DFI) Identification Number </description>
+            <code_definition code="01"
+                description="ABA Transit Routing Number Including Check Digits (9 digits) " code_source=""/>
+            <code_definition code="04" description="Canadian Bank Branch and Institution Number " code_source=""/>
+        </element>
+        <element name="(DFI) Identification Number" usage="SITUATIONAL" ref_des="BPR13"
+            data_element="507" requirement="X" min="3" max="12" dat_type="AN">
+            <description>Receiver or Provider Bank ID Number </description>
+        </element>
+        <element name="Account Number Qualifier" usage="SITUATIONAL" ref_des="BPR14"
+            data_element="569" requirement="O" min="1" max="3" dat_type="ID">
+            <code_definition code="DA" description="Demand Deposit " code_source=""/>
+            <code_definition code="SG" description="Savings " code_source=""/>
+        </element>
+        <element name="Account Number" usage="SITUATIONAL" ref_des="BPR15" data_element="508"
+            requirement="X" min="1" max="35" dat_type="AN">
+            <description>Receiver or Provider Account Number </description>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="BPR16" data_element="373" requirement="O"
+            min="8" max="8" dat_type="DT">
+            <description>Check Issue or EFT Effective Date </description>
+        </element>
+        <element name="Business Function Code" usage="NOT USED" ref_des="BPR17"/>
+        <element name="(DFI) ID Number Qualifier" usage="NOT USED" ref_des="BPR18"/>
+        <element name="(DFI) Identification Number" usage="NOT USED" ref_des="BPR19"/>
+        <element name="Account Number Qualifier" usage="NOT USED" ref_des="BPR20"/>
+        <element name="Account Number" usage="NOT USED" ref_des="BPR21"/>
+    </segment>
+    <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Header"
+        position="040" requirement="OPTIONAL" maxuse="1">
+        <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+            requirement="M" min="1" max="2" dat_type="ID">
+            <code_definition code="1" description="Current Transaction Trace Numbers " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02" data_element="127"
+            requirement="M" min="1" max="30" dat_type="AN">
+            <description>Check or EFT Trace Number </description>
+        </element>
+        <element name="Originating Company Identifier" usage="REQUIRED" ref_des="TRN03"
+            data_element="509" requirement="O" min="10" max="10" dat_type="AN">
+            <description>Payer Identifier </description>
+        </element>
+        <element name="Reference Identification" usage="SITUATIONAL" ref_des="TRN04"
+            data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+            <description>Originating Company Supplemental Code </description>
+        </element>
+    </segment>
+    <segment description="" name="Currency" id="CUR" repeat="1" usage="SITUATIONAL" level="Header"
+        position="050" requirement="OPTIONAL" maxuse="1">
+        <element name="Entity Identifier Code" usage="REQUIRED" ref_des="CUR01" data_element="98"
+            requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="PR" description="Payer " code_source=""/>
+        </element>
+        <element name="Currency Code" usage="REQUIRED" ref_des="CUR02" data_element="100"
+            requirement="M" min="3" max="3" dat_type="ID"/>
+        <element name="Exchange Rate" usage="SITUATIONAL" ref_des="CUR03" data_element="280"
+            requirement="O" min="4" max="10" dat_type="R"/>
+        <element name="Entity Identifier Code" usage="NOT USED" ref_des="CUR04"/>
+        <element name="Currency Code" usage="NOT USED" ref_des="CUR05"/>
+        <element name="Currency Market/Exchange Code" usage="NOT USED" ref_des="CUR06"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR07"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR08"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR09"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR10"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR11"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR12"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR13"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR14"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR15"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR16"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR17"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR18"/>
+        <element name="Date/Time Qualifier" usage="NOT USED" ref_des="CUR19"/>
+        <element name="Date" usage="NOT USED" ref_des="CUR20"/>
+        <element name="Time" usage="NOT USED" ref_des="CUR21"/>
+    </segment>
+    <segment description="" name="Reference Identification" id="REF" repeat="1" usage="SITUATIONAL"
+        level="Header" position="060" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+            data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="EV" description="Receiver Identification Number " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="REF02" data_element="127"
+            requirement="X" min="1" max="30" dat_type="AN">
+            <description>Receiver Identifier </description>
+            <alias>Receiver Identification </alias>
+        </element>
+        <element name="Description" usage="NOT USED" ref_des="REF03"/>
+        <element name="" usage="NOT USED" ref_des="REF04"/>
+    </segment>
+    <segment description="" name="Reference Identification" id="REF" repeat="1" usage="SITUATIONAL"
+        level="Header" position="060" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+            data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="F2" description="Version Code - Local " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="REF02" data_element="127"
+            requirement="X" min="1" max="30" dat_type="AN">
+            <description>Version Identification Code </description>
+        </element>
+        <element name="Description" usage="NOT USED" ref_des="REF03"/>
+        <element name="" usage="NOT USED" ref_des="REF04"/>
+    </segment>
+    <segment description="" name="Date/Time Reference" id="DTM" repeat="1" usage="SITUATIONAL"
+        level="Header" position="070" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01" data_element="374"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <description>Date Time Qualifier </description>
+            <code_definition code="405" description="Production " code_source=""/>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="DTM02" data_element="373" requirement="X"
+            min="8" max="8" dat_type="DT">
+            <description>Production Date </description>
+        </element>
+        <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+        <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+        <element name="Date Time Period Format Qualifier" usage="NOT USED" ref_des="DTM05"/>
+        <element name="Date Time Period" usage="NOT USED" ref_des="DTM06"/>
+    </segment>
+    <loop name="PAYER IDENTIFICATION " id="1000A" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="080" requirement="OPTIONAL" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="PR" description="Payer " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN">
+                <description>Payer Name </description>
+            </element>
+            <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="XV"
+                    description="Health Care Financing Administration National PlanID " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="SITUATIONAL" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN">
+                <description>Payer Identifier </description>
+            </element>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+        <segment description="" name="Address Information" id="N3" repeat="1" usage="REQUIRED"
+            level="Header" position="100" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Address Information" usage="REQUIRED" ref_des="N301" data_element="166"
+                requirement="M" min="1" max="55" dat_type="AN">
+                <description>Payer Address Line </description>
+            </element>
+            <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                <description>Payer Address Line </description>
+            </element>
+        </segment>
+        <segment description="" name="Geographic Location" id="N4" repeat="1" usage="REQUIRED"
+            level="Header" position="110" requirement="OPTIONAL" maxuse="1">
+            <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                requirement="O" min="2" max="30" dat_type="AN">
+                <description>Payer City Name </description>
+            </element>
+            <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                <description>Payer State Code </description>
+            </element>
+            <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                requirement="O" min="3" max="15" dat_type="ID">
+                <description>Payer Postal Zone or ZIP Code </description>
+            </element>
+            <element name="Country Code" usage="NOT USED" ref_des="N404"/>
+            <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+            <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="4"
+            usage="SITUATIONAL" level="Header" position="120" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="2U" description="Payer Identification Number " code_source=""/>
+                <code_definition code="EO" description="Submitter Identification Number " code_source=""/>
+                <code_definition code="HI" description="Health Industry Number (HIN) " code_source=""/>
+                <code_definition code="NF"
+                    description="National Association of Insurance Commissioners (NAIC) Code " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Additional Payer Identifier </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+        <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+            usage="SITUATIONAL" level="Header" position="130" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                <code_definition code="CX" description="Payers Claim Office " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="PER02" data_element="93"
+                requirement="O" min="1" max="60" dat_type="AN">
+                <description>Payer Contact Name </description>
+            </element>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER03"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                <code_definition code="FX" description="Facsimile " code_source=""/>
+                <code_definition code="TE" description="Telephone " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER04"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                <description>Payer Contact Communication Number </description>
+            </element>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                <code_definition code="FX" description="Facsimile " code_source=""/>
+                <code_definition code="TE" description="Telephone " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                <description>Payer Contact Communication Number </description>
+            </element>
+            <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                <code_definition code="EX" description="Telephone Extension " code_source=""/>
+            </element>
+            <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                <description>Payer Contact Communication Number </description>
+            </element>
+            <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+        </segment>
+    </loop>
+    <loop name="PAYEE IDENTIFICATION " id="1000B" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="080" requirement="OPTIONAL" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="PE" description="Payee " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN">
+                <description>Payee Name </description>
+            </element>
+            <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+                <code_definition code="XX"
+                    description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="REQUIRED" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN">
+                <description>Payee Identification Code </description>
+            </element>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+        <segment description="" name="Address Information" id="N3" repeat="1" usage="SITUATIONAL"
+            level="Header" position="100" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Address Information" usage="REQUIRED" ref_des="N301" data_element="166"
+                requirement="M" min="1" max="55" dat_type="AN">
+                <description>Payee Address Line </description>
+            </element>
+            <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                <description>Payee Address Line </description>
+            </element>
+        </segment>
+        <segment description="" name="Geographic Location" id="N4" repeat="1" usage="SITUATIONAL"
+            level="Header" position="110" requirement="OPTIONAL" maxuse="1">
+            <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                requirement="O" min="2" max="30" dat_type="AN">
+                <description>Payee City Name </description>
+            </element>
+            <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                <description>Payee State Code </description>
+            </element>
+            <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                requirement="O" min="3" max="15" dat_type="ID">
+                <description>Payee Postal Zone or ZIP Code </description>
+            </element>
+            <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                requirement="O" min="2" max="3" dat_type="ID"/>
+            <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+            <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="&gt;1"
+            usage="SITUATIONAL" level="Header" position="120" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="0B" description="State License Number " code_source=""/>
+                <code_definition code="1A" description="Blue Cross Provider Number " code_source=""/>
+                <code_definition code="1B" description="Blue Shield Provider Number " code_source=""/>
+                <code_definition code="1C" description="Medicare Provider Number " code_source=""/>
+                <code_definition code="1D" description="Medicaid Provider Number " code_source=""/>
+                <code_definition code="1E" description="Dentist License Number " code_source=""/>
+                <code_definition code="1F" description="Anesthesia License Number " code_source=""/>
+                <code_definition code="1G" description="Provider UPIN Number " code_source=""/>
+                <code_definition code="1H" description="CHAMPUS Identification Number " code_source=""/>
+                <code_definition code="D3"
+                    description="National Association of Boards of Pharmacy Number " code_source=""/>
+                <code_definition code="G2" description="Provider Commercial Number " code_source=""/>
+                <code_definition code="N5"
+                    description="Provider Plan Network Identification Number " code_source=""/>
+                <code_definition code="PQ" description="Payee Identification " code_source=""/>
+                <code_definition code="TJ" description="Federal Taxpayer's Identification Number " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Additional Payee Identifier </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+    </loop>
+    <loop name="HEADER NUMBER " id="2000" repeat="&gt;1" level="Detail" occurrence="">
+        <segment description="" name="Assigned Number" id="LX" repeat="1" usage="SITUATIONAL"
+            level="Detail" position="003" requirement="OPTIONAL" maxuse="1">
+            <element name="Assigned Number" usage="REQUIRED" ref_des="LX01" data_element="554"
+                requirement="M" min="1" max="6" dat_type="N0"/>
+        </segment>
+        <segment description="" name="Transaction Statistics" id="TS3" repeat="1"
+            usage="SITUATIONAL" level="Detail" position="005" requirement="OPTIONAL" maxuse="1">
+            <element name="Reference Identification" usage="REQUIRED" ref_des="TS301"
+                data_element="127" requirement="M" min="1" max="30" dat_type="AN">
+                <description>Provider Identifier </description>
+            </element>
+            <element name="Facility Code Value" usage="REQUIRED" ref_des="TS302" data_element="1331"
+                requirement="M" min="1" max="2" dat_type="AN">
+                <description>Facility Type Code </description>
+            </element>
+            <element name="Date" usage="REQUIRED" ref_des="TS303" data_element="373" requirement="M"
+                min="8" max="8" dat_type="DT">
+                <description>Fiscal Period Date </description>
+            </element>
+            <element name="Quantity" usage="REQUIRED" ref_des="TS304" data_element="380"
+                requirement="M" min="1" max="15" dat_type="R">
+                <description>Total Claim Count </description>
+            </element>
+            <element name="Monetary Amount" usage="REQUIRED" ref_des="TS305" data_element="782"
+                requirement="M" min="1" max="18" dat_type="R">
+                <description>Total Claim Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS306" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Covered Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS307" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Noncovered Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS308" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Denied Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS309" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Provider Payment Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS310" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Interest Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS311" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Contractual Adjustment Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS312" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Gramm-Rudman Reduction Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS313" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total MSP Payer Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS314" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Blood Deductible Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS315" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Non-Lab Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS316" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Coinsurance Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS317" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total HCPCS Reported Charge Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS318" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total HCPCS Payable Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS319" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Deductible Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS320" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Professional Component Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS321" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total MSP Patient Liability Met Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS322" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Patient Reimbursement Amount </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS323" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total PIP Claim Count </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS324" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total PIP Adjustment Amount </description>
+            </element>
+        </segment>
+        <segment description="" name="Transaction Supplemental Statistics" id="TS2" repeat="1"
+            usage="SITUATIONAL" level="Detail" position="007" requirement="OPTIONAL" maxuse="1">
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS201" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total DRG Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS202" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Federal Specific Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS203" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Hospital Specific Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS204" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Disproportionate Share Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS205" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Capital Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS206" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Indirect Medical Education Amount </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS207" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total Outlier Day Count </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS208" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Day Outlier Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS209" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total Cost Outlier Amount </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS210" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Average DRG Length of Stay </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS211" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total Discharge Count </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS212" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total Cost Report Day Count </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS213" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total Covered Day Count </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS214" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Total Noncovered Day Count </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS215" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total MSP Pass-Through Amount </description>
+            </element>
+            <element name="Quantity" usage="SITUATIONAL" ref_des="TS216" data_element="380"
+                requirement="O" min="1" max="15" dat_type="R">
+                <description>Average DRG weight </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS217" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total PPS Capital FSP DRG Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS218" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total PPS Capital HSP DRG Amount </description>
+            </element>
+            <element name="Monetary Amount" usage="SITUATIONAL" ref_des="TS219" data_element="782"
+                requirement="O" min="1" max="18" dat_type="R">
+                <description>Total PPS DSH DRG Amount </description>
+            </element>
+        </segment>
+        <loop name="CLAIM PAYMENT INFORMATION " id="2100" repeat="&gt;1" level="Detail" occurrence="">
+            <segment description="" name="Claim Level Data" id="CLP" repeat="1" usage="REQUIRED"
+                level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+                <element name="Claim Submitter's Identifier" usage="REQUIRED" ref_des="CLP01"
+                    data_element="1028" requirement="M" min="1" max="38" dat_type="AN">
+                    <description>Patient Control Number </description>
+                </element>
+                <element name="Claim Status Code" usage="REQUIRED" ref_des="CLP02"
+                    data_element="1029" requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="1" description="Processed as Primary " code_source=""/>
+                    <code_definition code="2" description="Processed as Secondary " code_source=""/>
+                    <code_definition code="3" description="Processed as Tertiary " code_source=""/>
+                    <code_definition code="4" description="Denied " code_source=""/>
+                    <code_definition code="5" description="Pended " code_source=""/>
+                    <code_definition code="10" description="Received, but not in process " code_source=""/>
+                    <code_definition code="13" description="Suspended " code_source=""/>
+                    <code_definition code="15" description="Suspended - investigation with field " code_source=""/>
+                    <code_definition code="16" description="Suspended - return with material " code_source=""/>
+                    <code_definition code="17" description="Suspended - review pending " code_source=""/>
+                    <code_definition code="19"
+                        description="Processed as Primary, Forwarded to Additional Payer(s) " code_source=""/>
+                    <code_definition code="20"
+                        description="Processed as Secondary, Forwarded to Additional Payer(s) " code_source=""/>
+                    <code_definition code="21"
+                        description="Processed as Tertiary, Forwarded to Additional Payer(s) " code_source=""/>
+                    <code_definition code="22" description="Reversal of Previous Payment " code_source=""/>
+                    <code_definition code="23"
+                        description="Not Our Claim, Forwarded to Additional Payer(s) " code_source=""/>
+                    <code_definition code="25"
+                        description="Predetermination Pricing Only - No Payment " code_source=""/>
+                    <code_definition code="27" description="Reviewed " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="CLP03" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Total Claim Charge Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="CLP04" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Claim Payment Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CLP05"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Patient Responsibility Amount </description>
+                </element>
+                <element name="Claim Filing Indicator Code" usage="REQUIRED" ref_des="CLP06"
+                    data_element="1032" requirement="O" min="1" max="2" dat_type="ID">
+                    <code_definition code="12" description="Preferred Provider Organization (PPO) " code_source=""/>
+                    <code_definition code="13" description="Point of Service (POS) " code_source=""/>
+                    <code_definition code="14" description="Exclusive Provider Organization (EPO) " code_source=""/>
+                    <code_definition code="15" description="Indemnity Insurance " code_source=""/>
+                    <code_definition code="16"
+                        description="Health Maintenance Organization (HMO) Medicare Risk " code_source=""/>
+                    <code_definition code="AM" description="Automobile Medical " code_source=""/>
+                    <code_definition code="CH" description="Champus " code_source=""/>
+                    <code_definition code="DS" description="Disability " code_source=""/>
+                    <code_definition code="HM" description="Health Maintenance Organization " code_source=""/>
+                    <code_definition code="LM" description="Liability Medical " code_source=""/>
+                    <code_definition code="MA" description="Medicare Part A " code_source=""/>
+                    <code_definition code="MB" description="Medicare Part B " code_source=""/>
+                    <code_definition code="MC" description="Medicaid " code_source=""/>
+                    <code_definition code="OF" description="Other Federal Program " code_source=""/>
+                    <code_definition code="TV" description="Title V " code_source=""/>
+                    <code_definition code="VA" description="Veteran Administration Plan " code_source=""/>
+                    <code_definition code="WC" description="Workers' Compensation Health Claim " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="CLP07"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Payer Claim Control Number </description>
+                </element>
+                <element name="Facility Code Value" usage="SITUATIONAL" ref_des="CLP08"
+                    data_element="1331" requirement="O" min="1" max="2" dat_type="AN">
+                    <description>Facility Type Code </description>
+                </element>
+                <element name="Claim Frequency Type Code" usage="SITUATIONAL" ref_des="CLP09"
+                    data_element="1325" requirement="O" min="1" max="1" dat_type="ID">
+                    <description>Claim Frequency Code </description>
+                </element>
+                <element name="Patient Status Code" usage="NOT USED" ref_des="CLP10"/>
+                <element name="Diagnosis Related Group (DRG) Code" usage="SITUATIONAL"
+                    ref_des="CLP11" data_element="1354" requirement="O" min="1" max="4" dat_type="ID"/>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CLP12" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Diagnosis Related Group (DRG) Weight </description>
+                </element>
+                <element name="Percent" usage="SITUATIONAL" ref_des="CLP13" data_element="954"
+                    requirement="O" min="1" max="10" dat_type="R">
+                    <description>Discharge Fraction </description>
+                </element>
+            </segment>
+            <segment description="" name="Claims Adjustment" id="CAS" repeat="99"
+                usage="SITUATIONAL" level="Detail" position="020" requirement="OPTIONAL" maxuse="99">
+                <element name="Claim Adjustment Group Code" usage="REQUIRED" ref_des="CAS01"
+                    data_element="1033" requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="CO" description="Contractual Obligations " code_source=""/>
+                    <code_definition code="CR" description="Correction and Reversals " code_source=""/>
+                    <code_definition code="OA" description="Other adjustments " code_source=""/>
+                    <code_definition code="PI" description="Payor Initiated Reductions " code_source=""/>
+                    <code_definition code="PR" description="Patient Responsibility " code_source=""/>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="REQUIRED" ref_des="CAS02"
+                    data_element="1034" requirement="M" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="CAS03" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS04" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS05"
+                    data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS06"
+                    data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS07" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS08"
+                    data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS09"
+                    data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS10" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS11"
+                    data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS12"
+                    data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS13" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS14"
+                    data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS15"
+                    data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS16" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+                <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS17"
+                    data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                    <description>Adjustment Reason Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS18"
+                    data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                    <description>Adjustment Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="CAS19" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Adjustment Quantity </description>
+                </element>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="QC" description="Patient " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Patient Last Name </description>
+                </element>
+                <element name="Name First" usage="REQUIRED" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Patient Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="HN" description="Health Insurance Claim (HIC) Number " code_source=""/>
+                    <code_definition code="II"
+                        description="United States National Individual Identifier " code_source=""/>
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                    <code_definition code="MR"
+                        description="Medicaid Recipient Identification Number " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Patient Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="IL" description="Insured or Subscriber " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="SITUATIONAL" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Subscriber Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="HN" description="Health Insurance Claim (HIC) Number " code_source=""/>
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Subscriber Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="74" description="Corrected Insured " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="SITUATIONAL" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Corrected Patient or Insured Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Corrected Patient or Insured First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Corrected Patient or Insured Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Corrected Patient or Insured Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="C"
+                        description="Insured's Changed Unique Identification Number " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Corrected Insured Identification Indicator </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="82" description="Rendering Provider " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="SITUATIONAL" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Rendering Provider Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Rendering Provider First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Rendering Provider Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Rendering Provider Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="BD" description="Blue Cross Provider Number " code_source=""/>
+                    <code_definition code="BS" description="Blue Shield Provider Number " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="MC" description="Medicaid Provider Number " code_source=""/>
+                    <code_definition code="PC" description="Provider Commercial Number " code_source=""/>
+                    <code_definition code="SL" description="State License Number " code_source=""/>
+                    <code_definition code="UP"
+                        description="Unique Physician Identification Number (UPIN) " code_source=""/>
+                    <code_definition code="XX"
+                        description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Rendering Provider Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="TT" description="Transfer To " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Coordination of Benefits Carrier Name </description>
+                </element>
+                <element name="Name First" usage="NOT USED" ref_des="NM104"/>
+                <element name="Name Middle" usage="NOT USED" ref_des="NM105"/>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="AD"
+                        description="Blue Cross Blue Shield Association Plan Code " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="NI"
+                        description="National Association of Insurance Commissioners (NAIC) Identification " code_source=""/>
+                    <code_definition code="PI" description="Payor Identification " code_source=""/>
+                    <code_definition code="PP" description="Pharmacy Processor Number " code_source=""/>
+                    <code_definition code="XV"
+                        description="Health Care Financing Administration National PlanID " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Coordination of Benefits Carrier Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="2"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="MANDATORY" maxuse="9">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="PR" description="Payer " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Corrected Priority Payer Name </description>
+                </element>
+                <element name="Name First" usage="NOT USED" ref_des="NM104"/>
+                <element name="Name Middle" usage="NOT USED" ref_des="NM105"/>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="AD"
+                        description="Blue Cross Blue Shield Association Plan Code " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="NI"
+                        description="National Association of Insurance Commissioners (NAIC) Identification " code_source=""/>
+                    <code_definition code="PI" description="Payor Identification " code_source=""/>
+                    <code_definition code="PP" description="Pharmacy Processor Number " code_source=""/>
+                    <code_definition code="XV"
+                        description="Health Care Financing Administration National PlanID " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Corrected Priority Payer Identification Number </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Medicare Inpatient Adjudication" id="MIA" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="033" requirement="OPTIONAL" maxuse="1">
+                <element name="Quantity" usage="REQUIRED" ref_des="MIA01" data_element="380"
+                    requirement="M" min="1" max="15" dat_type="R">
+                    <description>Covered Days or Visits Count </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="MIA02" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>PPS Operating Outlier Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="MIA03" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Lifetime Psychiatric Days Count </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA04"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim DRG Amount </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MIA05"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA06"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim Disproportionate Share Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA07"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim MSP Pass-through Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA08"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim PPS Capital Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA09"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Capital FSP DRG Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA10"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Capital HSP DRG Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA11"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Capital DSH DRG Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA12"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Old Capital Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA13"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Capital IME amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA14"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Operating Hospital Specific DRG Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="MIA15" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Cost Report Day Count </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA16"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Operating Federal Specific DRG Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA17"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim PPS Capital Outlier Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA18"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim Indirect Teaching Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA19"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Nonpayable Professional Component Amount </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MIA20"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MIA21"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MIA22"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MIA23"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MIA24"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>PPS-Capital Exception Amount </description>
+                </element>
+            </segment>
+            <segment description="" name="Medicare Outpatient Adjudication" id="MOA" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="035" requirement="OPTIONAL" maxuse="1">
+                <element name="Percent" usage="SITUATIONAL" ref_des="MOA01" data_element="954"
+                    requirement="O" min="1" max="10" dat_type="R">
+                    <description>Reimbursement Rate </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MOA02"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim HCPCS Payable Amount </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MOA03"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MOA04"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MOA05"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MOA06"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Reference Identification" usage="SITUATIONAL" ref_des="MOA07"
+                    data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Remark Code </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MOA08"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim ESRD Payment Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="SITUATIONAL" ref_des="MOA09"
+                    data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                    <description>Nonpayable Professional Component Amount </description>
+                </element>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="5"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="99">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1L" description="Group or Policy Number " code_source=""/>
+                    <code_definition code="1W" description="Member Identification Number " code_source=""/>
+                    <code_definition code="9A" description="Repriced Claim Reference Number " code_source=""/>
+                    <code_definition code="9C"
+                        description="Adjusted Repriced Claim Reference Number " code_source=""/>
+                    <code_definition code="A6" description="Employee Identification Number " code_source=""/>
+                    <code_definition code="BB" description="Authorization Number " code_source=""/>
+                    <code_definition code="CE" description="Class of Contract Code " code_source=""/>
+                    <code_definition code="EA" description="Medical Record Identification Number " code_source=""/>
+                    <code_definition code="F8" description="Original Reference Number " code_source=""/>
+                    <code_definition code="G1" description="Prior Authorization Number " code_source=""/>
+                    <code_definition code="G3"
+                        description="Predetermination of Benefits Identification Number " code_source=""/>
+                    <code_definition code="IG" description="Insurance Policy Number " code_source=""/>
+                    <code_definition code="SY" description="Social Security Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Other Claim Related Identifier </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="10"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="99">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1A" description="Blue Cross Provider Number " code_source=""/>
+                    <code_definition code="1B" description="Blue Shield Provider Number " code_source=""/>
+                    <code_definition code="1C" description="Medicare Provider Number " code_source=""/>
+                    <code_definition code="1D" description="Medicaid Provider Number " code_source=""/>
+                    <code_definition code="1G" description="Provider UPIN Number " code_source=""/>
+                    <code_definition code="1H" description="CHAMPUS Identification Number " code_source=""/>
+                    <code_definition code="D3"
+                        description="National Association of Boards of Pharmacy Number " code_source=""/>
+                    <code_definition code="G2" description="Provider Commercial Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Rendering Provider Secondary Identifier </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Date/Time Reference" id="DTM" repeat="4"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="9">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="036" description="Expiration " code_source=""/>
+                    <code_definition code="050" description="Received " code_source=""/>
+                    <code_definition code="232" description="Claim Statement Period Start " code_source=""/>
+                    <code_definition code="233" description="Claim Statement Period End " code_source=""/>
+                </element>
+                <element name="Date" usage="REQUIRED" ref_des="DTM02" data_element="373"
+                    requirement="X" min="8" max="8" dat_type="DT">
+                    <description>Claim Date </description>
+                </element>
+                <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+                <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+                <element name="Date Time Period Format Qualifier" usage="NOT USED" ref_des="DTM05"/>
+                <element name="Date Time Period" usage="NOT USED" ref_des="DTM06"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="3"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="3">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="CX" description="Payers Claim Office " code_source=""/>
+                </element>
+                <element name="Name" usage="SITUATIONAL" ref_des="PER02" data_element="93"
+                    requirement="O" min="1" max="60" dat_type="AN">
+                    <description>Claim Contact Name </description>
+                </element>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                    <description>Claim Contact Communications Number </description>
+                </element>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                    <description>Claim Contact Communications Number </description>
+                </element>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN">
+                    <description>Communication Number Extension </description>
+                </element>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Monetary Amount" id="AMT" repeat="14" usage="SITUATIONAL"
+                level="Detail" position="062" requirement="OPTIONAL" maxuse="20">
+                <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                    data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                    <code_definition code="AU" description="Coverage Amount " code_source=""/>
+                    <code_definition code="D8" description="Discount Amount " code_source=""/>
+                    <code_definition code="DY" description="Per Day Limit " code_source=""/>
+                    <code_definition code="F5" description="Patient Amount Paid " code_source=""/>
+                    <code_definition code="I" description="Interest " code_source=""/>
+                    <code_definition code="NL" description="Negative Ledger Balance " code_source=""/>
+                    <code_definition code="T" description="Tax " code_source=""/>
+                    <code_definition code="T2" description="Total Claim Before Taxes " code_source=""/>
+                    <code_definition code="ZK"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 1 " code_source=""/>
+                    <code_definition code="ZL"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 2 " code_source=""/>
+                    <code_definition code="ZM"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 3 " code_source=""/>
+                    <code_definition code="ZN"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 4 " code_source=""/>
+                    <code_definition code="ZO"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 5 " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Claim Supplemental Information Amount </description>
+                </element>
+                <element name="Credit/Debit Flag Code" usage="NOT USED" ref_des="AMT03"/>
+            </segment>
+            <segment description="" name="Quantity" id="QTY" repeat="15" usage="SITUATIONAL"
+                level="Detail" position="064" requirement="OPTIONAL" maxuse="20">
+                <element name="Quantity Qualifier" usage="REQUIRED" ref_des="QTY01"
+                    data_element="673" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="CA" description="Covered - Actual " code_source=""/>
+                    <code_definition code="CD" description="Co-insured - Actual " code_source=""/>
+                    <code_definition code="LA" description="Life-time Reserve - Actual " code_source=""/>
+                    <code_definition code="LE" description="Life-time Reserve - Estimated " code_source=""/>
+                    <code_definition code="NA" description="Number of Non-covered Days " code_source=""/>
+                    <code_definition code="NE" description="Non-Covered - Estimated " code_source=""/>
+                    <code_definition code="NR" description="Not Replaced Blood Units " code_source=""/>
+                    <code_definition code="OU" description="Outlier Days " code_source=""/>
+                    <code_definition code="PS" description="Prescription " code_source=""/>
+                    <code_definition code="VS" description="Visits " code_source=""/>
+                    <code_definition code="ZK"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 1 " code_source=""/>
+                    <code_definition code="ZL"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 2 " code_source=""/>
+                    <code_definition code="ZM"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 3 " code_source=""/>
+                    <code_definition code="ZN"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 4 " code_source=""/>
+                    <code_definition code="ZO"
+                        description="Federal Medicare or Medicaid Payment Mandate - Category 5 " code_source=""/>
+                </element>
+                <element name="Quantity" usage="REQUIRED" ref_des="QTY02" data_element="380"
+                    requirement="X" min="1" max="15" dat_type="R">
+                    <description>Claim Supplemental Information Quantity </description>
+                </element>
+                <element name="COMPOSITE UNIT" usage="NOT USED" ref_des="QTY03"/>
+                <element name="Free-Form Message" usage="NOT USED" ref_des="QTY04"/>
+            </segment>
+            <loop name="SERVICE PAYMENT INFORMATION " id="2110" repeat="999" level="Detail" occurrence="">
+                <segment description="" name="Service Information" id="SVC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="070" requirement="OPTIONAL" maxuse="1">
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="REQUIRED"
+                        ref_des="SVC01" data_element="C003" requirement="M" min="*" max="*" dat_type="*">
+                        <subelement name="Qualifier " usage="REQUIRED" ref_des="SVC01-1"
+                            data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="ER"
+                                description="Jurisdiction Specific Procedure and Supply Codes " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                            <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                        </subelement>
+                        <subelement name="ID " usage="REQUIRED" ref_des="SVC01-2" data_element="234"
+                            requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Procedure Code </description>
+                        </subelement>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Description " usage="SITUATIONAL" ref_des="SVC01-7"
+                            data_element="352" requirement="O" min="1" max="80" dat_type="AN">
+                            <description>Procedure Code Description </description>
+                        </subelement>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC03"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Provider Payment Amount </description>
+                    </element>
+                    <element name="Product/Service ID" usage="SITUATIONAL" ref_des="SVC04"
+                        data_element="234" requirement="O" min="1" max="48" dat_type="AN">
+                        <description>National Uniform Billing Committee Revenue Code </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC05" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Units of Service Paid Count </description>
+                    </element>
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="SITUATIONAL"
+                        ref_des="SVC06" data_element="C003" requirement="O" min="*" max="*" dat_type="*">
+                        <subelement name="Qualifier " usage="REQUIRED" ref_des="SVC06-1"
+                            data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="ER"
+                                description="Jurisdiction Specific Procedure and Supply Codes " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                            <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                        </subelement>
+                        <subelement name="ID " usage="REQUIRED" ref_des="SVC06-2" data_element="234"
+                            requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Procedure Code </description>
+                        </subelement>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC06-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC06-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC06-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC06-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Description " usage="SITUATIONAL" ref_des="SVC06-7"
+                            data_element="352" requirement="O" min="1" max="80" dat_type="AN">
+                            <description>Procedure Code Description </description>
+                        </subelement>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC07" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Original Units of Service Count </description>
+                    </element>
+                </segment>
+                <segment description="" name="Date/Time Reference" id="DTM" repeat="3"
+                    usage="SITUATIONAL" level="Detail" position="080" requirement="OPTIONAL" maxuse="9">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTM01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="150" description="Service Period Start " code_source=""/>
+                        <code_definition code="151" description="Service Period End " code_source=""/>
+                        <code_definition code="472" description="Service " code_source=""/>
+                    </element>
+                    <element name="Date" usage="REQUIRED" ref_des="DTM02" data_element="373"
+                        requirement="X" min="8" max="8" dat_type="DT">
+                        <description>Service Date </description>
+                    </element>
+                    <element name="Time" usage="NOT USED" ref_des="DTM03"/>
+                    <element name="Time Code" usage="NOT USED" ref_des="DTM04"/>
+                    <element name="Date Time Period Format Qualifier" usage="NOT USED" ref_des="DTM05"/>
+                    <element name="Date Time Period" usage="NOT USED" ref_des="DTM06"/>
+                </segment>
+                <segment description="" name="Claims Adjustment" id="CAS" repeat="99"
+                    usage="SITUATIONAL" level="Detail" position="090" requirement="OPTIONAL" maxuse="99">
+                    <element name="Claim Adjustment Group Code" usage="REQUIRED" ref_des="CAS01"
+                        data_element="1033" requirement="M" min="1" max="2" dat_type="ID">
+                        <code_definition code="CO" description="Contractual Obligations " code_source=""/>
+                        <code_definition code="CR" description="Correction and Reversals " code_source=""/>
+                        <code_definition code="OA" description="Other adjustments " code_source=""/>
+                        <code_definition code="PI" description="Payor Initiated Reductions " code_source=""/>
+                        <code_definition code="PR" description="Patient Responsibility " code_source=""/>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="REQUIRED" ref_des="CAS02"
+                        data_element="1034" requirement="M" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="CAS03"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS04" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS05"
+                        data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS06"
+                        data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS07" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS08"
+                        data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS09"
+                        data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS10" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS11"
+                        data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS12"
+                        data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS13" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS14"
+                        data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS15"
+                        data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS16" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                    <element name="Claim Adjustment Reason Code" usage="SITUATIONAL" ref_des="CAS17"
+                        data_element="1034" requirement="X" min="1" max="5" dat_type="ID">
+                        <description>Adjustment Reason Code </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="CAS18"
+                        data_element="782" requirement="X" min="1" max="18" dat_type="R">
+                        <description>Adjustment Amount </description>
+                    </element>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="CAS19" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Adjustment Quantity </description>
+                    </element>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="7"
+                    usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="99">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="1S"
+                            description="Ambulatory Patient Group (APG) Number " code_source=""/>
+                        <code_definition code="6R" description="Provider Control Number " code_source=""/>
+                        <code_definition code="BB" description="Authorization Number " code_source=""/>
+                        <code_definition code="E9" description="Attachment Code " code_source=""/>
+                        <code_definition code="G1" description="Prior Authorization Number " code_source=""/>
+                        <code_definition code="G3"
+                            description="Predetermination of Benefits Identification Number " code_source=""/>
+                        <code_definition code="LU" description="Location Number " code_source=""/>
+                        <code_definition code="RB" description="Rate code number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Provider Identifier </description>
+                    </element>
+                    <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                    <element name="" usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="10"
+                    usage="SITUATIONAL" level="Detail" position="100" requirement="OPTIONAL" maxuse="99">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="1A" description="Blue Cross Provider Number " code_source=""/>
+                        <code_definition code="1B" description="Blue Shield Provider Number " code_source=""/>
+                        <code_definition code="1C" description="Medicare Provider Number " code_source=""/>
+                        <code_definition code="1D" description="Medicaid Provider Number " code_source=""/>
+                        <code_definition code="1G" description="Provider UPIN Number " code_source=""/>
+                        <code_definition code="1H" description="CHAMPUS Identification Number " code_source=""/>
+                        <code_definition code="1J" description="Facility ID Number " code_source=""/>
+                        <code_definition code="HPI"
+                            description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                        <code_definition code="SY" description="Social Security Number " code_source=""/>
+                        <code_definition code="TJ"
+                            description="Federal Taxpayer's Identification Number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Rendering Provider Identifier </description>
+                    </element>
+                    <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                    <element name="" usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Monetary Amount" id="AMT" repeat="12"
+                    usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="20">
+                    <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                        data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                        <code_definition code="B6" description="Allowed - Actual " code_source=""/>
+                        <code_definition code="DY" description="Per Day Limit " code_source=""/>
+                        <code_definition code="KH" description="Deduction Amount " code_source=""/>
+                        <code_definition code="NE" description="Net Billed " code_source=""/>
+                        <code_definition code="T2" description="Total Claim Before Taxes " code_source=""/>
+                        <code_definition code="ZK"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 1 " code_source=""/>
+                        <code_definition code="ZL"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 2 " code_source=""/>
+                        <code_definition code="ZM"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 3 " code_source=""/>
+                        <code_definition code="ZN"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 4 " code_source=""/>
+                        <code_definition code="ZO"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 5 " code_source=""/>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Service Supplemental Amount </description>
+                    </element>
+                    <element name="Credit/Debit Flag Code" usage="NOT USED" ref_des="AMT03"/>
+                </segment>
+                <segment description="" name="Quantity" id="QTY" repeat="6" usage="SITUATIONAL"
+                    level="Detail" position="120" requirement="OPTIONAL" maxuse="20">
+                    <element name="Quantity Qualifier" usage="REQUIRED" ref_des="QTY01"
+                        data_element="673" requirement="M" min="2" max="2" dat_type="ID">
+                        <code_definition code="NE" description="Non-Covered - Estimated " code_source=""/>
+                        <code_definition code="ZK"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 1 " code_source=""/>
+                        <code_definition code="ZL"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 2 " code_source=""/>
+                        <code_definition code="ZM"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 3 " code_source=""/>
+                        <code_definition code="ZN"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 4 " code_source=""/>
+                        <code_definition code="ZO"
+                            description="Federal Medicare or Medicaid Payment Mandate - Category 5 " code_source=""/>
+                    </element>
+                    <element name="Quantity" usage="REQUIRED" ref_des="QTY02" data_element="380"
+                        requirement="X" min="1" max="15" dat_type="R">
+                        <description>Service Supplemental Quantity Count </description>
+                    </element>
+                    <element name="COMPOSITE UNIT" usage="NOT USED" ref_des="QTY03"/>
+                    <element name="Free-Form Message" usage="NOT USED" ref_des="QTY04"/>
+                </segment>
+                <segment description="" name="Industry Code" id="LQ" repeat="99" usage="SITUATIONAL"
+                    level="Detail" position="130" requirement="OPTIONAL" maxuse="99">
+                    <element name="Code List Qualifier Code" usage="REQUIRED" ref_des="LQ01"
+                        data_element="1270" requirement="O" min="1" max="3" dat_type="ID">
+                        <code_definition code="HE" description="Claim Payment Remark Codes " code_source=""/>
+                        <code_definition code="RX"
+                            description="National Council for Prescription Drug Programs Reject/Payment Codes " code_source=""/>
+                    </element>
+                    <element name="Industry Code" usage="REQUIRED" ref_des="LQ02"
+                        data_element="1271" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Remark Code </description>
+                    </element>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <segment description="" name="Provider Level Adjustment" id="PLB" repeat="&gt;1"
+        usage="SITUATIONAL" level="Summary" position="010" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Reference Identification" usage="REQUIRED" ref_des="PLB01" data_element="127"
+            requirement="M" min="1" max="30" dat_type="AN">
+            <description>Provider Identifier </description>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="PLB02" data_element="373" requirement="M"
+            min="8" max="8" dat_type="DT">
+            <description>Fiscal Period Date </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="REQUIRED" ref_des="PLB03" data_element="C042"
+            requirement="M" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB03-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID">
+                <code_definition code="50" description="Late Charge " code_source=""/>
+                <code_definition code="51" description="Interest Penalty Charge " code_source=""/>
+                <code_definition code="72" description="Authorized Return " code_source=""/>
+                <code_definition code="90" description="Early Payment Allowance " code_source=""/>
+                <code_definition code="AM" description="Applied to Borrower's Account " code_source=""/>
+                <code_definition code="AP" description="Acceleration of Benefits " code_source=""/>
+                <code_definition code="B2" description="Rebate " code_source=""/>
+                <code_definition code="B3" description="Recovery Allowance " code_source=""/>
+                <code_definition code="BD" description="Bad Debt Adjustment " code_source=""/>
+                <code_definition code="BN" description="Bonus " code_source=""/>
+                <code_definition code="C5" description="Temporary Allowance " code_source=""/>
+                <code_definition code="CR" description="Capitation Interest " code_source=""/>
+                <code_definition code="CS" description="Adjustment " code_source=""/>
+                <code_definition code="CT" description="Capitation Payment " code_source=""/>
+                <code_definition code="CV" description="Capital Passthru " code_source=""/>
+                <code_definition code="CW"
+                    description="Certified Registered Nurse Anesthetist Passthru " code_source=""/>
+                <code_definition code="DM" description="Direct Medical Education Passthru " code_source=""/>
+                <code_definition code="E3" description="Withholding " code_source=""/>
+                <code_definition code="FB" description="Forwarding Balance " code_source=""/>
+                <code_definition code="FC" description="Fund Allocation " code_source=""/>
+                <code_definition code="GO" description="Graduate Medical Education Passthru " code_source=""/>
+                <code_definition code="IP" description="Incentive Premium Payment " code_source=""/>
+                <code_definition code="IR" description="Internal Revenue Service Withholding " code_source=""/>
+                <code_definition code="IS" description="Interim Settlement " code_source=""/>
+                <code_definition code="J1" description="Nonreimbursable " code_source=""/>
+                <code_definition code="L3" description="Penalty " code_source=""/>
+                <code_definition code="L6" description="Interest Owed " code_source=""/>
+                <code_definition code="LE" description="Levy " code_source=""/>
+                <code_definition code="LS" description="Lump Sum " code_source=""/>
+                <code_definition code="OA" description="Organ Acquisition Passthru " code_source=""/>
+                <code_definition code="PI" description="Periodic Interim Payment " code_source=""/>
+                <code_definition code="PL" description="Payment Final " code_source=""/>
+                <code_definition code="RA" description="Retro-activity Adjustment " code_source=""/>
+                <code_definition code="RE" description="Return on Equity " code_source=""/>
+                <code_definition code="SL" description="Student Loan Repayment " code_source=""/>
+                <code_definition code="TL" description="Third Party Liability " code_source=""/>
+                <code_definition code="WO" description="Overpayment Recovery " code_source=""/>
+                <code_definition code="WU" description="Unspecified Recovery " code_source=""/>
+                <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+            </subelement>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB03-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="REQUIRED" ref_des="PLB04" data_element="782"
+            requirement="M" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="SITUATIONAL" ref_des="PLB05"
+            data_element="C042" requirement="O" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB05-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID"/>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB05-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="SITUATIONAL" ref_des="PLB06" data_element="782"
+            requirement="X" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="SITUATIONAL" ref_des="PLB07"
+            data_element="C042" requirement="O" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB07-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID"/>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB07-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="SITUATIONAL" ref_des="PLB08" data_element="782"
+            requirement="X" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="SITUATIONAL" ref_des="PLB09"
+            data_element="C042" requirement="O" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB09-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID"/>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB09-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="SITUATIONAL" ref_des="PLB10" data_element="782"
+            requirement="X" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="SITUATIONAL" ref_des="PLB11"
+            data_element="C042" requirement="O" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB11-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID"/>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB11-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="SITUATIONAL" ref_des="PLB12" data_element="782"
+            requirement="X" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+        <element name=" ADJUSTMENT IDENTIFIER" usage="SITUATIONAL" ref_des="PLB13"
+            data_element="C042" requirement="O" min="*" max="*" dat_type="*">
+            <subelement name="Code " usage="REQUIRED" ref_des="PLB13-1" data_element="426"
+                requirement="M" min="2" max="2" dat_type="ID"/>
+            <subelement name="Identification " usage="SITUATIONAL" ref_des="PLB13-2"
+                data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                <description>Provider Adjustment Identifier </description>
+            </subelement>
+        </element>
+        <element name="Monetary Amount" usage="SITUATIONAL" ref_des="PLB14" data_element="782"
+            requirement="X" min="1" max="18" dat_type="R">
+            <description>Provider Adjustment Amount </description>
+        </element>
+    </segment>
+    <segment description="" name="Transaction Set Trailer" id="SE" repeat="1" usage="REQUIRED"
+        level="Summary" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Number of Included Segments" usage="REQUIRED" ref_des="SE01"
+            data_element="96" requirement="M" min="1" max="10" dat_type="N0">
+            <description>Transaction Segment Count </description>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="SE02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+</transaction>

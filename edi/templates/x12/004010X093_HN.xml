@@ -1,0 +1,1845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction version="004010X093" code="HN" type="277">
+   <segment description="" name="Transaction Set Header" id="ST" repeat="1" usage="REQUIRED"
+        level="Header" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Identifier Code" usage="REQUIRED" ref_des="ST01"
+            data_element="143" requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="277" description="Health Care Claim Status Notification " code_source=""/>
+        </element>
+    </segment>
+    <segment description="" name="Beginning of Hierarchical Transaction" id="BHT" repeat="1"
+        usage="REQUIRED" level="Header" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Hierarchical Structure Code" usage="REQUIRED" ref_des="BHT01"
+            data_element="1005" requirement="M" min="4" max="4" dat_type="ID">
+            <code_definition code="0010"
+                description="Information Source, Information Receiver, Provider of Service, Subscriber, Dependent " code_source=""/>
+        </element>
+        <element name="Transaction Set Purpose Code" usage="REQUIRED" ref_des="BHT02"
+            data_element="353" requirement="M" min="2" max="2" dat_type="ID">
+            <code_definition code="08" description="Status " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="BHT03" data_element="127"
+            requirement="O" min="1" max="30" dat_type="AN">
+            <description>Originator Application Transaction Identifier </description>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="BHT04" data_element="373" requirement="O"
+            min="8" max="8" dat_type="DT">
+            <description>Transaction Set Creation Date </description>
+        </element>
+        <element name="Time" usage="NOT USED" ref_des="BHT05"/>
+        <element name="Transaction Type Code" usage="REQUIRED" ref_des="BHT06" data_element="640"
+            requirement="O" min="2" max="2" dat_type="ID">
+            <code_definition code="DG" description="Response " code_source=""/>
+        </element>
+    </segment>
+    <loop name="INFORMATION SOURCE LEVEL " id="2000A" repeat="&gt;1"
+        level="Detail, Information Source Level" occurrence="">
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="NOT USED" ref_des="HL02"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="20" description="Information Source " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+        <loop name="PAYER NAME " id="2100A" repeat="&gt;1"
+            level="Detail, Information Source Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="PR" description="Payer " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Payer Name </description>
+                </element>
+                <element name="Name First" usage="NOT USED" ref_des="NM104"/>
+                <element name="Name Middle" usage="NOT USED" ref_des="NM105"/>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="21" description="Health Industry Number (HIN) " code_source=""/>
+                    <code_definition code="AD"
+                        description="Blue Cross Blue Shield Association Plan Code " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="NI"
+                        description="National Association of Insurance Commissioners (NAIC) Identification " code_source=""/>
+                    <code_definition code="PI" description="Payor Identification " code_source=""/>
+                    <code_definition code="PP" description="Pharmacy Processor Number " code_source=""/>
+                    <code_definition code="XV"
+                        description="Health Care Financing Administration National PlanID " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Payer Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="080" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="IC" description="Information Contact " code_source=""/>
+                </element>
+                <element name="Name" usage="SITUATIONAL" ref_des="PER02" data_element="93"
+                    requirement="O" min="1" max="60" dat_type="AN">
+                    <description>Payer Contact Name </description>
+                </element>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="ED"
+                        description="Electronic Data Interchange Access Number " code_source=""/>
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+        </loop>
+    </loop>
+    <loop name="INFORMATION RECEIVER LEVEL " id="2000B" repeat="&gt;1"
+        level="Detail, Information Receiver Level" occurrence="">
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="21" description="Information Receiver " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+        <loop name="INFORMATION RECEIVER NAME " id="2100B" repeat="&gt;1"
+            level="Detail, Information Receiver Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="41" description="Submitter " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Information Receiver Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Information Receiver First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Information Receiver Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Information Receiver Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Information Receiver Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="46"
+                        description="Electronic Transmitter Identification Number (ETIN) " code_source=""/>
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="XX"
+                        description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Information Receiver Identification Number </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+    </loop>
+    <loop name="SERVICE PROVIDER LEVEL " id="2000C" repeat="&gt;1"
+        level="Detail, Service Provider Level" occurrence="">
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="19" description="Provider of Service " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+        <loop name="PROVIDER NAME " id="2100C" repeat="&gt;1"
+            level="Detail, Service Provider Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1P" description="Provider " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Provider Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Provider First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Provider Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Provider Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Provider Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="FI"
+                        description="Federal Taxpayer's Identification Number " code_source=""/>
+                    <code_definition code="SV" description="Service Provider Number " code_source=""/>
+                    <code_definition code="XX"
+                        description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Provider Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+    </loop>
+    <loop name="SUBSCRIBER LEVEL " id="2000D" repeat="&gt;1" level="Detail, Subscriber Level" occurrence="">
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="22" description="Subscriber " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="REQUIRED" ref_des="HL04"
+                data_element="736" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="0"
+                    description="No Subordinate HL Segment in This Hierarchical Structure. " code_source=""/>
+                <code_definition code="1"
+                    description="Additional Subordinate HL Data Segment in This Hierarchical Structure. " code_source=""/>
+            </element>
+        </segment>
+        <segment description="" name="Demographic Information" id="DMG" repeat="1" usage="REQUIRED"
+            level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+            <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02" data_element="1251"
+                requirement="X" min="1" max="35" dat_type="AN">
+                <description>Subscriber Birth Date </description>
+                <alias>Date of Birth - Subscriber </alias>
+            </element>
+            <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                requirement="O" min="1" max="1" dat_type="ID">
+                <description>Subscriber Gender Code </description>
+                <alias>Gender - Subscriber </alias>
+                <code_definition code="F" description="Female " code_source=""/>
+                <code_definition code="M" description="Male " code_source=""/>
+                <code_definition code="U" description="Unknown " code_source=""/>
+            </element>
+            <element name="Marital Status Code" usage="NOT USED" ref_des="DMG04"/>
+            <element name="Race or Ethnicity Code" usage="NOT USED" ref_des="DMG05"/>
+            <element name="Citizenship Status Code" usage="NOT USED" ref_des="DMG06"/>
+            <element name="Country Code" usage="NOT USED" ref_des="DMG07"/>
+            <element name="Basis of Verification Code" usage="NOT USED" ref_des="DMG08"/>
+            <element name="Quantity" usage="NOT USED" ref_des="DMG09"/>
+        </segment>
+        <loop name="SUBSCRIBER NAME " id="2100D" repeat="&gt;1" level="Detail, Subscriber Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="IL" description="Insured or Subscriber " code_source=""/>
+                    <code_definition code="QC" description="Patient " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Subscriber Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="24" description="Employer's Identification Number " code_source=""/>
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="REQUIRED" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Subscriber Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <loop name="CLAIM SUBMITTER TRACE NUMBER " id="2200D" repeat="&gt;1"
+            level="Detail, Subscriber Level" occurrence="">
+            <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Detail"
+                position="090" requirement="OPTIONAL" maxuse="1">
+                <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+                    requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="2" description="Referenced Transaction Trace Numbers " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02"
+                    data_element="127" requirement="M" min="1" max="30" dat_type="AN">
+                    <description>Trace Number </description>
+                </element>
+                <element name="Originating Company Identifier" usage="NOT USED" ref_des="TRN03"/>
+                <element name="Reference Identification" usage="NOT USED" ref_des="TRN04"/>
+            </segment>
+            <segment description="" name="Status Information" id="STC" repeat="1" usage="REQUIRED"
+                level="Detail" position="100" requirement="MANDATORY" maxuse="&gt;1">
+                <element name="HEALTH CARE CLAIM STATUS" usage="REQUIRED" ref_des="STC01"
+                    data_element="C043" requirement="M" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC01-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC01-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC01-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID">
+                        <code_definition code="13" description="Contracted Service Provider " code_source=""/>
+                        <code_definition code="17" description="Consultant's Office " code_source=""/>
+                        <code_definition code="1E"
+                            description="Health Maintenance Organization (HMO) " code_source=""/>
+                        <code_definition code="1G" description="Oncology Center " code_source=""/>
+                        <code_definition code="1H" description="Kidney Dialysis Unit " code_source=""/>
+                        <code_definition code="1I"
+                            description="Preferred Provider Organization (PPO) " code_source=""/>
+                        <code_definition code="1O" description="Acute Care Hospital " code_source=""/>
+                        <code_definition code="1P" description="Provider " code_source=""/>
+                        <code_definition code="1Q" description="Military Facility " code_source=""/>
+                        <code_definition code="1R" description="University, College or School " code_source=""/>
+                        <code_definition code="1S" description="Outpatient Surgicenter " code_source=""/>
+                        <code_definition code="1T"
+                            description="Physician, Clinic or Group Practice " code_source=""/>
+                        <code_definition code="1U" description="Long Term Care Facility " code_source=""/>
+                        <code_definition code="1V" description="Extended Care Facility " code_source=""/>
+                        <code_definition code="1W" description="Psychiatric Health Facility " code_source=""/>
+                        <code_definition code="1X" description="Laboratory " code_source=""/>
+                        <code_definition code="1Y" description="Retail Pharmacy " code_source=""/>
+                        <code_definition code="1Z" description="Home Health Care " code_source=""/>
+                        <code_definition code="28" description="Subcontractor " code_source=""/>
+                        <code_definition code="2A"
+                            description="Federal, State, County or City Facility " code_source=""/>
+                        <code_definition code="2B" description="Third-Party Administrator " code_source=""/>
+                        <code_definition code="2E"
+                            description="Non-Health Care Miscellaneous Facility " code_source=""/>
+                        <code_definition code="2I" description="Church Operated Facility " code_source=""/>
+                        <code_definition code="2K" description="Partnership " code_source=""/>
+                        <code_definition code="2P" description="Public Health Service Facility " code_source=""/>
+                        <code_definition code="2Q" description="Veterans Administration Facility " code_source=""/>
+                        <code_definition code="2S"
+                            description="Public Health Service Indian Service Facility " code_source=""/>
+                        <code_definition code="2Z"
+                            description="Hospital Unit of an Institution (prison hospital, " code_source=""/>
+                        <code_definition code="college" description="infirmary, etc.) " code_source=""/>
+                        <code_definition code="30" description="Service Supplier " code_source=""/>
+                        <code_definition code="36" description="Employer " code_source=""/>
+                        <code_definition code="3A"
+                            description="Hospital Unit Within an Institution for the Mentally Retarded " code_source=""/>
+                        <code_definition code="3C"
+                            description="Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                        <code_definition code="3D" description="Obstetrics and Gynecology Facility " code_source=""/>
+                        <code_definition code="3E" description="Eye, Ear, Nose and Throat Facility " code_source=""/>
+                        <code_definition code="3F" description="Rehabilitation Facility " code_source=""/>
+                        <code_definition code="3G" description="Orthopedic Facility " code_source=""/>
+                        <code_definition code="3H" description="Chronic Disease Facility " code_source=""/>
+                        <code_definition code="3I" description="Other Specialty Facility " code_source=""/>
+                        <code_definition code="3J" description="Children's General Facility " code_source=""/>
+                        <code_definition code="3K"
+                            description="Children's Hospital Unit of an Institution " code_source=""/>
+                        <code_definition code="3L" description="Children's Psychiatric Facility " code_source=""/>
+                        <code_definition code="3M"
+                            description="Children's Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                        <code_definition code="3N"
+                            description="Children's Eye, Ear, Nose and Throat Facility " code_source=""/>
+                        <code_definition code="3O" description="Children's Rehabilitiaion Facility " code_source=""/>
+                        <code_definition code="3P" description="Children's Orthopedic Facility " code_source=""/>
+                        <code_definition code="3Q"
+                            description="Children's Chronic Disease Facility " code_source=""/>
+                        <code_definition code="3R"
+                            description="Children's Other Specialty Facility " code_source=""/>
+                        <code_definition code="3S" description="Institution for Mental Retardation " code_source=""/>
+                        <code_definition code="3T"
+                            description="Alcoholism and Other Chemical Dependency Facility " code_source=""/>
+                        <code_definition code="3U"
+                            description="General Inpatient Care for AIDS/ARC Facility " code_source=""/>
+                        <code_definition code="3V" description="AIDS/ARC Unit " code_source=""/>
+                        <code_definition code="3W"
+                            description="Specialized Outpatient Program for AIDS/ARC " code_source=""/>
+                        <code_definition code="3X"
+                            description="Alcohol/Drug Abuse or Dependency Inpatient Unit " code_source=""/>
+                        <code_definition code="3Y"
+                            description="Alcohol/Drug Abuse or Dependency Outpatient Services " code_source=""/>
+                        <code_definition code="3Z" description="Arthritis Treatment Center " code_source=""/>
+                        <code_definition code="40" description="Receiver " code_source=""/>
+                        <code_definition code="43" description="Claimant Authorized Representative " code_source=""/>
+                        <code_definition code="44" description="Data Processing Service Bureau " code_source=""/>
+                        <code_definition code="4A" description="Birthing Room/LDRP Room " code_source=""/>
+                        <code_definition code="4B" description="Burn Care Unit " code_source=""/>
+                        <code_definition code="4C" description="Cardiac Catherization Laboratory " code_source=""/>
+                        <code_definition code="4D" description="Open-Heart Surgery Facility " code_source=""/>
+                        <code_definition code="4E" description="Cardiac Intensive Care Unit " code_source=""/>
+                        <code_definition code="4F" description="Angioplasty Facility " code_source=""/>
+                        <code_definition code="4G"
+                            description="Chronic Obstructive Pulmonary Disease Service Facility " code_source=""/>
+                        <code_definition code="4H" description="Emergency Department " code_source=""/>
+                        <code_definition code="4I" description="Trauma Center (Certified) " code_source=""/>
+                        <code_definition code="4J"
+                            description="Extracorporeal Shock-Wave Lithotripter (ESWL) Unit " code_source=""/>
+                        <code_definition code="4L"
+                            description="Genetic Counseling/Screening Services " code_source=""/>
+                        <code_definition code="4M" description="Adult Day Care Program Facility " code_source=""/>
+                        <code_definition code="4N"
+                            description="Alzheimer's Diagnostic/Assessment Services " code_source=""/>
+                        <code_definition code="4O"
+                            description="Comprehensive Geriatric Assessment Facility " code_source=""/>
+                        <code_definition code="4P"
+                            description="Emergency Response (Geriatric) Unit " code_source=""/>
+                        <code_definition code="4Q" description="Geriatric Acute Care Unit " code_source=""/>
+                        <code_definition code="4R" description="Geriatric Clinics " code_source=""/>
+                        <code_definition code="4S" description="Respite Care Facility " code_source=""/>
+                        <code_definition code="4U" description="Patient Education Unit " code_source=""/>
+                        <code_definition code="4V"
+                            description="Community Health Promotion Facility " code_source=""/>
+                        <code_definition code="4W" description="Worksite Health Promotion Facility " code_source=""/>
+                        <code_definition code="4X" description="Hemodialysis Facility " code_source=""/>
+                        <code_definition code="4Y" description="Home Health Services " code_source=""/>
+                        <code_definition code="4Z" description="Hospice " code_source=""/>
+                        <code_definition code="5A"
+                            description="Medical Surgical or Other Intensive Care Unit " code_source=""/>
+                        <code_definition code="5B" description="Hisopathology Laboratory " code_source=""/>
+                        <code_definition code="5C" description="Blood Bank " code_source=""/>
+                        <code_definition code="5D" description="Neonatal Intensive Care Unit " code_source=""/>
+                        <code_definition code="5E" description="Obstetrics Unit " code_source=""/>
+                        <code_definition code="5F" description="Occupational Health Services " code_source=""/>
+                        <code_definition code="5G" description="Organized Outpatient Services " code_source=""/>
+                        <code_definition code="5H" description="Pediatric Acute Inpatient Unit " code_source=""/>
+                        <code_definition code="5I"
+                            description="Psychiatric Child/Adolescent Services " code_source=""/>
+                        <code_definition code="5J"
+                            description="Psychiatric Consultation-Liaison Services " code_source=""/>
+                        <code_definition code="5K" description="Psychiatric Education Services " code_source=""/>
+                        <code_definition code="5L" description="Psychiatric Emergency Services " code_source=""/>
+                        <code_definition code="5M" description="Psychiatric Geriatric Services " code_source=""/>
+                        <code_definition code="5N" description="Psychiatric Inpatient Unit " code_source=""/>
+                        <code_definition code="5O" description="Psychiatric Outpatient Services " code_source=""/>
+                        <code_definition code="5P"
+                            description="Psychiatric Partial Hospitalization Program " code_source=""/>
+                        <code_definition code="5Q" description="Megavoltage Radiation Therapy Unit " code_source=""/>
+                        <code_definition code="5R" description="Radioactive Implants Unit " code_source=""/>
+                        <code_definition code="5S" description="Theraputic Radioisotope Facility " code_source=""/>
+                        <code_definition code="5T" description="X-Ray Radiation Therapy Unit " code_source=""/>
+                        <code_definition code="5U" description="CT Scanner Unit " code_source=""/>
+                        <code_definition code="5V" description="Diagnostic Radioisotope Facility " code_source=""/>
+                        <code_definition code="5W"
+                            description="Magnetic Resonance Imaging (MRI) Facility " code_source=""/>
+                        <code_definition code="5X" description="Ultrasound Unit " code_source=""/>
+                        <code_definition code="5Y" description="Rehabilitation Inpatient Unit " code_source=""/>
+                        <code_definition code="5Z" description="Rehabilitation Outpatient Services " code_source=""/>
+                        <code_definition code="61" description="Performed At " code_source=""/>
+                        <code_definition code="6A" description="Reproductive Health Services " code_source=""/>
+                        <code_definition code="6B"
+                            description="Skilled Nursing or Other Long-Term Care Unit " code_source=""/>
+                        <code_definition code="6C"
+                            description="Single Photon Emission Computerized Tomography (SPECT) Unit " code_source=""/>
+                        <code_definition code="6D"
+                            description="Organized Social Work Service Facility " code_source=""/>
+                        <code_definition code="6E" description="Outpatient Social Work Services " code_source=""/>
+                        <code_definition code="6F"
+                            description="Emergency Department Social Work Services " code_source=""/>
+                        <code_definition code="6G" description="Sports Medicine Clinic/Services " code_source=""/>
+                        <code_definition code="6H" description="Hospital Auxiliary Unit " code_source=""/>
+                        <code_definition code="6I" description="Patient Representative Services " code_source=""/>
+                        <code_definition code="6J" description="Volunteer Services Department " code_source=""/>
+                        <code_definition code="6K" description="Outpatient Surgery Services " code_source=""/>
+                        <code_definition code="6L" description="Organ/Tissue Transplant Unit " code_source=""/>
+                        <code_definition code="6M" description="Orthopedic Surgery Facility " code_source=""/>
+                        <code_definition code="6N" description="Occupational Therapy Services " code_source=""/>
+                        <code_definition code="6O" description="Physical Therapy Services " code_source=""/>
+                        <code_definition code="6P" description="Recreational Therapy Services " code_source=""/>
+                        <code_definition code="6Q" description="Respiratory Therapy Services " code_source=""/>
+                        <code_definition code="6R" description="Speech Therapy Services " code_source=""/>
+                        <code_definition code="6S" description="Women's Health Center/Services " code_source=""/>
+                        <code_definition code="6U"
+                            description="Cardiac Rehabilitation Program Facility " code_source=""/>
+                        <code_definition code="6V"
+                            description="Non-Invasive Cardiac Assessment Services " code_source=""/>
+                        <code_definition code="6W" description="Emergency Medical Technician " code_source=""/>
+                        <code_definition code="6X" description="Disciplinary Contact " code_source=""/>
+                        <code_definition code="6Y" description="Case Manager " code_source=""/>
+                        <code_definition code="71" description="Attending Physician " code_source=""/>
+                        <code_definition code="72" description="Operating Physician " code_source=""/>
+                        <code_definition code="73" description="Other Physician " code_source=""/>
+                        <code_definition code="74" description="Corrected Insured " code_source=""/>
+                        <code_definition code="77" description="Service Location " code_source=""/>
+                        <code_definition code="7C" description="Place of Occurrence " code_source=""/>
+                        <code_definition code="80" description="Hospital " code_source=""/>
+                        <code_definition code="82" description="Rendering Provider " code_source=""/>
+                        <code_definition code="84" description="Subscriber's Employer " code_source=""/>
+                        <code_definition code="85" description="Billing Provider " code_source=""/>
+                        <code_definition code="87" description="Pay-to Provider " code_source=""/>
+                        <code_definition code="95" description="Research Institute " code_source=""/>
+                    </subelement>
+                </element>
+                <element name="Date" usage="REQUIRED" ref_des="STC02" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Status Information Effective Date </description>
+                </element>
+                <element name="Action Code" usage="NOT USED" ref_des="STC03"/>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="STC04" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R">
+                    <description>Total Claim Charge Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="STC05" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim Payment Amount </description>
+                </element>
+                <element name="Date" usage="SITUATIONAL" ref_des="STC06" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Adjudication or Payment Date </description>
+                </element>
+                <element name="Payment Method Code" usage="SITUATIONAL" ref_des="STC07"
+                    data_element="591" requirement="O" min="3" max="3" dat_type="ID">
+                    <code_definition code="ACH" description="Automated Clearing House (ACH) " code_source=""/>
+                    <code_definition code="BOP" description="Financial Institution Option " code_source=""/>
+                    <code_definition code="CHK" description="Check " code_source=""/>
+                    <code_definition code="FWT"
+                        description="Federal Reserve Funds/Wire Transfer - Nonrepetitive " code_source=""/>
+                    <code_definition code="NON" description="Non-Payment Data " code_source=""/>
+                </element>
+                <element name="Date" usage="SITUATIONAL" ref_des="STC08" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Check Issue or EFT Effective Date </description>
+                </element>
+                <element name="Check Number" usage="SITUATIONAL" ref_des="STC09" data_element="429"
+                    requirement="O" min="1" max="16" dat_type="AN">
+                    <description>Check or EFT Trace Number </description>
+                </element>
+                <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC10"
+                    data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC10-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC10-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC10-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID"/>
+                </element>
+                <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC11"
+                    data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC11-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC11-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC11-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID"/>
+                </element>
+                <element name="Free-Form Message Text" usage="NOT USED" ref_des="STC12"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1K" description="Payor's Claim Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Payer Claim Control Number </description>
+                    <alias>Patient Account Number </alias>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="BLT" description="Billing Type " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Bill Type Identifier </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="EA" description="Medical Record Identification Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Medical Record Number </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="120" requirement="OPTIONAL" maxuse="2">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="232" description="Claim Statement Period Start " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="RD8"
+                        description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Claim Service Period </description>
+                </element>
+            </segment>
+            <loop name="SERVICE LINE INFORMATION " id="2220D" repeat="&gt;1"
+                level="Detail, Subscriber Level" occurrence="">
+                <segment description="" name="Service Information" id="SVC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="180" requirement="OPTIONAL" maxuse="1">
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="REQUIRED"
+                        ref_des="SVC01" data_element="C003" requirement="M" min="*" max="*" dat_type="*">
+                        <subelement name="Qualifier " usage="REQUIRED" ref_des="SVC01-1"
+                            data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="CI"
+                                description="Common Language Equipment Identifier (CLEI) " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NH"
+                                description="National Health Related Item Code " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                        </subelement>
+                        <subelement name="ID " usage="REQUIRED" ref_des="SVC01-2" data_element="234"
+                            requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Service Identification Code </description>
+                        </subelement>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Description " usage="NOT USED" ref_des="SVC01-7" data_element="352"/>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC03"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Provider Payment Amount </description>
+                    </element>
+                    <element name="Product/Service ID" usage="SITUATIONAL" ref_des="SVC04"
+                        data_element="234" requirement="O" min="1" max="48" dat_type="AN">
+                        <description>Revenue Code </description>
+                    </element>
+                    <element name="Quantity" usage="NOT USED" ref_des="SVC05"/>
+                    <element name="COMPOSITE MEDICAL" usage="NOT USED" ref_des="SVC06"/>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC07" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Original Units of Service Count </description>
+                    </element>
+                </segment>
+                <segment description="" name="Status Information" id="STC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="190" requirement="MANDATORY" maxuse="&gt;1">
+                    <element name="HEALTH CARE CLAIM STATUS" usage="REQUIRED" ref_des="STC01"
+                        data_element="C043" requirement="M" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC01-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC01-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC01-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID">
+                            <code_definition code="13" description="Contracted Service Provider " code_source=""/>
+                            <code_definition code="17" description="Consultant's Office " code_source=""/>
+                            <code_definition code="1E"
+                                description="Health Maintenance Organization (HMO) " code_source=""/>
+                            <code_definition code="1G" description="Oncology Center " code_source=""/>
+                            <code_definition code="1H" description="Kidney Dialysis Unit " code_source=""/>
+                            <code_definition code="1I"
+                                description="Preferred Provider Organization (PPO) " code_source=""/>
+                            <code_definition code="1O" description="Acute Care Hospital " code_source=""/>
+                            <code_definition code="1P" description="Provider " code_source=""/>
+                            <code_definition code="1Q" description="Military Facility " code_source=""/>
+                            <code_definition code="1R" description="University, College or School " code_source=""/>
+                            <code_definition code="1S" description="Outpatient Surgicenter " code_source=""/>
+                            <code_definition code="1T"
+                                description="Physician, Clinic or Group Practice " code_source=""/>
+                            <code_definition code="1U" description="Long Term Care Facility " code_source=""/>
+                            <code_definition code="1V" description="Extended Care Facility " code_source=""/>
+                            <code_definition code="1W" description="Psychiatric Health Facility " code_source=""/>
+                            <code_definition code="1X" description="Laboratory " code_source=""/>
+                            <code_definition code="1Y" description="Retail Pharmacy " code_source=""/>
+                            <code_definition code="1Z" description="Home Health Care " code_source=""/>
+                            <code_definition code="28" description="Subcontractor " code_source=""/>
+                            <code_definition code="2A"
+                                description="Federal, State, County or City Facility " code_source=""/>
+                            <code_definition code="2B" description="Third-Party Administrator " code_source=""/>
+                            <code_definition code="2E"
+                                description="Non-Health Care Miscellaneous Facility " code_source=""/>
+                            <code_definition code="2I" description="Church Operated Facility " code_source=""/>
+                            <code_definition code="2K" description="Partnership " code_source=""/>
+                            <code_definition code="2P" description="Public Health Service Facility " code_source=""/>
+                            <code_definition code="2Q"
+                                description="Veterans Administration Facility " code_source=""/>
+                            <code_definition code="2S"
+                                description="Public Health Service Indian Service Facility " code_source=""/>
+                            <code_definition code="2Z"
+                                description="Hospital Unit of an Institution (prison hospital, " code_source=""/>
+                            <code_definition code="college" description="infirmary, etc.) " code_source=""/>
+                            <code_definition code="30" description="Service Supplier " code_source=""/>
+                            <code_definition code="36" description="Employer " code_source=""/>
+                            <code_definition code="3A"
+                                description="Hospital Unit Within an Institution for the Mentally Retarded " code_source=""/>
+                            <code_definition code="3C"
+                                description="Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                            <code_definition code="3D"
+                                description="Obstetrics and Gynecology Facility " code_source=""/>
+                            <code_definition code="3E"
+                                description="Eye, Ear, Nose and Throat Facility " code_source=""/>
+                            <code_definition code="3F" description="Rehabilitation Facility " code_source=""/>
+                            <code_definition code="3G" description="Orthopedic Facility " code_source=""/>
+                            <code_definition code="3H" description="Chronic Disease Facility " code_source=""/>
+                            <code_definition code="3I" description="Other Specialty Facility " code_source=""/>
+                            <code_definition code="3J" description="Children's General Facility " code_source=""/>
+                            <code_definition code="3K"
+                                description="Children's Hospital Unit of an Institution " code_source=""/>
+                            <code_definition code="3L"
+                                description="Children's Psychiatric Facility " code_source=""/>
+                            <code_definition code="3M"
+                                description="Children's Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                            <code_definition code="3N"
+                                description="Children's Eye, Ear, Nose and Throat Facility " code_source=""/>
+                            <code_definition code="3O"
+                                description="Children's Rehabilitiaion Facility " code_source=""/>
+                            <code_definition code="3P" description="Children's Orthopedic Facility " code_source=""/>
+                            <code_definition code="3Q"
+                                description="Children's Chronic Disease Facility " code_source=""/>
+                            <code_definition code="3R"
+                                description="Children's Other Specialty Facility " code_source=""/>
+                            <code_definition code="3S"
+                                description="Institution for Mental Retardation " code_source=""/>
+                            <code_definition code="3T"
+                                description="Alcoholism and Other Chemical Dependency Facility " code_source=""/>
+                            <code_definition code="3U"
+                                description="General Inpatient Care for AIDS/ARC Facility " code_source=""/>
+                            <code_definition code="3V" description="AIDS/ARC Unit " code_source=""/>
+                            <code_definition code="3W"
+                                description="Specialized Outpatient Program for AIDS/ARC " code_source=""/>
+                            <code_definition code="3X"
+                                description="Alcohol/Drug Abuse or Dependency Inpatient Unit " code_source=""/>
+                            <code_definition code="3Y"
+                                description="Alcohol/Drug Abuse or Dependency Outpatient Services " code_source=""/>
+                            <code_definition code="3Z" description="Arthritis Treatment Center " code_source=""/>
+                            <code_definition code="40" description="Receiver " code_source=""/>
+                            <code_definition code="43"
+                                description="Claimant Authorized Representative " code_source=""/>
+                            <code_definition code="44" description="Data Processing Service Bureau " code_source=""/>
+                            <code_definition code="4A" description="Birthing Room/LDRP Room " code_source=""/>
+                            <code_definition code="4B" description="Burn Care Unit " code_source=""/>
+                            <code_definition code="4C"
+                                description="Cardiac Catherization Laboratory " code_source=""/>
+                            <code_definition code="4D" description="Open-Heart Surgery Facility " code_source=""/>
+                            <code_definition code="4E" description="Cardiac Intensive Care Unit " code_source=""/>
+                            <code_definition code="4F" description="Angioplasty Facility " code_source=""/>
+                            <code_definition code="4G"
+                                description="Chronic Obstructive Pulmonary Disease Service Facility " code_source=""/>
+                            <code_definition code="4H" description="Emergency Department " code_source=""/>
+                            <code_definition code="4I" description="Trauma Center (Certified) " code_source=""/>
+                            <code_definition code="4J"
+                                description="Extracorporeal Shock-Wave Lithotripter (ESWL) Unit " code_source=""/>
+                            <code_definition code="4L"
+                                description="Genetic Counseling/Screening Services " code_source=""/>
+                            <code_definition code="4M"
+                                description="Adult Day Care Program Facility " code_source=""/>
+                            <code_definition code="4N"
+                                description="Alzheimer's Diagnostic/Assessment Services " code_source=""/>
+                            <code_definition code="4O"
+                                description="Comprehensive Geriatric Assessment Facility " code_source=""/>
+                            <code_definition code="4P"
+                                description="Emergency Response (Geriatric) Unit " code_source=""/>
+                            <code_definition code="4Q" description="Geriatric Acute Care Unit " code_source=""/>
+                            <code_definition code="4R" description="Geriatric Clinics " code_source=""/>
+                            <code_definition code="4S" description="Respite Care Facility " code_source=""/>
+                            <code_definition code="4U" description="Patient Education Unit " code_source=""/>
+                            <code_definition code="4V"
+                                description="Community Health Promotion Facility " code_source=""/>
+                            <code_definition code="4W"
+                                description="Worksite Health Promotion Facility " code_source=""/>
+                            <code_definition code="4X" description="Hemodialysis Facility " code_source=""/>
+                            <code_definition code="4Y" description="Home Health Services " code_source=""/>
+                            <code_definition code="4Z" description="Hospice " code_source=""/>
+                            <code_definition code="5A"
+                                description="Medical Surgical or Other Intensive Care Unit " code_source=""/>
+                            <code_definition code="5B" description="Hisopathology Laboratory " code_source=""/>
+                            <code_definition code="5C" description="Blood Bank " code_source=""/>
+                            <code_definition code="5D" description="Neonatal Intensive Care Unit " code_source=""/>
+                            <code_definition code="5E" description="Obstetrics Unit " code_source=""/>
+                            <code_definition code="5F" description="Occupational Health Services " code_source=""/>
+                            <code_definition code="5G" description="Organized Outpatient Services " code_source=""/>
+                            <code_definition code="5H" description="Pediatric Acute Inpatient Unit " code_source=""/>
+                            <code_definition code="5I"
+                                description="Psychiatric Child/Adolescent Services " code_source=""/>
+                            <code_definition code="5J"
+                                description="Psychiatric Consultation-Liaison Services " code_source=""/>
+                            <code_definition code="5K" description="Psychiatric Education Services " code_source=""/>
+                            <code_definition code="5L" description="Psychiatric Emergency Services " code_source=""/>
+                            <code_definition code="5M" description="Psychiatric Geriatric Services " code_source=""/>
+                            <code_definition code="5N" description="Psychiatric Inpatient Unit " code_source=""/>
+                            <code_definition code="5O"
+                                description="Psychiatric Outpatient Services " code_source=""/>
+                            <code_definition code="5P"
+                                description="Psychiatric Partial Hospitalization Program " code_source=""/>
+                            <code_definition code="5Q"
+                                description="Megavoltage Radiation Therapy Unit " code_source=""/>
+                            <code_definition code="5R" description="Radioactive Implants Unit " code_source=""/>
+                            <code_definition code="5S"
+                                description="Theraputic Radioisotope Facility " code_source=""/>
+                            <code_definition code="5T" description="X-Ray Radiation Therapy Unit " code_source=""/>
+                            <code_definition code="5U" description="CT Scanner Unit " code_source=""/>
+                            <code_definition code="5V"
+                                description="Diagnostic Radioisotope Facility " code_source=""/>
+                            <code_definition code="5W"
+                                description="Magnetic Resonance Imaging (MRI) Facility " code_source=""/>
+                            <code_definition code="5X" description="Ultrasound Unit " code_source=""/>
+                            <code_definition code="5Y" description="Rehabilitation Inpatient Unit " code_source=""/>
+                            <code_definition code="5Z"
+                                description="Rehabilitation Outpatient Services " code_source=""/>
+                            <code_definition code="61" description="Performed At " code_source=""/>
+                            <code_definition code="6A" description="Reproductive Health Services " code_source=""/>
+                            <code_definition code="6B"
+                                description="Skilled Nursing or Other Long-Term Care Unit " code_source=""/>
+                            <code_definition code="6C"
+                                description="Single Photon Emission Computerized Tomography (SPECT) Unit " code_source=""/>
+                            <code_definition code="6D"
+                                description="Organized Social Work Service Facility " code_source=""/>
+                            <code_definition code="6E"
+                                description="Outpatient Social Work Services " code_source=""/>
+                            <code_definition code="6F"
+                                description="Emergency Department Social Work Services " code_source=""/>
+                            <code_definition code="6G"
+                                description="Sports Medicine Clinic/Services " code_source=""/>
+                            <code_definition code="6H" description="Hospital Auxiliary Unit " code_source=""/>
+                            <code_definition code="6I"
+                                description="Patient Representative Services " code_source=""/>
+                            <code_definition code="6J" description="Volunteer Services Department " code_source=""/>
+                            <code_definition code="6K" description="Outpatient Surgery Services " code_source=""/>
+                            <code_definition code="6L" description="Organ/Tissue Transplant Unit " code_source=""/>
+                            <code_definition code="6M" description="Orthopedic Surgery Facility " code_source=""/>
+                            <code_definition code="6N" description="Occupational Therapy Services " code_source=""/>
+                            <code_definition code="6O" description="Physical Therapy Services " code_source=""/>
+                            <code_definition code="6P" description="Recreational Therapy Services " code_source=""/>
+                            <code_definition code="6Q" description="Respiratory Therapy Services " code_source=""/>
+                            <code_definition code="6R" description="Speech Therapy Services " code_source=""/>
+                            <code_definition code="6S" description="Women's Health Center/Services " code_source=""/>
+                            <code_definition code="6U"
+                                description="Cardiac Rehabilitation Program Facility " code_source=""/>
+                            <code_definition code="6V"
+                                description="Non-Invasive Cardiac Assessment Services " code_source=""/>
+                            <code_definition code="6W" description="Emergency Medical Technician " code_source=""/>
+                            <code_definition code="6X" description="Disciplinary Contact " code_source=""/>
+                            <code_definition code="6Y" description="Case Manager " code_source=""/>
+                            <code_definition code="71" description="Attending Physician " code_source=""/>
+                            <code_definition code="72" description="Operating Physician " code_source=""/>
+                            <code_definition code="73" description="Other Physician " code_source=""/>
+                            <code_definition code="74" description="Corrected Insured " code_source=""/>
+                            <code_definition code="77" description="Service Location " code_source=""/>
+                            <code_definition code="7C" description="Place of Occurrence " code_source=""/>
+                            <code_definition code="80" description="Hospital " code_source=""/>
+                            <code_definition code="82" description="Rendering Provider " code_source=""/>
+                            <code_definition code="84" description="Subscriber's Employer " code_source=""/>
+                            <code_definition code="85" description="Billing Provider " code_source=""/>
+                            <code_definition code="87" description="Pay-to Provider " code_source=""/>
+                            <code_definition code="95" description="Research Institute " code_source=""/>
+                        </subelement>
+                    </element>
+                    <element name="Date" usage="REQUIRED" ref_des="STC02" data_element="373"
+                        requirement="O" min="8" max="8" dat_type="DT">
+                        <description>Status Information Effective Date </description>
+                    </element>
+                    <element name="Action Code" usage="NOT USED" ref_des="STC03"/>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="STC04"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="STC05"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Provider Payment Amount </description>
+                    </element>
+                    <element name="Date" usage="NOT USED" ref_des="STC06"/>
+                    <element name="Payment Method Code" usage="NOT USED" ref_des="STC07"/>
+                    <element name="Date" usage="NOT USED" ref_des="STC08"/>
+                    <element name="Check Number" usage="NOT USED" ref_des="STC09"/>
+                    <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC10"
+                        data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC10-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC10-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC10-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID"/>
+                    </element>
+                    <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC11"
+                        data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC11-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC11-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC11-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID"/>
+                    </element>
+                    <element name="Free-Form Message Text" usage="NOT USED" ref_des="STC12"/>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="200" requirement="OPTIONAL" maxuse="1">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="FJ" description="Line Item Control Number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Line Item Control Number </description>
+                    </element>
+                    <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                    <element name="" usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="210" requirement="OPTIONAL" maxuse="1">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="472" description="Service " code_source=""/>
+                    </element>
+                    <element name="Date Time Period Format Qualifier" usage="REQUIRED"
+                        ref_des="DTP02" data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="RD8"
+                            description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    </element>
+                    <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                        data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                        <description>Service Line Date </description>
+                    </element>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <loop name="DEPENDENT LEVEL " id="2000E" repeat="&gt;1" level="Detail, Dependent Level" occurrence="">
+        <segment description="" name="Hierarchical Level" id="HL" repeat="1" usage="SITUATIONAL"
+            level="Detail" position="010" requirement="MANDATORY" maxuse="1">
+            <element name="Hierarchical ID Number" usage="REQUIRED" ref_des="HL01"
+                data_element="628" requirement="M" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Parent ID Number" usage="REQUIRED" ref_des="HL02"
+                data_element="734" requirement="O" min="1" max="12" dat_type="AN"/>
+            <element name="Hierarchical Level Code" usage="REQUIRED" ref_des="HL03"
+                data_element="735" requirement="M" min="1" max="2" dat_type="ID">
+                <code_definition code="23" description="Dependent " code_source=""/>
+            </element>
+            <element name="Hierarchical Child Code" usage="NOT USED" ref_des="HL04"/>
+        </segment>
+        <segment description="" name="Demographic Information" id="DMG" repeat="1" usage="REQUIRED"
+            level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+            <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02" data_element="1251"
+                requirement="X" min="1" max="35" dat_type="AN">
+                <description>Patient Birth Date </description>
+                <alias>Date of Birth - Patient </alias>
+            </element>
+            <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                requirement="O" min="1" max="1" dat_type="ID">
+                <description>Patient Gender Code </description>
+                <alias>Gender - Patient </alias>
+                <code_definition code="F" description="Female " code_source=""/>
+                <code_definition code="M" description="Male " code_source=""/>
+                <code_definition code="U" description="Unknown " code_source=""/>
+            </element>
+            <element name="Marital Status Code" usage="NOT USED" ref_des="DMG04"/>
+            <element name="Race or Ethnicity Code" usage="NOT USED" ref_des="DMG05"/>
+            <element name="Citizenship Status Code" usage="NOT USED" ref_des="DMG06"/>
+            <element name="Country Code" usage="NOT USED" ref_des="DMG07"/>
+            <element name="Basis of Verification Code" usage="NOT USED" ref_des="DMG08"/>
+            <element name="Quantity" usage="NOT USED" ref_des="DMG09"/>
+        </segment>
+        <loop name="DEPENDENT NAME " id="2100E" repeat="&gt;1" level="Detail, Dependent Level" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="QC" description="Patient " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Patient Last Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Patient Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Patient Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Patient Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="MI" description="Member Identification Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Patient Primary Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+        </loop>
+        <loop name="CLAIM SUBMITTER TRACE NUMBER " id="2200E" repeat="&gt;1"
+            level="Detail, Dependent Level" occurrence="">
+            <segment description="" name="Trace" id="TRN" repeat="1" usage="REQUIRED" level="Detail"
+                position="090" requirement="OPTIONAL" maxuse="1">
+                <element name="Trace Type Code" usage="REQUIRED" ref_des="TRN01" data_element="481"
+                    requirement="M" min="1" max="2" dat_type="ID">
+                    <code_definition code="2" description="Referenced Transaction Trace Numbers " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="TRN02"
+                    data_element="127" requirement="M" min="1" max="30" dat_type="AN">
+                    <description>Trace Number </description>
+                </element>
+                <element name="Originating Company Identifier" usage="NOT USED" ref_des="TRN03"/>
+                <element name="Reference Identification" usage="NOT USED" ref_des="TRN04"/>
+            </segment>
+            <segment description="" name="Status Information" id="STC" repeat="1" usage="REQUIRED"
+                level="Detail" position="100" requirement="MANDATORY" maxuse="&gt;1">
+                <element name="HEALTH CARE CLAIM STATUS" usage="REQUIRED" ref_des="STC01"
+                    data_element="C043" requirement="M" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC01-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC01-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC01-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID">
+                        <code_definition code="13" description="Contracted Service Provider " code_source=""/>
+                        <code_definition code="17" description="Consultant's Office " code_source=""/>
+                        <code_definition code="1E"
+                            description="Health Maintenance Organization (HMO) " code_source=""/>
+                        <code_definition code="1G" description="Oncology Center " code_source=""/>
+                        <code_definition code="1H" description="Kidney Dialysis Unit " code_source=""/>
+                        <code_definition code="1I"
+                            description="Preferred Provider Organization (PPO) " code_source=""/>
+                        <code_definition code="1O" description="Acute Care Hospital " code_source=""/>
+                        <code_definition code="1P" description="Provider " code_source=""/>
+                        <code_definition code="1Q" description="Military Facility " code_source=""/>
+                        <code_definition code="1R" description="University, College or School " code_source=""/>
+                        <code_definition code="1S" description="Outpatient Surgicenter " code_source=""/>
+                        <code_definition code="1T"
+                            description="Physician, Clinic or Group Practice " code_source=""/>
+                        <code_definition code="1U" description="Long Term Care Facility " code_source=""/>
+                        <code_definition code="1V" description="Extended Care Facility " code_source=""/>
+                        <code_definition code="1W" description="Psychiatric Health Facility " code_source=""/>
+                        <code_definition code="1X" description="Laboratory " code_source=""/>
+                        <code_definition code="1Y" description="Retail Pharmacy " code_source=""/>
+                        <code_definition code="1Z" description="Home Health Care " code_source=""/>
+                        <code_definition code="28" description="Subcontractor " code_source=""/>
+                        <code_definition code="2A"
+                            description="Federal, State, County or City Facility " code_source=""/>
+                        <code_definition code="2B" description="Third-Party Administrator " code_source=""/>
+                        <code_definition code="2D" description="Miscellaneous Health Care Facility " code_source=""/>
+                        <code_definition code="2E"
+                            description="Non-Health Care Miscellaneous Facility " code_source=""/>
+                        <code_definition code="2I" description="Church Operated Facility " code_source=""/>
+                        <code_definition code="2K" description="Partnership " code_source=""/>
+                        <code_definition code="2P" description="Public Health Service Facility " code_source=""/>
+                        <code_definition code="2Q" description="Veterans Administration Facility " code_source=""/>
+                        <code_definition code="2S"
+                            description="Public Health Service Indian Service Facility " code_source=""/>
+                        <code_definition code="2Z"
+                            description="Hospital Unit of an Institution (prison hospital, " code_source=""/>
+                        <code_definition code="college" description="infirmary, etc.) " code_source=""/>
+                        <code_definition code="30" description="Service Supplier " code_source=""/>
+                        <code_definition code="36" description="Employer " code_source=""/>
+                        <code_definition code="3A"
+                            description="Hospital Unit Within an Institution for the Mentally Retarded " code_source=""/>
+                        <code_definition code="3C"
+                            description="Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                        <code_definition code="3D" description="Obstetrics and Gynecology Facility " code_source=""/>
+                        <code_definition code="3E" description="Eye, Ear, Nose and Throat Facility " code_source=""/>
+                        <code_definition code="3F" description="Rehabilitation Facility " code_source=""/>
+                        <code_definition code="3G" description="Orthopedic Facility " code_source=""/>
+                        <code_definition code="3H" description="Chronic Disease Facility " code_source=""/>
+                        <code_definition code="3I" description="Other Specialty Facility " code_source=""/>
+                        <code_definition code="3J" description="Children's General Facility " code_source=""/>
+                        <code_definition code="3K"
+                            description="Children's Hospital Unit of an Institution " code_source=""/>
+                        <code_definition code="3L" description="Children's Psychiatric Facility " code_source=""/>
+                        <code_definition code="3M"
+                            description="Children's Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                        <code_definition code="3N"
+                            description="Children's Eye, Ear, Nose and Throat Facility " code_source=""/>
+                        <code_definition code="3O" description="Children's Rehabilitiaion Facility " code_source=""/>
+                        <code_definition code="3P" description="Children's Orthopedic Facility " code_source=""/>
+                        <code_definition code="3Q"
+                            description="Children's Chronic Disease Facility " code_source=""/>
+                        <code_definition code="3R"
+                            description="Children's Other Specialty Facility " code_source=""/>
+                        <code_definition code="3S" description="Institution for Mental Retardation " code_source=""/>
+                        <code_definition code="3T"
+                            description="Alcoholism and Other Chemical Dependency Facility " code_source=""/>
+                        <code_definition code="3U"
+                            description="General Inpatient Care for AIDS/ARC Facility " code_source=""/>
+                        <code_definition code="3V" description="AIDS/ARC Unit " code_source=""/>
+                        <code_definition code="3W"
+                            description="Specialized Outpatient Program for AIDS/ARC " code_source=""/>
+                        <code_definition code="3X"
+                            description="Alcohol/Drug Abuse or Dependency Inpatient Unit " code_source=""/>
+                        <code_definition code="3Y"
+                            description="Alcohol/Drug Abuse or Dependency Outpatient Services " code_source=""/>
+                        <code_definition code="3Z" description="Arthritis Treatment Center " code_source=""/>
+                        <code_definition code="40" description="Receiver " code_source=""/>
+                        <code_definition code="43" description="Claimant Authorized Representative " code_source=""/>
+                        <code_definition code="44" description="Data Processing Service Bureau " code_source=""/>
+                        <code_definition code="4A" description="Birthing Room/LDRP Room " code_source=""/>
+                        <code_definition code="4B" description="Burn Care Unit " code_source=""/>
+                        <code_definition code="4C" description="Cardiac Catherization Laboratory " code_source=""/>
+                        <code_definition code="4D" description="Open-Heart Surgery Facility " code_source=""/>
+                        <code_definition code="4E" description="Cardiac Intensive Care Unit " code_source=""/>
+                        <code_definition code="4F" description="Angioplasty Facility " code_source=""/>
+                        <code_definition code="4G"
+                            description="Chronic Obstructive Pulmonary Disease Service Facility " code_source=""/>
+                        <code_definition code="4H" description="Emergency Department " code_source=""/>
+                        <code_definition code="4I" description="Trauma Center (Certified) " code_source=""/>
+                        <code_definition code="4J"
+                            description="Extracorporeal Shock-Wave Lithotripter (ESWL) Unit " code_source=""/>
+                        <code_definition code="4L"
+                            description="Genetic Counseling/Screening Services " code_source=""/>
+                        <code_definition code="4M" description="Adult Day Care Program Facility " code_source=""/>
+                        <code_definition code="4N"
+                            description="Alzheimer's Diagnostic/Assessment Services " code_source=""/>
+                        <code_definition code="4O"
+                            description="Comprehensive Geriatric Assessment Facility " code_source=""/>
+                        <code_definition code="4P"
+                            description="Emergency Response (Geriatric) Unit " code_source=""/>
+                        <code_definition code="4Q" description="Geriatric Acute Care Unit " code_source=""/>
+                        <code_definition code="4R" description="Geriatric Clinics " code_source=""/>
+                        <code_definition code="4S" description="Respite Care Facility " code_source=""/>
+                        <code_definition code="4U" description="Patient Education Unit " code_source=""/>
+                        <code_definition code="4V"
+                            description="Community Health Promotion Facility " code_source=""/>
+                        <code_definition code="4W" description="Worksite Health Promotion Facility " code_source=""/>
+                        <code_definition code="4X" description="Hemodialysis Facility " code_source=""/>
+                        <code_definition code="4Y" description="Home Health Services " code_source=""/>
+                        <code_definition code="4Z" description="Hospice " code_source=""/>
+                        <code_definition code="5A"
+                            description="Medical Surgical or Other Intensive Care Unit " code_source=""/>
+                        <code_definition code="5B" description="Hisopathology Laboratory " code_source=""/>
+                        <code_definition code="5C" description="Blood Bank " code_source=""/>
+                        <code_definition code="5D" description="Neonatal Intensive Care Unit " code_source=""/>
+                        <code_definition code="5E" description="Obstetrics Unit " code_source=""/>
+                        <code_definition code="5F" description="Occupational Health Services " code_source=""/>
+                        <code_definition code="5G" description="Organized Outpatient Services " code_source=""/>
+                        <code_definition code="5H" description="Pediatric Acute Inpatient Unit " code_source=""/>
+                        <code_definition code="5I"
+                            description="Psychiatric Child/Adolescent Services " code_source=""/>
+                        <code_definition code="5J"
+                            description="Psychiatric Consultation-Liaison Services " code_source=""/>
+                        <code_definition code="5K" description="Psychiatric Education Services " code_source=""/>
+                        <code_definition code="5L" description="Psychiatric Emergency Services " code_source=""/>
+                        <code_definition code="5M" description="Psychiatric Geriatric Services " code_source=""/>
+                        <code_definition code="5N" description="Psychiatric Inpatient Unit " code_source=""/>
+                        <code_definition code="5O" description="Psychiatric Outpatient Services " code_source=""/>
+                        <code_definition code="5P"
+                            description="Psychiatric Partial Hospitalization Program " code_source=""/>
+                        <code_definition code="5Q" description="Megavoltage Radiation Therapy Unit " code_source=""/>
+                        <code_definition code="5R" description="Radioactive Implants Unit " code_source=""/>
+                        <code_definition code="5S" description="Theraputic Radioisotope Facility " code_source=""/>
+                        <code_definition code="5T" description="X-Ray Radiation Therapy Unit " code_source=""/>
+                        <code_definition code="5U" description="CT Scanner Unit " code_source=""/>
+                        <code_definition code="5V" description="Diagnostic Radioisotope Facility " code_source=""/>
+                        <code_definition code="5W"
+                            description="Magnetic Resonance Imaging (MRI) Facility " code_source=""/>
+                        <code_definition code="5X" description="Ultrasound Unit " code_source=""/>
+                        <code_definition code="5Y" description="Rehabilitation Inpatient Unit " code_source=""/>
+                        <code_definition code="5Z" description="Rehabilitation Outpatient Services " code_source=""/>
+                        <code_definition code="61" description="Performed At " code_source=""/>
+                        <code_definition code="6A" description="Reproductive Health Services " code_source=""/>
+                        <code_definition code="6B"
+                            description="Skilled Nursing or Other Long-Term Care Unit " code_source=""/>
+                        <code_definition code="6C"
+                            description="Single Photon Emission Computerized Tomography (SPECT) Unit " code_source=""/>
+                        <code_definition code="6D"
+                            description="Organized Social Work Service Facility " code_source=""/>
+                        <code_definition code="6E" description="Outpatient Social Work Services " code_source=""/>
+                        <code_definition code="6F"
+                            description="Emergency Department Social Work Services " code_source=""/>
+                        <code_definition code="6G" description="Sports Medicine Clinic/Services " code_source=""/>
+                        <code_definition code="6H" description="Hospital Auxiliary Unit " code_source=""/>
+                        <code_definition code="6I" description="Patient Representative Services " code_source=""/>
+                        <code_definition code="6J" description="Volunteer Services Department " code_source=""/>
+                        <code_definition code="6K" description="Outpatient Surgery Services " code_source=""/>
+                        <code_definition code="6L" description="Organ/Tissue Transplant Unit " code_source=""/>
+                        <code_definition code="6M" description="Orthopedic Surgery Facility " code_source=""/>
+                        <code_definition code="6N" description="Occupational Therapy Services " code_source=""/>
+                        <code_definition code="6O" description="Physical Therapy Services " code_source=""/>
+                        <code_definition code="6P" description="Recreational Therapy Services " code_source=""/>
+                        <code_definition code="6Q" description="Respiratory Therapy Services " code_source=""/>
+                        <code_definition code="6R" description="Speech Therapy Services " code_source=""/>
+                        <code_definition code="6S" description="Women's Health Center/Services " code_source=""/>
+                        <code_definition code="6U"
+                            description="Cardiac Rehabilitation Program Facility " code_source=""/>
+                        <code_definition code="6V"
+                            description="Non-Invasive Cardiac Assessment Services " code_source=""/>
+                        <code_definition code="6W" description="Emergency Medical Technician " code_source=""/>
+                        <code_definition code="6X" description="Disciplinary Contact " code_source=""/>
+                        <code_definition code="6Y" description="Case Manager " code_source=""/>
+                        <code_definition code="71" description="Attending Physician " code_source=""/>
+                        <code_definition code="72" description="Operating Physician " code_source=""/>
+                        <code_definition code="73" description="Other Physician " code_source=""/>
+                        <code_definition code="74" description="Corrected Insured " code_source=""/>
+                        <code_definition code="77" description="Service Location " code_source=""/>
+                        <code_definition code="7C" description="Place of Occurrence " code_source=""/>
+                        <code_definition code="80" description="Hospital " code_source=""/>
+                        <code_definition code="82" description="Rendering Provider " code_source=""/>
+                        <code_definition code="84" description="Subscriber's Employer " code_source=""/>
+                        <code_definition code="85" description="Billing Provider " code_source=""/>
+                        <code_definition code="87" description="Pay-to Provider " code_source=""/>
+                    </subelement>
+                </element>
+                <element name="Date" usage="REQUIRED" ref_des="STC02" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Status Information Effective Date </description>
+                </element>
+                <element name="Action Code" usage="NOT USED" ref_des="STC03"/>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="STC04" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R">
+                    <description>Total Claim Charge Amount </description>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="STC05" data_element="782"
+                    requirement="O" min="1" max="18" dat_type="R">
+                    <description>Claim Payment Amount </description>
+                </element>
+                <element name="Date" usage="SITUATIONAL" ref_des="STC06" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Adjudication or Payment Date </description>
+                </element>
+                <element name="Payment Method Code" usage="SITUATIONAL" ref_des="STC07"
+                    data_element="591" requirement="O" min="3" max="3" dat_type="ID">
+                    <code_definition code="ACH" description="Automated Clearing House (ACH) " code_source=""/>
+                    <code_definition code="BOP" description="Financial Institution Option " code_source=""/>
+                    <code_definition code="CHK" description="Check " code_source=""/>
+                    <code_definition code="FWT"
+                        description="Federal Reserve Funds/Wire Transfer - Nonrepetitive " code_source=""/>
+                    <code_definition code="NON" description="Non-Payment Data " code_source=""/>
+                </element>
+                <element name="Date" usage="SITUATIONAL" ref_des="STC08" data_element="373"
+                    requirement="O" min="8" max="8" dat_type="DT">
+                    <description>Check Issue or EFT Effective Date </description>
+                </element>
+                <element name="Check Number" usage="SITUATIONAL" ref_des="STC09" data_element="429"
+                    requirement="O" min="1" max="16" dat_type="AN">
+                    <description>Check or EFT Trace Number </description>
+                </element>
+                <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC10"
+                    data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC10-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC10-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC10-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID"/>
+                </element>
+                <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC11"
+                    data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC11-1" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Category Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="REQUIRED" ref_des="STC11-2" data_element="1271"
+                        requirement="M" min="1" max="30" dat_type="AN">
+                        <description>Health Care Claim Status Code </description>
+                    </subelement>
+                    <subelement name="Code " usage="SITUATIONAL" ref_des="STC11-3" data_element="98"
+                        requirement="O" min="2" max="3" dat_type="ID"/>
+                </element>
+                <element name="Free-Form Message Text" usage="NOT USED" ref_des="STC12"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="REQUIRED" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="1K" description="Payor's Claim Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Payer Claim Control Number </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="BLT" description="Billing Type " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Bill Type Identifier </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="110" requirement="OPTIONAL" maxuse="3">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="EA" description="Medical Record Identification Number " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Medical Record Number </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="120" requirement="OPTIONAL" maxuse="2">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="232" description="Claim Statement Period Start " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="RD8"
+                        description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    <code_definition code="1089"
+                        description="If there is a single date of service, the begin date " code_source=""/>
+                    <code_definition code="equals" description="the end date. " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Claim Service Period </description>
+                </element>
+            </segment>
+            <loop name="SERVICE LINE INFORMATION " id="2220E" repeat="&gt;1"
+                level="Detail, Dependent Level" occurrence="">
+                <segment description="" name="Service Information" id="SVC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="180" requirement="OPTIONAL" maxuse="1">
+                    <element name="COMPOSITE MEDICAL PROCEDURE IDENTIFIER" usage="REQUIRED"
+                        ref_des="SVC01" data_element="C003" requirement="M" min="*" max="*" dat_type="*">
+                        <subelement name="Qualifier " usage="REQUIRED" ref_des="SVC01-1"
+                            data_element="235" requirement="M" min="2" max="2" dat_type="ID">
+                            <description>Product or Service ID Qualifier </description>
+                            <code_definition code="AD"
+                                description="American Dental Association Codes " code_source=""/>
+                            <code_definition code="CI"
+                                description="Common Language Equipment Identifier (CLEI) " code_source=""/>
+                            <code_definition code="HC"
+                                description="Health Care Financing Administration Common Procedural Coding System (HCPCS) Codes " code_source=""/>
+                            <code_definition code="ID"
+                                description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Procedure " code_source=""/>
+                            <code_definition code="IV"
+                                description="Home Infusion EDI Coalition (HIEC) Product/Service Code " code_source=""/>
+                            <code_definition code="N1"
+                                description="National Drug Code in 4-4-2 Format " code_source=""/>
+                            <code_definition code="N2"
+                                description="National Drug Code in 5-3-2 Format " code_source=""/>
+                            <code_definition code="N3"
+                                description="National Drug Code in 5-4-1 Format " code_source=""/>
+                            <code_definition code="N4"
+                                description="National Drug Code in 5-4-2 Format " code_source=""/>
+                            <code_definition code="ND" description="National Drug Code (NDC) " code_source=""/>
+                            <code_definition code="NH"
+                                description="National Health Related Item Code " code_source=""/>
+                            <code_definition code="NU"
+                                description="National Uniform Billing Committee (NUBC) UB92 Codes " code_source=""/>
+                            <code_definition code="RB"
+                                description="National Uniform Billing Committee (NUBC) UB82 Codes " code_source=""/>
+                        </subelement>
+                        <subelement name="ID " usage="REQUIRED" ref_des="SVC01-2" data_element="234"
+                            requirement="M" min="1" max="48" dat_type="AN">
+                            <description>Service Identification Code </description>
+                        </subelement>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-3"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-4"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-5"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Modifier " usage="SITUATIONAL" ref_des="SVC01-6"
+                            data_element="1339" requirement="O" min="2" max="2" dat_type="AN"/>
+                        <subelement name="Description " usage="NOT USED" ref_des="SVC01-7" data_element="352"/>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC02"
+                        data_element="782" requirement="M" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element name="Monetary Amount" usage="REQUIRED" ref_des="SVC03"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Provider Payment Amount </description>
+                    </element>
+                    <element name="Product/Service ID" usage="SITUATIONAL" ref_des="SVC04"
+                        data_element="234" requirement="O" min="1" max="48" dat_type="AN">
+                        <description>Revenue Code </description>
+                    </element>
+                    <element name="Quantity" usage="NOT USED" ref_des="SVC05"/>
+                    <element name="COMPOSITE MEDICAL" usage="NOT USED" ref_des="SVC06"/>
+                    <element name="Quantity" usage="SITUATIONAL" ref_des="SVC07" data_element="380"
+                        requirement="O" min="1" max="15" dat_type="R">
+                        <description>Original Units of Service Count </description>
+                    </element>
+                </segment>
+                <segment description="" name="Status Information" id="STC" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="190" requirement="MANDATORY" maxuse="&gt;1">
+                    <element name="HEALTH CARE CLAIM STATUS" usage="REQUIRED" ref_des="STC01"
+                        data_element="C043" requirement="M" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC01-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC01-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC01-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID">
+                            <code_definition code="13" description="Contracted Service Provider " code_source=""/>
+                            <code_definition code="17" description="Consultant's Office " code_source=""/>
+                            <code_definition code="1E"
+                                description="Health Maintenance Organization (HMO) " code_source=""/>
+                            <code_definition code="1G" description="Oncology Center " code_source=""/>
+                            <code_definition code="1H" description="Kidney Dialysis Unit " code_source=""/>
+                            <code_definition code="1I"
+                                description="Preferred Provider Organization (PPO) " code_source=""/>
+                            <code_definition code="1O" description="Acute Care Hospital " code_source=""/>
+                            <code_definition code="1P" description="Provider " code_source=""/>
+                            <code_definition code="1Q" description="Military Facility " code_source=""/>
+                            <code_definition code="1R" description="University, College or School " code_source=""/>
+                            <code_definition code="1S" description="Outpatient Surgicenter " code_source=""/>
+                            <code_definition code="1T"
+                                description="Physician, Clinic or Group Practice " code_source=""/>
+                            <code_definition code="1U" description="Long Term Care Facility " code_source=""/>
+                            <code_definition code="1V" description="Extended Care Facility " code_source=""/>
+                            <code_definition code="1W" description="Psychiatric Health Facility " code_source=""/>
+                            <code_definition code="1X" description="Laboratory " code_source=""/>
+                            <code_definition code="1Y" description="Retail Pharmacy " code_source=""/>
+                            <code_definition code="1Z" description="Home Health Care " code_source=""/>
+                            <code_definition code="28" description="Subcontractor " code_source=""/>
+                            <code_definition code="2A"
+                                description="Federal, State, County or City Facility " code_source=""/>
+                            <code_definition code="2B" description="Third-Party Administrator " code_source=""/>
+                            <code_definition code="2D"
+                                description="Miscellaneous Health Care Facility " code_source=""/>
+                            <code_definition code="2E"
+                                description="Non-Health Care Miscellaneous Facility " code_source=""/>
+                            <code_definition code="2I" description="Church Operated Facility " code_source=""/>
+                            <code_definition code="2K" description="Partnership " code_source=""/>
+                            <code_definition code="2P" description="Public Health Service Facility " code_source=""/>
+                            <code_definition code="2Q"
+                                description="Veterans Administration Facility " code_source=""/>
+                            <code_definition code="2S"
+                                description="Public Health Service Indian Service Facility " code_source=""/>
+                            <code_definition code="2Z"
+                                description="Hospital Unit of an Institution (prison hospital, college infirmary, etc.) " code_source=""/>
+                            <code_definition code="30" description="Service Supplier " code_source=""/>
+                            <code_definition code="36" description="Employer " code_source=""/>
+                            <code_definition code="3A"
+                                description="Hospital Unit Within an Institution for the Mentally Retarded " code_source=""/>
+                            <code_definition code="3C"
+                                description="Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                            <code_definition code="3D"
+                                description="Obstetrics and Gynecology Facility " code_source=""/>
+                            <code_definition code="3E"
+                                description="Eye, Ear, Nose and Throat Facility " code_source=""/>
+                            <code_definition code="3F" description="Rehabilitation Facility " code_source=""/>
+                            <code_definition code="3G" description="Orthopedic Facility " code_source=""/>
+                            <code_definition code="3H" description="Chronic Disease Facility " code_source=""/>
+                            <code_definition code="3I" description="Other Specialty Facility " code_source=""/>
+                            <code_definition code="3J" description="Children's General Facility " code_source=""/>
+                            <code_definition code="3K"
+                                description="Children's Hospital Unit of an Institution " code_source=""/>
+                            <code_definition code="3L"
+                                description="Children's Psychiatric Facility " code_source=""/>
+                            <code_definition code="3M"
+                                description="Children's Tuberculosis and Other Respiratory Diseases Facility " code_source=""/>
+                            <code_definition code="3N"
+                                description="Children's Eye, Ear, Nose and Throat Facility " code_source=""/>
+                            <code_definition code="3O"
+                                description="Children's Rehabilitiaion Facility " code_source=""/>
+                            <code_definition code="3P" description="Children's Orthopedic Facility " code_source=""/>
+                            <code_definition code="3Q"
+                                description="Children's Chronic Disease Facility " code_source=""/>
+                            <code_definition code="3R"
+                                description="Children's Other Specialty Facility " code_source=""/>
+                            <code_definition code="3S"
+                                description="Institution for Mental Retardation " code_source=""/>
+                            <code_definition code="3T"
+                                description="Alcoholism and Other Chemical Dependency Facility " code_source=""/>
+                            <code_definition code="3U"
+                                description="General Inpatient Care for AIDS/ARC Facility " code_source=""/>
+                            <code_definition code="3V" description="AIDS/ARC Unit " code_source=""/>
+                            <code_definition code="3W"
+                                description="Specialized Outpatient Program for AIDS/ARC " code_source=""/>
+                            <code_definition code="3X"
+                                description="Alcohol/Drug Abuse or Dependency Inpatient Unit " code_source=""/>
+                            <code_definition code="3Y"
+                                description="Alcohol/Drug Abuse or Dependency Outpatient Services " code_source=""/>
+                            <code_definition code="3Z" description="Arthritis Treatment Center " code_source=""/>
+                            <code_definition code="40" description="Receiver " code_source=""/>
+                            <code_definition code="43"
+                                description="Claimant Authorized Representative " code_source=""/>
+                            <code_definition code="44" description="Data Processing Service Bureau " code_source=""/>
+                            <code_definition code="4A" description="Birthing Room/LDRP Room " code_source=""/>
+                            <code_definition code="4B" description="Burn Care Unit " code_source=""/>
+                            <code_definition code="4C"
+                                description="Cardiac Catherization Laboratory " code_source=""/>
+                            <code_definition code="4D" description="Open-Heart Surgery Facility " code_source=""/>
+                            <code_definition code="4E" description="Cardiac Intensive Care Unit " code_source=""/>
+                            <code_definition code="4F" description="Angioplasty Facility " code_source=""/>
+                            <code_definition code="4G"
+                                description="Chronic Obstructive Pulmonary Disease Service Facility " code_source=""/>
+                            <code_definition code="4H" description="Emergency Department " code_source=""/>
+                            <code_definition code="4I" description="Trauma Center (Certified) " code_source=""/>
+                            <code_definition code="4J"
+                                description="Extracorporeal Shock-Wave Lithotripter (ESWL) Unit " code_source=""/>
+                            <code_definition code="4L"
+                                description="Genetic Counseling/Screening Services " code_source=""/>
+                            <code_definition code="4M"
+                                description="Adult Day Care Program Facility " code_source=""/>
+                            <code_definition code="4N"
+                                description="Alzheimer's Diagnostic/Assessment Services " code_source=""/>
+                            <code_definition code="4O"
+                                description="Comprehensive Geriatric Assessment Facility " code_source=""/>
+                            <code_definition code="4P"
+                                description="Emergency Response (Geriatric) Unit " code_source=""/>
+                            <code_definition code="4Q" description="Geriatric Acute Care Unit " code_source=""/>
+                            <code_definition code="4R" description="Geriatric Clinics " code_source=""/>
+                            <code_definition code="4S" description="Respite Care Facility " code_source=""/>
+                            <code_definition code="4U" description="Patient Education Unit " code_source=""/>
+                            <code_definition code="4V"
+                                description="Community Health Promotion Facility " code_source=""/>
+                            <code_definition code="4W"
+                                description="Worksite Health Promotion Facility " code_source=""/>
+                            <code_definition code="4X" description="Hemodialysis Facility " code_source=""/>
+                            <code_definition code="4Y" description="Home Health Services " code_source=""/>
+                            <code_definition code="4Z" description="Hospice " code_source=""/>
+                            <code_definition code="5A"
+                                description="Medical Surgical or Other Intensive Care Unit " code_source=""/>
+                            <code_definition code="5B" description="Hisopathology Laboratory " code_source=""/>
+                            <code_definition code="5C" description="Blood Bank " code_source=""/>
+                            <code_definition code="5D" description="Neonatal Intensive Care Unit " code_source=""/>
+                            <code_definition code="5E" description="Obstetrics Unit " code_source=""/>
+                            <code_definition code="5F" description="Occupational Health Services " code_source=""/>
+                            <code_definition code="5G" description="Organized Outpatient Services " code_source=""/>
+                            <code_definition code="5H" description="Pediatric Acute Inpatient Unit " code_source=""/>
+                            <code_definition code="5I"
+                                description="Psychiatric Child/Adolescent Services " code_source=""/>
+                            <code_definition code="5J"
+                                description="Psychiatric Consultation-Liaison Services " code_source=""/>
+                            <code_definition code="5K" description="Psychiatric Education Services " code_source=""/>
+                            <code_definition code="5L" description="Psychiatric Emergency Services " code_source=""/>
+                            <code_definition code="5M" description="Psychiatric Geriatric Services " code_source=""/>
+                            <code_definition code="5N" description="Psychiatric Inpatient Unit " code_source=""/>
+                            <code_definition code="5O"
+                                description="Psychiatric Outpatient Services " code_source=""/>
+                            <code_definition code="5P"
+                                description="Psychiatric Partial Hospitalization Program " code_source=""/>
+                            <code_definition code="5Q"
+                                description="Megavoltage Radiation Therapy Unit " code_source=""/>
+                            <code_definition code="5R" description="Radioactive Implants Unit " code_source=""/>
+                            <code_definition code="5S"
+                                description="Theraputic Radioisotope Facility " code_source=""/>
+                            <code_definition code="5T" description="X-Ray Radiation Therapy Unit " code_source=""/>
+                            <code_definition code="5U" description="CT Scanner Unit " code_source=""/>
+                            <code_definition code="5V"
+                                description="Diagnostic Radioisotope Facility " code_source=""/>
+                            <code_definition code="5W"
+                                description="Magnetic Resonance Imaging (MRI) Facility " code_source=""/>
+                            <code_definition code="5X" description="Ultrasound Unit " code_source=""/>
+                            <code_definition code="5Y" description="Rehabilitation Inpatient Unit " code_source=""/>
+                            <code_definition code="5Z"
+                                description="Rehabilitation Outpatient Services " code_source=""/>
+                            <code_definition code="61" description="Performed At " code_source=""/>
+                            <code_definition code="6A" description="Reproductive Health Services " code_source=""/>
+                            <code_definition code="6B"
+                                description="Skilled Nursing or Other Long-Term Care Unit " code_source=""/>
+                            <code_definition code="6C"
+                                description="Single Photon Emission Computerized Tomography (SPECT) Unit " code_source=""/>
+                            <code_definition code="6D"
+                                description="Organized Social Work Service Facility " code_source=""/>
+                            <code_definition code="6E"
+                                description="Outpatient Social Work Services " code_source=""/>
+                            <code_definition code="6F"
+                                description="Emergency Department Social Work Services " code_source=""/>
+                            <code_definition code="6G"
+                                description="Sports Medicine Clinic/Services " code_source=""/>
+                            <code_definition code="6H" description="Hospital Auxiliary Unit " code_source=""/>
+                            <code_definition code="6I"
+                                description="Patient Representative Services " code_source=""/>
+                            <code_definition code="6J" description="Volunteer Services Department " code_source=""/>
+                            <code_definition code="6K" description="Outpatient Surgery Services " code_source=""/>
+                            <code_definition code="6L" description="Organ/Tissue Transplant Unit " code_source=""/>
+                            <code_definition code="6M" description="Orthopedic Surgery Facility " code_source=""/>
+                            <code_definition code="6N" description="Occupational Therapy Services " code_source=""/>
+                            <code_definition code="6O" description="Physical Therapy Services " code_source=""/>
+                            <code_definition code="6P" description="Recreational Therapy Services " code_source=""/>
+                            <code_definition code="6Q" description="Respiratory Therapy Services " code_source=""/>
+                            <code_definition code="6R" description="Speech Therapy Services " code_source=""/>
+                            <code_definition code="6S" description="Women's Health Center/Services " code_source=""/>
+                            <code_definition code="6U"
+                                description="Cardiac Rehabilitation Program Facility " code_source=""/>
+                            <code_definition code="6V"
+                                description="Non-Invasive Cardiac Assessment Services " code_source=""/>
+                            <code_definition code="6W" description="Emergency Medical Technician " code_source=""/>
+                            <code_definition code="6X" description="Disciplinary Contact " code_source=""/>
+                            <code_definition code="6Y" description="Case Manager " code_source=""/>
+                            <code_definition code="71" description="Attending Physician " code_source=""/>
+                            <code_definition code="72" description="Operating Physician " code_source=""/>
+                            <code_definition code="73" description="Other Physician " code_source=""/>
+                            <code_definition code="74" description="Corrected Insured " code_source=""/>
+                            <code_definition code="77" description="Service Location " code_source=""/>
+                            <code_definition code="7C" description="Place of Occurrence " code_source=""/>
+                            <code_definition code="80" description="Hospital " code_source=""/>
+                            <code_definition code="82" description="Rendering Provider " code_source=""/>
+                            <code_definition code="84" description="Subscriber's Employer " code_source=""/>
+                            <code_definition code="85" description="Billing Provider " code_source=""/>
+                            <code_definition code="87" description="Pay-to Provider " code_source=""/>
+                            <code_definition code="95" description="Research Institute " code_source=""/>
+                        </subelement>
+                    </element>
+                    <element name="Date" usage="REQUIRED" ref_des="STC02" data_element="373"
+                        requirement="O" min="8" max="8" dat_type="DT">
+                        <description>Status Information Effective Date </description>
+                    </element>
+                    <element name="Action Code" usage="NOT USED" ref_des="STC03"/>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="STC04"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Charge Amount </description>
+                    </element>
+                    <element name="Monetary Amount" usage="SITUATIONAL" ref_des="STC05"
+                        data_element="782" requirement="O" min="1" max="18" dat_type="R">
+                        <description>Line Item Provider Payment Amount </description>
+                    </element>
+                    <element name="Date" usage="NOT USED" ref_des="STC06"/>
+                    <element name="Payment Method Code" usage="NOT USED" ref_des="STC07"/>
+                    <element name="Date" usage="NOT USED" ref_des="STC08"/>
+                    <element name="Check Number" usage="NOT USED" ref_des="STC09"/>
+                    <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC10"
+                        data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC10-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC10-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC10-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID"/>
+                    </element>
+                    <element name="HEALTH CARE CLAIM STATUS" usage="SITUATIONAL" ref_des="STC11"
+                        data_element="C043" requirement="O" min="*" max="*" dat_type="*">
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC11-1"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Category Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="REQUIRED" ref_des="STC11-2"
+                            data_element="1271" requirement="M" min="1" max="30" dat_type="AN">
+                            <description>Health Care Claim Status Code </description>
+                        </subelement>
+                        <subelement name="Code " usage="SITUATIONAL" ref_des="STC11-3"
+                            data_element="98" requirement="O" min="2" max="3" dat_type="ID"/>
+                    </element>
+                    <element name="Free-Form Message Text" usage="NOT USED" ref_des="STC12"/>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="200" requirement="OPTIONAL" maxuse="1">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="FJ" description="Line Item Control Number " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Line Item Control Number </description>
+                    </element>
+                    <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                    <element name="" usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Date or Time or Period" id="DTP" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="210" requirement="OPTIONAL" maxuse="1">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="472" description="Service " code_source=""/>
+                    </element>
+                    <element name="Date Time Period Format Qualifier" usage="REQUIRED"
+                        ref_des="DTP02" data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="RD8"
+                            description="Range of Dates Expressed in Format CCYYMMDDCCYYMMDD " code_source=""/>
+                    </element>
+                    <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                        data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                        <description>Service Date </description>
+                    </element>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <segment description="" name="Transaction Set Trailer" id="SE" repeat="1" usage="REQUIRED"
+        level="Detail" position="270" requirement="MANDATORY" maxuse="1">
+        <element name="Number of Included Segments" usage="REQUIRED" ref_des="SE01"
+            data_element="96" requirement="M" min="1" max="10" dat_type="N0">
+            <description>Transaction Segment Count </description>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="SE02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+</transaction>

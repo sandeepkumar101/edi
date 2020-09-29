@@ -1,0 +1,1766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction version="004010X095" code="BE" type="834">
+    <segment description="" name="Transaction Set Header" id="ST" repeat="1" usage="REQUIRED"
+        level="Header" position="010" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Identifier Code" usage="REQUIRED" ref_des="ST01"
+            data_element="143" requirement="M" min="3" max="3" dat_type="ID">
+            <code_definition code="834" description="Benefit Enrollment and Maintenance " code_source=""/>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="ST02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+    <segment description="" name="Beginning Segment" id="BGN" repeat="1" usage="REQUIRED"
+        level="Header" position="020" requirement="MANDATORY" maxuse="1">
+        <element name="Transaction Set Purpose Code" usage="REQUIRED" ref_des="BGN01"
+            data_element="353" requirement="M" min="2" max="2" dat_type="ID">
+            <code_definition code="00" description="Original " code_source=""/>
+            <code_definition code="15" description="Re-Submission " code_source=""/>
+            <code_definition code="22" description="Information Copy " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="BGN02" data_element="127"
+            requirement="M" min="1" max="30" dat_type="AN">
+            <description>Transaction Set Identifier Code </description>
+        </element>
+        <element name="Date" usage="REQUIRED" ref_des="BGN03" data_element="373" requirement="M"
+            min="8" max="8" dat_type="DT">
+            <description>Transaction Set Creation Date </description>
+        </element>
+        <element name="Time" usage="REQUIRED" ref_des="BGN04" data_element="337" requirement="X"
+            min="4" max="8" dat_type="TM">
+            <description>Transaction Set Creation Time </description>
+        </element>
+        <element name="Time Code" usage="SITUATIONAL" ref_des="BGN05" data_element="623"
+            requirement="O" min="2" max="2" dat_type="ID">
+            <description>Time Zone Code </description>
+            <code_definition code="01" description="Equivalent to ISO P01 " code_source=""/>
+            <code_definition code="02" description="Equivalent to ISO P02 " code_source=""/>
+            <code_definition code="03" description="Equivalent to ISO P03 " code_source=""/>
+            <code_definition code="04" description="Equivalent to ISO P04 " code_source=""/>
+            <code_definition code="05" description="Equivalent to ISO P05 " code_source=""/>
+            <code_definition code="06" description="Equivalent to ISO P06 " code_source=""/>
+            <code_definition code="07" description="Equivalent to ISO P07 " code_source=""/>
+            <code_definition code="08" description="Equivalent to ISO P08 " code_source=""/>
+            <code_definition code="09" description="Equivalent to ISO P09 " code_source=""/>
+            <code_definition code="10" description="Equivalent to ISO P10 " code_source=""/>
+            <code_definition code="11" description="Equivalent to ISO P11 " code_source=""/>
+            <code_definition code="12" description="Equivalent to ISO P12 " code_source=""/>
+            <code_definition code="13" description="Equivalent to ISO M12 " code_source=""/>
+            <code_definition code="14" description="Equivalent to ISO M11 " code_source=""/>
+            <code_definition code="15" description="Equivalent to ISO M10 " code_source=""/>
+            <code_definition code="16" description="Equivalent to ISO M09 " code_source=""/>
+            <code_definition code="17" description="Equivalent to ISO M08 " code_source=""/>
+            <code_definition code="18" description="Equivalent to ISO M07 " code_source=""/>
+            <code_definition code="19" description="Equivalent to ISO M06 " code_source=""/>
+            <code_definition code="20" description="Equivalent to ISO M05 " code_source=""/>
+            <code_definition code="21" description="Equivalent to ISO M04 " code_source=""/>
+            <code_definition code="22" description="Equivalent to ISO M03 " code_source=""/>
+            <code_definition code="23" description="Equivalent to ISO M02 " code_source=""/>
+            <code_definition code="24" description="Equivalent to ISO M01 " code_source=""/>
+            <code_definition code="AD" description="Alaska Daylight Time " code_source=""/>
+            <code_definition code="AS" description="Alaska Standard Time " code_source=""/>
+            <code_definition code="AT" description="Alaska Time " code_source=""/>
+            <code_definition code="CD" description="Central Daylight Time " code_source=""/>
+            <code_definition code="CS" description="Central Standard Time " code_source=""/>
+            <code_definition code="CT" description="Central Time " code_source=""/>
+            <code_definition code="ED" description="Eastern Daylight Time " code_source=""/>
+            <code_definition code="ES" description="Eastern Standard Time " code_source=""/>
+            <code_definition code="ET" description="Eastern Time " code_source=""/>
+            <code_definition code="GM" description="Greenwich Mean Time " code_source=""/>
+            <code_definition code="HD" description="Hawaii-Aleutian Daylight Time " code_source=""/>
+            <code_definition code="HS" description="Hawaii-Aleutian Standard Time " code_source=""/>
+            <code_definition code="HT" description="Hawaii-Aleutian Time " code_source=""/>
+            <code_definition code="LT" description="Local Time " code_source=""/>
+            <code_definition code="MD" description="Mountain Daylight Time " code_source=""/>
+            <code_definition code="MS" description="Mountain Standard Time " code_source=""/>
+            <code_definition code="MT" description="Mountain Time " code_source=""/>
+            <code_definition code="ND" description="Newfoundland Daylight Time " code_source=""/>
+            <code_definition code="NS" description="Newfoundland Standard Time " code_source=""/>
+            <code_definition code="NT" description="Newfoundland Time " code_source=""/>
+            <code_definition code="PD" description="Pacific Daylight Time " code_source=""/>
+            <code_definition code="PS" description="Pacific Standard Time " code_source=""/>
+            <code_definition code="PT" description="Pacific Time " code_source=""/>
+            <code_definition code="TD" description="Atlantic Daylight Time " code_source=""/>
+            <code_definition code="TS" description="Atlantic Standard Time " code_source=""/>
+            <code_definition code="TT" description="Atlantic Time " code_source=""/>
+            <code_definition code="UT" description="Universal Time Coordinate " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="SITUATIONAL" ref_des="BGN06"
+            data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+            <description>Transaction Set Identifier Code </description>
+        </element>
+        <element name="Transaction Type Code" usage="NOT USED" ref_des="BGN07"/>
+        <element name="Action Code" usage="REQUIRED" ref_des="BGN08" data_element="306"
+            requirement="O" min="1" max="2" dat_type="ID">
+            <code_definition code="2" description="Change (Update) " code_source=""/>
+            <code_definition code="4" description="Verify " code_source=""/>
+        </element>
+        <element name="Security Level Code" usage="NOT USED" ref_des="BGN09"/>
+    </segment>
+    <segment description="" name="Reference Identification" id="REF" repeat="1" usage="SITUATIONAL"
+        level="Header" position="030" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+            data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="38" description="Master Policy Number " code_source=""/>
+        </element>
+        <element name="Reference Identification" usage="REQUIRED" ref_des="REF02" data_element="127"
+            requirement="X" min="1" max="30" dat_type="AN">
+            <description>Master Policy Number </description>
+        </element>
+        <element name="Description" usage="NOT USED" ref_des="REF03"/>
+        <element name="" usage="NOT USED" ref_des="REF04"/>
+    </segment>
+    <segment description="" name="Date or Time or Period" id="DTP" repeat="&gt;1"
+        usage="SITUATIONAL" level="Header" position="040" requirement="OPTIONAL" maxuse="&gt;1">
+        <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01" data_element="374"
+            requirement="M" min="3" max="3" dat_type="ID">
+            <description>Date Time Qualifier </description>
+            <code_definition code="007" description="Effective " code_source=""/>
+            <code_definition code="303" description="Maintenance Effective " code_source=""/>
+            <code_definition code="382" description="Enrollment " code_source=""/>
+            <code_definition code="388" description="Payment Commencement " code_source=""/>
+        </element>
+        <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+            data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+            <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+        </element>
+        <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03" data_element="1251"
+            requirement="M" min="1" max="35" dat_type="AN"/>
+    </segment>
+    <loop name="SPONSOR NAME " id="1000A" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="070" requirement="MANDATORY" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="P5" description="Plan Sponsor " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN">
+                <description>Plan Sponsor Name </description>
+            </element>
+            <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+                <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="REQUIRED" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN">
+                <description>Sponsor Identifier </description>
+            </element>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+    </loop>
+    <loop name="PAYER " id="1000B" repeat="1" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="REQUIRED" level="Header"
+            position="070" requirement="MANDATORY" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="IN" description="Insurer " code_source=""/>
+            </element>
+            <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                requirement="X" min="1" max="60" dat_type="AN">
+                <description>Insurer Name </description>
+            </element>
+            <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="FI" description="Federal Taxpayer's Identification Number " code_source=""/>
+                <code_definition code="XV"
+                    description="Health Care Financing Administration National PlanID " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="REQUIRED" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN">
+                <description>Insurer Identification Code </description>
+            </element>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+    </loop>
+    <loop name="TPA/BROKER NAME " id="1000C" repeat="2" level="Header" occurrence="">
+        <segment description="" name="Name" id="N1" repeat="1" usage="SITUATIONAL" level="Header"
+            position="070" requirement="MANDATORY" maxuse="1">
+            <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101" data_element="98"
+                requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="BO" description="Broker or Sales Office " code_source=""/>
+                <code_definition code="TV" description="Third Party Administrator (TPA) " code_source=""/>
+            </element>
+            <element name="Name" usage="REQUIRED" ref_des="N102" data_element="93" requirement="X"
+                min="1" max="60" dat_type="AN">
+                <description>TPA or Broker Name </description>
+            </element>
+            <element name="Identification Code Qualifier" usage="REQUIRED" ref_des="N103"
+                data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                <code_definition code="94"
+                    description="Code assigned by the organization that is the ultimate destination of the transaction set " code_source=""/>
+                <code_definition code="FI"
+                    description="Federal Taxpayer's Identification Number XV Health Care Financing Administration National PlanID " code_source=""/>
+            </element>
+            <element name="Identification Code" usage="REQUIRED" ref_des="N104" data_element="67"
+                requirement="X" min="2" max="80" dat_type="AN">
+                <description>TPA or Broker Identification Code </description>
+            </element>
+            <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+            <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+        </segment>
+        <loop name="TPA/BROKER ACCOUNT INFORMATION " id="1100C" repeat="1" level="Header" occurrence="">
+            <segment description="" name="Account Identification" id="ACT" repeat="1"
+                usage="SITUATIONAL" level="Header" position="120" requirement="OPTIONAL" maxuse="1">
+                <element name="Account Number" usage="REQUIRED" ref_des="ACT01" data_element="508"
+                    requirement="M" min="1" max="35" dat_type="AN">
+                    <description>TPA or Broker Account Number </description>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="ACT02"/>
+                <element name="Identification Code Qualifier" usage="NOT USED" ref_des="ACT03"/>
+                <element name="Identification Code" usage="NOT USED" ref_des="ACT04"/>
+                <element name="Account Number Qualifier" usage="NOT USED" ref_des="ACT05"/>
+                <element name="Account Number" usage="SITUATIONAL" ref_des="ACT06"
+                    data_element="508" requirement="X" min="1" max="35" dat_type="AN">
+                    <description>TPA or Broker Account Number </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="ACT07"/>
+                <element name="Payment Method Code" usage="NOT USED" ref_des="ACT08"/>
+                <element name="Benefit Status Code" usage="NOT USED" ref_des="ACT09"/>
+            </segment>
+        </loop>
+    </loop>
+    <loop name="MEMBER LEVEL DETAIL " id="2000" repeat="&gt;1" level="Detail" occurrence="">
+        <segment description="" name="Insured Benefit" id="INS" repeat="1" usage="REQUIRED"
+            level="Detail" position="010" requirement="OPTIONAL" maxuse="1">
+            <element name="Yes/No Condition or Response Code" usage="REQUIRED" ref_des="INS01"
+                data_element="1073" requirement="M" min="1" max="1" dat_type="ID">
+                <description>Insured Indicator </description>
+                <alias>Subscriber Indicator </alias>
+                <code_definition code="N" description="No " code_source=""/>
+                <code_definition code="Y" description="Yes " code_source=""/>
+            </element>
+            <element name="Individual Relationship Code" usage="REQUIRED" ref_des="INS02"
+                data_element="1069" requirement="M" min="2" max="2" dat_type="ID">
+                <code_definition code="01" description="Spouse " code_source=""/>
+                <code_definition code="03" description="Father or Mother " code_source=""/>
+                <code_definition code="04" description="Grandfather or Grandmother " code_source=""/>
+                <code_definition code="05" description="Grandson or Granddaughter " code_source=""/>
+                <code_definition code="06" description="Uncle or Aunt " code_source=""/>
+                <code_definition code="07" description="Nephew or Niece " code_source=""/>
+                <code_definition code="08" description="Cousin " code_source=""/>
+                <code_definition code="09" description="Adopted Child " code_source=""/>
+                <code_definition code="10" description="Foster Child " code_source=""/>
+                <code_definition code="11" description="Son-in-law or Daughter-in-law " code_source=""/>
+                <code_definition code="12" description="Brother-in-law or Sister-in-law " code_source=""/>
+                <code_definition code="13" description="Mother-in-law or Father-in-law " code_source=""/>
+                <code_definition code="14" description="Brother or Sister " code_source=""/>
+                <code_definition code="15" description="Ward " code_source=""/>
+                <code_definition code="17" description="Stepson or Stepdaughter " code_source=""/>
+                <code_definition code="18" description="Self " code_source=""/>
+                <code_definition code="19" description="Child " code_source=""/>
+                <code_definition code="23" description="Sponsored Dependent " code_source=""/>
+                <code_definition code="24" description="Dependent of a Minor Dependent " code_source=""/>
+                <code_definition code="25" description="Ex-spouse " code_source=""/>
+                <code_definition code="26" description="Guardian " code_source=""/>
+                <code_definition code="31" description="Court Appointed Guardian " code_source=""/>
+                <code_definition code="32" description="Mother " code_source=""/>
+                <code_definition code="33" description="Father " code_source=""/>
+                <code_definition code="38" description="Collateral Dependent " code_source=""/>
+                <code_definition code="48" description="Stepfather " code_source=""/>
+                <code_definition code="49" description="Stepmother " code_source=""/>
+                <code_definition code="53" description="Life Partner " code_source=""/>
+            </element>
+            <element name="Maintenance Type Code" usage="REQUIRED" ref_des="INS03"
+                data_element="875" requirement="O" min="3" max="3" dat_type="ID">
+                <code_definition code="001" description="Change " code_source=""/>
+                <code_definition code="021" description="Addition " code_source=""/>
+                <code_definition code="024" description="Cancellation or Termination " code_source=""/>
+                <code_definition code="025" description="Reinstatement " code_source=""/>
+                <code_definition code="030" description="Audit or Compare " code_source=""/>
+            </element>
+            <element name="Maintenance Reason Code" usage="SITUATIONAL" ref_des="INS04"
+                data_element="1203" requirement="O" min="2" max="3" dat_type="ID">
+                <code_definition code="01" description="Divorce " code_source=""/>
+                <code_definition code="02" description="Birth " code_source=""/>
+                <code_definition code="03" description="Death " code_source=""/>
+                <code_definition code="04" description="Retirement " code_source=""/>
+                <code_definition code="05" description="Adoption " code_source=""/>
+                <code_definition code="06" description="Strike " code_source=""/>
+                <code_definition code="07" description="Termination of Benefits " code_source=""/>
+                <code_definition code="08" description="Termination of Employment " code_source=""/>
+                <code_definition code="09"
+                    description="Consolidation Omnibus Budget Reconciliation Act (COBRA) " code_source=""/>
+                <code_definition code="10"
+                    description="Consolidation Omnibus Budget Reconciliation Act (COBRA) Premium Paid " code_source=""/>
+                <code_definition code="11" description="Surviving Spouse " code_source=""/>
+                <code_definition code="14" description="Voluntary Withdrawal " code_source=""/>
+                <code_definition code="15" description="Primary Care Provider (PCP) Change " code_source=""/>
+                <code_definition code="16" description="Quit " code_source=""/>
+                <code_definition code="17" description="Fired " code_source=""/>
+                <code_definition code="18" description="Suspended " code_source=""/>
+                <code_definition code="20" description="Active " code_source=""/>
+                <code_definition code="21" description="Disability " code_source=""/>
+                <code_definition code="22" description="Plan Change " code_source=""/>
+                <code_definition code="25" description="Change in Indentifying Data Elements " code_source=""/>
+                <code_definition code="26" description="Declined Coverage " code_source=""/>
+                <code_definition code="27" description="Pre-Enrollment " code_source=""/>
+                <code_definition code="28" description="Initial Enrollment " code_source=""/>
+                <code_definition code="29" description="Benefit Selection " code_source=""/>
+                <code_definition code="31" description="Legal Separation " code_source=""/>
+                <code_definition code="32" description="Marriage " code_source=""/>
+                <code_definition code="33" description="Personnel Data " code_source=""/>
+                <code_definition code="37" description="Leave of Absence with Benefits " code_source=""/>
+                <code_definition code="38" description="Leave of Absence without Benefits " code_source=""/>
+                <code_definition code="39" description="Lay Off with Benefits " code_source=""/>
+                <code_definition code="40" description="Lay Off without Benefits " code_source=""/>
+                <code_definition code="41" description="Re-enrollment " code_source=""/>
+                <code_definition code="43" description="Change of Location " code_source=""/>
+                <code_definition code="AI" description="No Reason Given " code_source=""/>
+                <code_definition code="XN" description="Notification Only " code_source=""/>
+                <code_definition code="XT" description="Transfer " code_source=""/>
+            </element>
+            <element name="Benefit Status Code" usage="REQUIRED" ref_des="INS05" data_element="1216"
+                requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="A" description="Active " code_source=""/>
+                <code_definition code="C"
+                    description="Consolidated Omnibus Budget Reconciliation Act (COBRA) " code_source=""/>
+                <code_definition code="S" description="Surviving Insured " code_source=""/>
+                <code_definition code="T"
+                    description="Tax Equity and Fiscal Responsibility Act (TEFRA) " code_source=""/>
+            </element>
+            <element name="Medicare Plan Code" usage="SITUATIONAL" ref_des="INS06"
+                data_element="1218" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="A" description="Medicare Part A " code_source=""/>
+                <code_definition code="B" description="Medicare Part B " code_source=""/>
+                <code_definition code="C" description="Medicare Part A and B " code_source=""/>
+                <code_definition code="D" description="Medicare " code_source=""/>
+                <code_definition code="E" description="No Medicare " code_source=""/>
+            </element>
+            <element name="Consolidated Omnibus Budget" usage="SITUATIONAL" ref_des="INS07"
+                data_element="1219" requirement="O" min="*" max="*" dat_type="*">
+                <description>Consolidated Omnibus Budget Reconciliation Act (COBRA) </description>
+                <code_definition code="1" description="Termination of Employment " code_source=""/>
+                <code_definition code="2" description="Reduction of work hours " code_source=""/>
+                <code_definition code="3" description="Medicare " code_source=""/>
+                <code_definition code="4" description="Death " code_source=""/>
+                <code_definition code="5" description="Divorce " code_source=""/>
+                <code_definition code="6" description="Separation " code_source=""/>
+                <code_definition code="7" description="Ineligible Child " code_source=""/>
+                <code_definition code="8" description="Bankruptcy of a Retired Employee " code_source=""/>
+            </element>
+            <element name="Employment Status Code" usage="SITUATIONAL" ref_des="INS08"
+                data_element="584" requirement="O" min="2" max="2" dat_type="ID">
+                <code_definition code="AO" description="Active Military - Overseas " code_source=""/>
+                <code_definition code="AU" description="Active Military - USA " code_source=""/>
+                <code_definition code="FT" description="Full-time " code_source=""/>
+                <code_definition code="L1" description="Leave of Absence " code_source=""/>
+                <code_definition code="PT" description="Part-time " code_source=""/>
+                <code_definition code="RT" description="Retired " code_source=""/>
+                <code_definition code="TE" description="Terminated " code_source=""/>
+            </element>
+            <element name="Student Status Code" usage="SITUATIONAL" ref_des="INS09"
+                data_element="1220" requirement="O" min="1" max="1" dat_type="ID">
+                <code_definition code="F" description="Full-time " code_source=""/>
+                <code_definition code="N" description="Not a Student " code_source=""/>
+                <code_definition code="P" description="Part-time " code_source=""/>
+            </element>
+            <element name="Yes/No Condition or Response Code" usage="SITUATIONAL" ref_des="INS10"
+                data_element="1073" requirement="O" min="1" max="1" dat_type="ID">
+                <description>Handicap Indicator </description>
+                <code_definition code="N" description="No " code_source=""/>
+                <code_definition code="Y" description="Yes " code_source=""/>
+            </element>
+            <element name="Date Time Period Format Qualifier" usage="SITUATIONAL" ref_des="INS11"
+                data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="SITUATIONAL" ref_des="INS12" data_element="1251"
+                requirement="X" min="1" max="35" dat_type="AN">
+                <description>Insured Individual Death Date </description>
+            </element>
+            <element name="Confidentiality Code" usage="NOT USED" ref_des="INS13"/>
+            <element name="City Name" usage="NOT USED" ref_des="INS14"/>
+            <element name="State or Province Code" usage="NOT USED" ref_des="INS15"/>
+            <element name="Country Code" usage="NOT USED" ref_des="INS16"/>
+            <element name="Number" usage="SITUATIONAL" ref_des="INS17" data_element="1470"
+                requirement="O" min="1" max="9" dat_type="N0">
+                <description>Birth Sequence Number </description>
+            </element>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="1" usage="REQUIRED"
+            level="Detail" position="020" requirement="MANDATORY" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="0F" description="Subscriber Number " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Subscriber Identifier </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="1"
+            usage="SITUATIONAL" level="Detail" position="020" requirement="MANDATORY" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="1L" description="Group or Policy Number " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Insured Group or Policy Number </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="5"
+            usage="SITUATIONAL" level="Detail" position="020" requirement="MANDATORY" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="17" description="Client Reporting Category " code_source=""/>
+                <code_definition code="23" description="Client Number " code_source=""/>
+                <code_definition code="3H" description="Case Number " code_source=""/>
+                <code_definition code="DX" description="Department/Agency Number " code_source=""/>
+                <code_definition code="F6" description="Health Insurance Claim (HIC) Number " code_source=""/>
+                <code_definition code="Q4" description="Prior Identifier Number " code_source=""/>
+                <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Subscriber Supplemental Identifier </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+        <segment description="" name="Reference Identification" id="REF" repeat="1"
+            usage="SITUATIONAL" level="Detail" position="020" requirement="MANDATORY" maxuse="&gt;1">
+            <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="QQ" description="Unit Number " code_source=""/>
+            </element>
+            <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                <description>Prior Coverage Month Count </description>
+            </element>
+            <element name="Description" usage="NOT USED" ref_des="REF03"/>
+            <element name="" usage="NOT USED" ref_des="REF04"/>
+        </segment>
+        <segment description="" name="Date or Time or Period" id="DTP" repeat="20"
+            usage="SITUATIONAL" level="Detail" position="025" requirement="OPTIONAL" maxuse="&gt;1">
+            <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01" data_element="374"
+                requirement="M" min="3" max="3" dat_type="ID">
+                <description>Date Time Qualifier </description>
+                <code_definition code="286" description="Retirement " code_source=""/>
+                <code_definition code="296" description="Return to Work " code_source=""/>
+                <code_definition code="297" description="Date Last Worked " code_source=""/>
+                <code_definition code="300" description="Enrollment Signature Date " code_source=""/>
+                <code_definition code="301"
+                    description="Consolidated Omnibus Budget Reconciliation Act (COBRA) Qualifying Event " code_source=""/>
+                <code_definition code="303" description="Maintenance Effective " code_source=""/>
+                <code_definition code="336" description="Employment Begin " code_source=""/>
+                <code_definition code="337" description="Employment End " code_source=""/>
+                <code_definition code="338" description="Medicare Begin " code_source=""/>
+                <code_definition code="339" description="Medicare End " code_source=""/>
+                <code_definition code="340"
+                    description="Consolidated Omnibus Budget Reconciliation Act (COBRA) Begin " code_source=""/>
+                <code_definition code="341"
+                    description="Consolidated Omnibus Budget Reconciliation Act (COBRA) End " code_source=""/>
+                <code_definition code="350" description="Education Begin " code_source=""/>
+                <code_definition code="351" description="Education End " code_source=""/>
+                <code_definition code="356" description="Eligibility Begin " code_source=""/>
+                <code_definition code="357" description="Eligibility End " code_source=""/>
+                <code_definition code="383" description="Adjusted Hire " code_source=""/>
+                <code_definition code="393" description="Plan Participation Suspension " code_source=""/>
+                <code_definition code="394" description="Rehire " code_source=""/>
+                <code_definition code="473" description="Medicaid Begin " code_source=""/>
+                <code_definition code="474" description="Medicaid End " code_source=""/>
+            </element>
+            <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+            </element>
+            <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03" data_element="1251"
+                requirement="M" min="1" max="35" dat_type="AN">
+                <description>Status Information Effective Date </description>
+            </element>
+        </segment>
+        <loop name="MEMBER NAME " id="2100A" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="REQUIRED" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="74" description="Corrected Insured " code_source=""/>
+                    <code_definition code="IL" description="Insured or Subscriber " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Subscriber Last Name </description>
+                </element>
+                <element name="Name First" usage="REQUIRED" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Subscriber Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Subscriber Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Subscriber Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="IP" description="Insured Party " code_source=""/>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>Subscriber Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>Subscriber Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>Subscriber City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>Subscriber State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>Subscriber Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="SITUATIONAL" ref_des="N405"
+                    data_element="309" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="60" description="Area " code_source=""/>
+                    <code_definition code="CY" description="County/Parish " code_source=""/>
+                </element>
+                <element name="Location Identifier" usage="SITUATIONAL" ref_des="N406"
+                    data_element="310" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Location Identification Code </description>
+                </element>
+                <element name="member identified in the" usage="NOT USED" ref_des="when"/>
+            </segment>
+            <segment description="" name="Demographic Information" id="DMG" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="080" requirement="OPTIONAL" maxuse="1">
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                    data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                    <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02"
+                    data_element="1251" requirement="X" min="1" max="35" dat_type="AN">
+                    <description>Member Birth Date </description>
+                </element>
+                <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                    requirement="O" min="1" max="1" dat_type="ID">
+                    <code_definition code="F" description="Female " code_source=""/>
+                    <code_definition code="M" description="Male " code_source=""/>
+                    <code_definition code="U" description="Unknown " code_source=""/>
+                </element>
+                <element name="Marital Status Code" usage="SITUATIONAL" ref_des="DMG04"
+                    data_element="1067" requirement="O" min="1" max="1" dat_type="ID"/>
+                <element name="member identified in the" usage="NOT USED" ref_des="when">
+                    <code_definition code="B" description="Registered Domestic Partner " code_source=""/>
+                    <code_definition code="D" description="Divorced " code_source=""/>
+                    <code_definition code="I" description="Single " code_source=""/>
+                    <code_definition code="M" description="Married " code_source=""/>
+                    <code_definition code="R" description="Unreported " code_source=""/>
+                    <code_definition code="S" description="Separated " code_source=""/>
+                    <code_definition code="U"
+                        description="Unmarried (Single or Divorced or Widowed) " code_source=""/>
+                    <code_definition code="W" description="Widowed " code_source=""/>
+                    <code_definition code="X" description="Legally Separated " code_source=""/>
+                </element>
+                <element name="Race or Ethnicity Code" usage="SITUATIONAL" ref_des="DMG05"
+                    data_element="1109" requirement="O" min="1" max="1" dat_type="ID"/>
+                <element name="member identified in the" usage="NOT USED" ref_des="when">
+                    <code_definition code="7" description="Not Provided " code_source=""/>
+                    <code_definition code="A" description="Asian or Pacific Islander " code_source=""/>
+                    <code_definition code="B" description="Black " code_source=""/>
+                    <code_definition code="C" description="Caucasian " code_source=""/>
+                    <code_definition code="H" description="Hispanic " code_source=""/>
+                    <code_definition code="I" description="American Indian or Alaskan Native " code_source=""/>
+                    <code_definition code="N" description="Black (Non-Hispanic) " code_source=""/>
+                    <code_definition code="O" description="White (Non-Hispanic) " code_source=""/>
+                </element>
+                <element name="Citizenship Status Code" usage="SITUATIONAL" ref_des="DMG06"
+                    data_element="1066" requirement="O" min="1" max="2" dat_type="ID"/>
+                <element name="member identified in the" usage="NOT USED" ref_des="when">
+                    <code_definition code="1" description="U.S. Citizen " code_source=""/>
+                    <code_definition code="2" description="Non-Resident Alien " code_source=""/>
+                    <code_definition code="3" description="Resident Alien " code_source=""/>
+                    <code_definition code="4" description="Illegal Alien " code_source=""/>
+                    <code_definition code="5" description="Alien " code_source=""/>
+                    <code_definition code="6" description="U.S. Citizen - Non-Resident " code_source=""/>
+                    <code_definition code="7" description="U.S. Citizen - Resident " code_source=""/>
+                </element>
+                <element name="Country Code" usage="NOT USED" ref_des="DMG07"/>
+                <element name="Basis of Verification Code" usage="NOT USED" ref_des="DMG08"/>
+                <element name="Quantity" usage="NOT USED" ref_des="DMG09"/>
+            </segment>
+            <segment description="" name="Individual Income" id="ICM" repeat="1" usage="SITUATIONAL"
+                level="Detail" position="110" requirement="OPTIONAL" maxuse="1">
+                <element name="Frequency Code" usage="REQUIRED" ref_des="ICM01" data_element="594"
+                    requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Weekly " code_source=""/>
+                    <code_definition code="2" description="Biweekly " code_source=""/>
+                    <code_definition code="3" description="Semimonthly " code_source=""/>
+                    <code_definition code="4" description="Monthly " code_source=""/>
+                    <code_definition code="6" description="Daily " code_source=""/>
+                    <code_definition code="7" description="Annual " code_source=""/>
+                    <code_definition code="8" description="Two Calendar Months " code_source=""/>
+                    <code_definition code="9" description="Lump-Sum Separation Allowance " code_source=""/>
+                    <code_definition code="B" description="Year-to-Date " code_source=""/>
+                    <code_definition code="C" description="Single " code_source=""/>
+                    <code_definition code="H" description="Hourly " code_source=""/>
+                    <code_definition code="Q" description="Quarterly " code_source=""/>
+                    <code_definition code="S" description="Semiannual " code_source=""/>
+                    <code_definition code="U" description="Unknown " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="ICM02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Wage Amount </description>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="ICM03" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Work Hours Count </description>
+                </element>
+                <element name="Location Identifier" usage="SITUATIONAL" ref_des="ICM04"
+                    data_element="310" requirement="O" min="1" max="30" dat_type="AN">
+                    <description>Location Identification Code </description>
+                </element>
+                <element name="Salary Grade" usage="SITUATIONAL" ref_des="ICM05" data_element="1214"
+                    requirement="O" min="1" max="5" dat_type="AN">
+                    <description>Salary Grade Code </description>
+                </element>
+                <element name="Currency Code" usage="NOT USED" ref_des="ICM06"/>
+            </segment>
+            <segment description="" name="Monetary Amount" id="AMT" repeat="4" usage="SITUATIONAL"
+                level="Detail" position="120" requirement="OPTIONAL" maxuse="10">
+                <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                    data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                    <code_definition code="B9" description="Co-insurance - Actual " code_source=""/>
+                    <code_definition code="C1" description="Co-Payment Amount " code_source=""/>
+                    <code_definition code="D2" description="Deductible Amount " code_source=""/>
+                    <code_definition code="P3" description="Premium Amount " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Contract Amount </description>
+                </element>
+                <element name="Credit/Debit Flag Code" usage="NOT USED" ref_des="AMT03"/>
+            </segment>
+            <segment description="" name="Health Information" id="HLH" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="130" requirement="OPTIONAL" maxuse="1">
+                <element name="Health-Related Code" usage="SITUATIONAL" ref_des="HLH01"
+                    data_element="1212" requirement="O" min="1" max="1" dat_type="ID">
+                    <description>Health Related Code </description>
+                    <code_definition code="N" description="None " code_source=""/>
+                    <code_definition code="S" description="Substance Abuse " code_source=""/>
+                    <code_definition code="T" description="Tobacco Use " code_source=""/>
+                    <code_definition code="U" description="Unknown " code_source=""/>
+                    <code_definition code="X" description="Tobacco Use and Substance Abuse " code_source=""/>
+                </element>
+                <element name="Height" usage="SITUATIONAL" ref_des="HLH02" data_element="65"
+                    requirement="O" min="1" max="8" dat_type="R">
+                    <description>Member Height </description>
+                </element>
+                <element name="Weight" usage="SITUATIONAL" ref_des="HLH03" data_element="81"
+                    requirement="O" min="1" max="10" dat_type="R">
+                    <description>Member Weight </description>
+                </element>
+                <element name="Weight" usage="NOT USED" ref_des="HLH04"/>
+                <element name="Description" usage="NOT USED" ref_des="HLH05"/>
+                <element name="Current Health Condition Code" usage="NOT USED" ref_des="HLH06"/>
+                <element name="Description" usage="NOT USED" ref_des="HLH07"/>
+            </segment>
+            <segment description="" name="Language Use" id="LUI" repeat="5" usage="SITUATIONAL"
+                level="Detail" position="150" requirement="OPTIONAL" maxuse="&gt;1">
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="LUI01"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="LD" description="NISO Z39.53 Language Codes " code_source=""/>
+                    <code_definition code="LE" description="ISO 639 Language Codes " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="LUI02"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Language Code </description>
+                </element>
+                <element name="Description" usage="SITUATIONAL" ref_des="LUI03" data_element="352"
+                    requirement="X" min="1" max="80" dat_type="AN">
+                    <description>Language Description </description>
+                </element>
+                <element name="Use of Language Indicator" usage="SITUATIONAL" ref_des="LUI04"
+                    data_element="1303" requirement="O" min="1" max="2" dat_type="ID">
+                    <description>Language Use Indicator </description>
+                    <code_definition code="5" description="Language Reading " code_source=""/>
+                    <code_definition code="7" description="Language Speaking " code_source=""/>
+                    <code_definition code="8" description="Native Language " code_source=""/>
+                </element>
+            </segment>
+        </loop>
+        <loop name="INCORRECT MEMBER NAME " id="2100B" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="70" description="Prior Incorrect Insured " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Prior Incorrect Insured Last Name </description>
+                </element>
+                <element name="Name First" usage="REQUIRED" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Prior Incorrect Insured First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Prior Incorrect Insured Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Prior Incorrect Insured Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Prior Incorrect Insured Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Prior Incorrect Insured Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Demographic Information" id="DMG" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="080" requirement="OPTIONAL" maxuse="1">
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DMG01"
+                    data_element="1250" requirement="X" min="2" max="3" dat_type="ID">
+                    <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DMG02"
+                    data_element="1251" requirement="X" min="1" max="35" dat_type="AN">
+                    <description>Prior Incorrect Insured Birth Date </description>
+                </element>
+                <element name="Gender Code" usage="REQUIRED" ref_des="DMG03" data_element="1068"
+                    requirement="O" min="1" max="1" dat_type="ID">
+                    <description>Prior Incorrect Insured Gender Code </description>
+                    <code_definition code="F" description="Female " code_source=""/>
+                    <code_definition code="M" description="Male " code_source=""/>
+                    <code_definition code="U" description="Unknown " code_source=""/>
+                </element>
+                <element name="Marital Status Code" usage="NOT USED" ref_des="DMG04"/>
+                <element name="Race or Ethnicity Code" usage="NOT USED" ref_des="DMG05"/>
+                <element name="Citizenship Status Code" usage="NOT USED" ref_des="DMG06"/>
+                <element name="Country Code" usage="NOT USED" ref_des="DMG07"/>
+                <element name="Basis of Verification Code" usage="NOT USED" ref_des="DMG08"/>
+                <element name="Quantity" usage="NOT USED" ref_des="DMG09"/>
+            </segment>
+        </loop>
+        <loop name="MEMBER MAILING ADDRESS " id="2100C" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="31" description="Postal Mailing Address " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="NOT USED" ref_des="NM103"/>
+                <element name="Name First" usage="NOT USED" ref_des="NM104"/>
+                <element name="Name Middle" usage="NOT USED" ref_des="NM105"/>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="NOT USED" ref_des="NM108"/>
+                <element name="Identification Code" usage="NOT USED" ref_des="NM109"/>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>Subscriber Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>Subscriber Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>Subscriber City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>Subscriber State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>Subscriber Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+                <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+            </segment>
+        </loop>
+        <loop name="MEMBER EMPLOYER " id="2100D" repeat="3" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="ES" description="Employer Name " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="SITUATIONAL" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Insured Employer Name </description>
+                </element>
+                <element name="Name First" usage="SITUATIONAL" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Insured Employer First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Insured Employer Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Insured Employer Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Insured Employer Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="EP" description="Employer Contact " code_source=""/>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>Insured Employer Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>Insured Employer Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>Insured Employer City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>Insured Employer State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>Insured Employer Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+                <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+            </segment>
+        </loop>
+        <loop name="MEMBER SCHOOL " id="2100E" repeat="3" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="M8" description="Educational Institution " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>School Name </description>
+                </element>
+                <element name="Name First" usage="NOT USED" ref_des="NM104"/>
+                <element name="Name Middle" usage="NOT USED" ref_des="NM105"/>
+                <element name="Name Prefix" usage="NOT USED" ref_des="NM106"/>
+                <element name="Name Suffix" usage="NOT USED" ref_des="NM107"/>
+                <element name="Identification Code Qualifier" usage="NOT USED" ref_des="NM108"/>
+                <element name="Identification Code" usage="NOT USED" ref_des="NM109"/>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="SK" description="School Clerk " code_source=""/>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>School Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>School Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>School City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>School State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>School Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+                <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+            </segment>
+        </loop>
+        <loop name="CUSTODIAL PARENT " id="2100F" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="S3" description="Custodial Parent " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Custodial Parent Last Name </description>
+                </element>
+                <element name="Name First" usage="REQUIRED" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Custodial Parent First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Custodial Parent Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Custodial Parent Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Custodial Parent Name Suffix </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Custodial Parent Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="PQ" description="Parent or Guardian " code_source=""/>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>Custodial Parent Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>Custodial Parent Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>Custodial Parent City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>Custodial Parent State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>Custodial Parent Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+                <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+            </segment>
+        </loop>
+        <loop name="RESPONSIBLE PERSON " id="2100G" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="030" requirement="OPTIONAL" maxuse="1">
+                <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                    data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="E1"
+                        description="Person or Other Entity Legally Responsible for a Child " code_source=""/>
+                    <code_definition code="EI" description="Executor of Estate " code_source=""/>
+                    <code_definition code="EXS" description="Ex-spouse " code_source=""/>
+                    <code_definition code="GD" description="Guardian " code_source=""/>
+                    <code_definition code="J6" description="Power of Attorney " code_source=""/>
+                    <code_definition code="QD" description="Responsible Party " code_source=""/>
+                </element>
+                <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                    data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Person " code_source=""/>
+                </element>
+                <element name="Name Last or Organization Name" usage="REQUIRED" ref_des="NM103"
+                    data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                    <description>Responsible Party Last or Organization Name </description>
+                </element>
+                <element name="Name First" usage="REQUIRED" ref_des="NM104" data_element="1036"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Responsible Party First Name </description>
+                </element>
+                <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105" data_element="1037"
+                    requirement="O" min="1" max="25" dat_type="AN">
+                    <description>Responsible Party Middle Name </description>
+                </element>
+                <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106" data_element="1038"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Responsible Party Name Prefix </description>
+                </element>
+                <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107" data_element="1039"
+                    requirement="O" min="1" max="10" dat_type="AN">
+                    <description>Responsible Party Suffix Name </description>
+                </element>
+                <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="NM108"
+                    data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                    <code_definition code="34" description="Social Security Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                    data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                    <description>Responsible Party Identifier </description>
+                </element>
+                <element name="Entity Relationship Code" usage="NOT USED" ref_des="NM110"/>
+                <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+            </segment>
+            <segment description="" name="Administrative Communications Contact" id="PER" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="040" requirement="OPTIONAL" maxuse="1">
+                <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                    data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                    <code_definition code="RP" description="Responsible Person " code_source=""/>
+                </element>
+                <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER05"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Communication Number Qualifier" usage="SITUATIONAL" ref_des="PER07"
+                    data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                    <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                    <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                    <code_definition code="FX" description="Facsimile " code_source=""/>
+                    <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                    <code_definition code="TE" description="Telephone " code_source=""/>
+                    <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                </element>
+                <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                    data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+            </segment>
+            <segment description="" name="Address Information" id="N3" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="050" requirement="OPTIONAL" maxuse="1">
+                <element name="Address Information" usage="REQUIRED" ref_des="N301"
+                    data_element="166" requirement="M" min="1" max="55" dat_type="AN">
+                    <description>Responsible Party Address Line </description>
+                </element>
+                <element name="Address Information" usage="SITUATIONAL" ref_des="N302"
+                    data_element="166" requirement="O" min="1" max="55" dat_type="AN">
+                    <description>Responsible Party Address Line </description>
+                </element>
+            </segment>
+            <segment description="" name="Geographic Location" id="N4" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="060" requirement="OPTIONAL" maxuse="1">
+                <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                    requirement="O" min="2" max="30" dat_type="AN">
+                    <description>Responsible Party City Name </description>
+                </element>
+                <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                    data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                    <description>Responsible Party State Code </description>
+                </element>
+                <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                    requirement="O" min="3" max="15" dat_type="ID">
+                    <description>Responsible Party Postal Zone or ZIP Code </description>
+                </element>
+                <element name="Country Code" usage="SITUATIONAL" ref_des="N404" data_element="26"
+                    requirement="O" min="2" max="3" dat_type="ID"/>
+                <element name="Location Qualifier" usage="NOT USED" ref_des="N405"/>
+                <element name="Location Identifier" usage="NOT USED" ref_des="N406"/>
+            </segment>
+        </loop>
+        <loop name="DISABILITY INFORMATION " id="2200" repeat="1" level="Detail" occurrence="">
+            <segment description="" name="Disability Information" id="DSB" repeat="1"
+                usage="SITUATIONAL" level="Detail" position="200" requirement="OPTIONAL" maxuse="1">
+                <element name="Disability Type Code" usage="REQUIRED" ref_des="DSB01"
+                    data_element="1146" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="1" description="Short Term Disability " code_source=""/>
+                    <code_definition code="2" description="Long Term Disability " code_source=""/>
+                    <code_definition code="3" description="Permanent or Total Disability " code_source=""/>
+                    <code_definition code="4" description="No Disability " code_source=""/>
+                </element>
+                <element name="Quantity" usage="NOT USED" ref_des="DSB02"/>
+                <element name="Occupation Code" usage="NOT USED" ref_des="DSB03"/>
+                <element name="Work Intensity Code" usage="NOT USED" ref_des="DSB04"/>
+                <element name="Product Option Code" usage="NOT USED" ref_des="DSB05"/>
+                <element name="Monetary Amount" usage="NOT USED" ref_des="DSB06"/>
+                <element name="Product/Service ID Qualifier" usage="SITUATIONAL" ref_des="DSB07"
+                    data_element="235" requirement="X" min="2" max="2" dat_type="ID">
+                    <description>Product or Service ID Qualifier </description>
+                    <code_definition code="DX"
+                        description="International Classification of Diseases Clinical Modification (ICD-9-CM) - Diagnosis " code_source=""/>
+                </element>
+                <element name="Medical Code Value" usage="SITUATIONAL" ref_des="DSB08"
+                    data_element="1137" requirement="X" min="1" max="15" dat_type="AN">
+                    <description>Diagnosis Code </description>
+                </element>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="2"
+                usage="SITUATIONAL" level="Detail" position="210" requirement="OPTIONAL" maxuse="10">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="360" description="Disability Begin " code_source=""/>
+                    <code_definition code="361" description="Disability End " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Disability Eligibility Date </description>
+                </element>
+            </segment>
+        </loop>
+        <loop name="HEALTH COVERAGE " id="2300" repeat="99" level="Detail" occurrence="">
+            <segment description="" name="Health Coverage" id="HD" repeat="1" usage="SITUATIONAL"
+                level="Detail" position="260" requirement="OPTIONAL" maxuse="1">
+                <element name="Maintenance Type Code" usage="REQUIRED" ref_des="HD01"
+                    data_element="875" requirement="M" min="3" max="3" dat_type="ID">
+                    <code_definition code="001" description="Change " code_source=""/>
+                    <code_definition code="002" description="Delete " code_source=""/>
+                    <code_definition code="021" description="Addition " code_source=""/>
+                    <code_definition code="024" description="Cancellation or Termination " code_source=""/>
+                    <code_definition code="025" description="Reinstatement " code_source=""/>
+                    <code_definition code="026" description="Correction " code_source=""/>
+                    <code_definition code="030" description="Audit or Compare " code_source=""/>
+                    <code_definition code="032" description="Employee Information Not Applicable " code_source=""/>
+                </element>
+                <element name="Maintenance Reason Code" usage="NOT USED" ref_des="HD02"/>
+                <element name="Insurance Line Code" usage="REQUIRED" ref_des="HD03"
+                    data_element="1205" requirement="O" min="2" max="3" dat_type="ID">
+                    <code_definition code="AG" description="Preventitive Care/Wellness " code_source=""/>
+                    <code_definition code="AH" description="24 Hour Care " code_source=""/>
+                    <code_definition code="AJ" description="Medicare Risk " code_source=""/>
+                    <code_definition code="AK" description="Mental Health " code_source=""/>
+                    <code_definition code="DCP" description="Dental Capitation " code_source=""/>
+                    <code_definition code="DEN" description="Dental " code_source=""/>
+                    <code_definition code="EPO" description="Exclusive Provider Organization " code_source=""/>
+                    <code_definition code="FAC" description="Facility " code_source=""/>
+                    <code_definition code="HE" description="Hearing " code_source=""/>
+                    <code_definition code="HLT" description="Health " code_source=""/>
+                    <code_definition code="LTC" description="Long-Term Care " code_source=""/>
+                    <code_definition code="LTD" description="Long-Term Disability " code_source=""/>
+                    <code_definition code="MM" description="Major Medical " code_source=""/>
+                    <code_definition code="MOD" description="Mail Order Drug " code_source=""/>
+                    <code_definition code="PDG" description="Prescription Drug " code_source=""/>
+                    <code_definition code="POS" description="Point of Service " code_source=""/>
+                    <code_definition code="PPO" description="Preferred Provider Organization " code_source=""/>
+                    <code_definition code="PRA" description="Practitioners " code_source=""/>
+                    <code_definition code="STD" description="Short-Term Disability " code_source=""/>
+                    <code_definition code="UR" description="Utilization Review " code_source=""/>
+                    <code_definition code="VIS" description="Vision " code_source=""/>
+                </element>
+                <element name="Plan Coverage Description" usage="SITUATIONAL" ref_des="HD04"
+                    data_element="1204" requirement="O" min="1" max="50" dat_type="AN"/>
+                <element name="Coverage Level Code" usage="SITUATIONAL" ref_des="HD05"
+                    data_element="1207" requirement="O" min="3" max="3" dat_type="ID"/>
+                <element name="member identified in the" usage="NOT USED" ref_des="when">
+                    <code_definition code="CHD" description="Children Only " code_source=""/>
+                    <code_definition code="DEP" description="Dependents Only " code_source=""/>
+                    <code_definition code="E1D" description="Employee and One Dependent " code_source=""/>
+                    <code_definition code="E2D" description="Employee and Two Dependents " code_source=""/>
+                    <code_definition code="E3D" description="Employee and Three Dependents " code_source=""/>
+                    <code_definition code="E5D" description="Employee and One or More Dependents " code_source=""/>
+                    <code_definition code="E6D" description="Employee and Two or More Dependents " code_source=""/>
+                    <code_definition code="E7D" description="Employee and Three or More Dependents " code_source=""/>
+                    <code_definition code="E8D" description="Employee and Four or More Dependents " code_source=""/>
+                    <code_definition code="E9D" description="Employee and Five or More Dependents " code_source=""/>
+                    <code_definition code="ECH" description="Employee and Children " code_source=""/>
+                    <code_definition code="EMP" description="Employee Only " code_source=""/>
+                    <code_definition code="ESP" description="Employee and Spouse " code_source=""/>
+                    <code_definition code="FAM" description="Family " code_source=""/>
+                    <code_definition code="IND" description="Individual " code_source=""/>
+                    <code_definition code="SPC" description="Spouse and Children " code_source=""/>
+                    <code_definition code="SPO" description="Spouse Only " code_source=""/>
+                    <code_definition code="TWO" description="Two Party " code_source=""/>
+                </element>
+                <element name="Count" usage="NOT USED" ref_des="HD06"/>
+                <element name="Count" usage="NOT USED" ref_des="HD07"/>
+                <element name="Underwriting Decision Code" usage="NOT USED" ref_des="HD08"/>
+                <element name="Yes/No Condition or Response Code" usage="NOT USED" ref_des="HD09"/>
+                <element name="Drug House Code" usage="NOT USED" ref_des="HD10"/>
+                <element name="Yes/No Condition or Response Code" usage="NOT USED" ref_des="HD11"/>
+            </segment>
+            <segment description="" name="Date or Time or Period" id="DTP" repeat="4"
+                usage="REQUIRED" level="Detail" position="270" requirement="OPTIONAL" maxuse="10">
+                <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                    data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                    <description>Date Time Qualifier </description>
+                    <code_definition code="303" description="Maintenance Effective " code_source=""/>
+                    <code_definition code="348" description="Benefit Begin " code_source=""/>
+                    <code_definition code="349" description="Benefit End " code_source=""/>
+                    <code_definition code="543" description="Last Premium Paid Date " code_source=""/>
+                </element>
+                <element name="Date Time Period Format Qualifier" usage="REQUIRED" ref_des="DTP02"
+                    data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+                </element>
+                <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                    data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                    <description>Coverage Period </description>
+                </element>
+            </segment>
+            <segment description="" name="Monetary Amount" id="AMT" repeat="4" usage="SITUATIONAL"
+                level="Detail" position="280" requirement="OPTIONAL" maxuse="3">
+                <element name="Amount Qualifier Code" usage="REQUIRED" ref_des="AMT01"
+                    data_element="522" requirement="M" min="1" max="3" dat_type="ID">
+                    <code_definition code="B9" description="Co-insurance - Actual " code_source=""/>
+                    <code_definition code="C1" description="Co-Payment Amount " code_source=""/>
+                    <code_definition code="D2" description="Deductible Amount " code_source=""/>
+                    <code_definition code="P3" description="Premium Amount " code_source=""/>
+                </element>
+                <element name="Monetary Amount" usage="REQUIRED" ref_des="AMT02" data_element="782"
+                    requirement="M" min="1" max="18" dat_type="R">
+                    <description>Contract Amount </description>
+                </element>
+                <element name="Credit/Debit Flag Code" usage="NOT USED" ref_des="AMT03"/>
+            </segment>
+            <segment description="" name="Reference Identification" id="REF" repeat="2"
+                usage="SITUATIONAL" level="Detail" position="290" requirement="OPTIONAL" maxuse="5">
+                <element name="Reference Identification Qualifier" usage="REQUIRED" ref_des="REF01"
+                    data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                    <code_definition code="17" description="Client Reporting Category " code_source=""/>
+                    <code_definition code="1L" description="Group or Policy Number " code_source=""/>
+                    <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                </element>
+                <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                    data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                    <description>Insured Group or Policy Number </description>
+                </element>
+                <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                <element name="" usage="NOT USED" ref_des="REF04"/>
+            </segment>
+            <segment description="" name="Identification Card" id="IDC" repeat="10"
+                usage="SITUATIONAL" level="Detail" position="300" requirement="OPTIONAL" maxuse="&gt;1">
+                <element name="Plan Coverage Description" usage="REQUIRED" ref_des="IDC01"
+                    data_element="1204" requirement="M" min="1" max="50" dat_type="AN"/>
+                <element name="Identification Card Type Code" usage="REQUIRED" ref_des="IDC02"
+                    data_element="1215" requirement="M" min="1" max="1" dat_type="ID">
+                    <code_definition code="D" description="Dental Insurance " code_source=""/>
+                    <code_definition code="H" description="Health Insurance " code_source=""/>
+                    <code_definition code="P"
+                        description="Prescription Drug Service Drug Insurance " code_source=""/>
+                </element>
+                <element name="Quantity" usage="SITUATIONAL" ref_des="IDC03" data_element="380"
+                    requirement="O" min="1" max="15" dat_type="R">
+                    <description>Identification Card Count </description>
+                </element>
+                <element name="Action Code" usage="SITUATIONAL" ref_des="IDC04" data_element="306"
+                    requirement="O" min="1" max="2" dat_type="ID">
+                    <code_definition code="1" description="Add " code_source=""/>
+                    <code_definition code="2" description="Change (Update) " code_source=""/>
+                    <code_definition code="RX" description="Replace " code_source=""/>
+                </element>
+            </segment>
+            <loop name="PROVIDER INFORMATION " id="2310" repeat="30" level="Detail" occurrence="">
+                <segment description="" name="Assigned Number" id="LX" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="310" requirement="OPTIONAL" maxuse="1">
+                    <element name="Assigned Number" usage="REQUIRED" ref_des="LX01"
+                        data_element="554" requirement="M" min="1" max="6" dat_type="N0"/>
+                </segment>
+                <segment description="" name="Individual or Organizational Name" id="NM1" repeat="1"
+                    usage="REQUIRED" level="Detail" position="320" requirement="OPTIONAL" maxuse="1">
+                    <element name="Entity Identifier Code" usage="REQUIRED" ref_des="NM101"
+                        data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="3D" description="Obstetrics and Gynecology Facility " code_source=""/>
+                        <code_definition code="OD" description="Doctor of Optometry " code_source=""/>
+                        <code_definition code="P3" description="Primary Care Provider " code_source=""/>
+                        <code_definition code="QA" description="Pharmacy " code_source=""/>
+                        <code_definition code="QN" description="Dentist " code_source=""/>
+                        <code_definition code="Y2" description="Managed Care Organization " code_source=""/>
+                    </element>
+                    <element name="Entity Type Qualifier" usage="REQUIRED" ref_des="NM102"
+                        data_element="1065" requirement="M" min="1" max="1" dat_type="ID">
+                        <code_definition code="1" description="Person " code_source=""/>
+                        <code_definition code="2" description="Non-Person Entity " code_source=""/>
+                    </element>
+                    <element name="Name Last or Organization Name" usage="SITUATIONAL"
+                        ref_des="NM103" data_element="1035" requirement="O" min="1" max="35" dat_type="AN">
+                        <description>Provider Last or Organization Name </description>
+                    </element>
+                    <element name="Name First" usage="SITUATIONAL" ref_des="NM104"
+                        data_element="1036" requirement="O" min="1" max="25" dat_type="AN">
+                        <description>Provider First Name </description>
+                    </element>
+                    <element name="Name Middle" usage="SITUATIONAL" ref_des="NM105"
+                        data_element="1037" requirement="O" min="1" max="25" dat_type="AN">
+                        <description>Provider Middle Name </description>
+                    </element>
+                    <element name="Name Prefix" usage="SITUATIONAL" ref_des="NM106"
+                        data_element="1038" requirement="O" min="1" max="10" dat_type="AN">
+                        <description>Provider Name Prefix </description>
+                    </element>
+                    <element name="Name Suffix" usage="SITUATIONAL" ref_des="NM107"
+                        data_element="1039" requirement="O" min="1" max="10" dat_type="AN">
+                        <description>Provider Name Suffix </description>
+                    </element>
+                    <element name="Identification Code Qualifier" usage="SITUATIONAL"
+                        ref_des="NM108" data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                        <code_definition code="34" description="Social Security Number " code_source=""/>
+                        <code_definition code="FI"
+                            description="Federal Taxpayer's Identification Number " code_source=""/>
+                        <code_definition code="XX"
+                            description="Health Care Financing Administration National Provider Identifier " code_source=""/>
+                    </element>
+                    <element name="Identification Code" usage="SITUATIONAL" ref_des="NM109"
+                        data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                        <description>Provider Identifier </description>
+                    </element>
+                    <element name="Entity Relationship Code" usage="REQUIRED" ref_des="NM110"
+                        data_element="706" requirement="X" min="2" max="2" dat_type="ID">
+                        <code_definition code="25" description="Established Patient " code_source=""/>
+                        <code_definition code="26" description="Not Established Patient " code_source=""/>
+                        <code_definition code="72" description="Unknown " code_source=""/>
+                    </element>
+                    <element name="Entity Identifier Code" usage="NOT USED" ref_des="NM111"/>
+                </segment>
+                <segment description="" name="Geographic Location" id="N4" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="360" requirement="OPTIONAL" maxuse="2">
+                    <element name="City Name" usage="REQUIRED" ref_des="N401" data_element="19"
+                        requirement="O" min="2" max="30" dat_type="AN">
+                        <description>Member City Name </description>
+                    </element>
+                    <element name="State or Province Code" usage="REQUIRED" ref_des="N402"
+                        data_element="156" requirement="O" min="2" max="2" dat_type="ID">
+                        <description>Member State Code </description>
+                    </element>
+                    <element name="Postal Code" usage="REQUIRED" ref_des="N403" data_element="116"
+                        requirement="O" min="3" max="15" dat_type="ID">
+                        <description>Member Postal Zone or Zip Code </description>
+                    </element>
+                    <element name="Country Code" usage="SITUATIONAL" ref_des="N404"
+                        data_element="26" requirement="O" min="2" max="3" dat_type="ID"/>
+                    <element name="Location Qualifier" usage="SITUATIONAL" ref_des="N405"
+                        data_element="309" requirement="X" min="1" max="2" dat_type="ID">
+                        <code_definition code="60" description="Area " code_source=""/>
+                        <code_definition code="CY" description="County/Parish " code_source=""/>
+                        <code_definition code="RJ" description="Region " code_source=""/>
+                    </element>
+                    <element name="Location Identifier" usage="SITUATIONAL" ref_des="N406"
+                        data_element="310" requirement="O" min="1" max="30" dat_type="AN">
+                        <description>Location Identification Code </description>
+                    </element>
+                    <element name="member identified in the" usage="NOT USED" ref_des="when"/>
+                </segment>
+                <segment description="" name="Administrative Communications Contact" id="PER"
+                    repeat="2" usage="SITUATIONAL" level="Detail" position="370"
+                    requirement="OPTIONAL" maxuse="2">
+                    <element name="Contact Function Code" usage="REQUIRED" ref_des="PER01"
+                        data_element="366" requirement="M" min="2" max="2" dat_type="ID">
+                        <code_definition code="IC" description="Information Contact " code_source=""/>
+                    </element>
+                    <element name="Name" usage="NOT USED" ref_des="PER02"/>
+                    <element name="Communication Number Qualifier" usage="REQUIRED" ref_des="PER03"
+                        data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                        <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                        <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                        <code_definition code="FX" description="Facsimile " code_source=""/>
+                        <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                        <code_definition code="TE" description="Telephone " code_source=""/>
+                        <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                    </element>
+                    <element name="Communication Number" usage="REQUIRED" ref_des="PER04"
+                        data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                    <element name="Communication Number Qualifier" usage="SITUATIONAL"
+                        ref_des="PER05" data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                        <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                        <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                        <code_definition code="FX" description="Facsimile " code_source=""/>
+                        <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                        <code_definition code="TE" description="Telephone " code_source=""/>
+                        <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                    </element>
+                    <element name="Communication Number" usage="SITUATIONAL" ref_des="PER06"
+                        data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                    <element name="Communication Number Qualifier" usage="SITUATIONAL"
+                        ref_des="PER07" data_element="365" requirement="X" min="2" max="2" dat_type="ID">
+                        <code_definition code="EM" description="Electronic Mail " code_source=""/>
+                        <code_definition code="EX" description="Telephone Extension " code_source=""/>
+                        <code_definition code="FX" description="Facsimile " code_source=""/>
+                        <code_definition code="HP" description="Home Phone Number " code_source=""/>
+                        <code_definition code="TE" description="Telephone " code_source=""/>
+                        <code_definition code="WP" description="Work Phone Number " code_source=""/>
+                    </element>
+                    <element name="Communication Number" usage="SITUATIONAL" ref_des="PER08"
+                        data_element="364" requirement="X" min="1" max="80" dat_type="AN"/>
+                    <element name="Contact Inquiry Reference" usage="NOT USED" ref_des="PER09"/>
+                </segment>
+                <segment description="" name="Place or Location" id="PLA" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="395" requirement="OPTIONAL" maxuse="1">
+                    <element name="Action Code" usage="REQUIRED" ref_des="PLA01" data_element="306"
+                        requirement="M" min="1" max="2" dat_type="ID">
+                        <code_definition code="2" description="Change (Update) " code_source=""/>
+                    </element>
+                    <element name="Entity Identifier Code" usage="REQUIRED" ref_des="PLA02"
+                        data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="1P" description="Provider " code_source=""/>
+                    </element>
+                    <element name="Date" usage="REQUIRED" ref_des="PLA03" data_element="373"
+                        requirement="M" min="8" max="8" dat_type="DT">
+                        <description>Provider Effective Date </description>
+                    </element>
+                    <element name="Time" usage="NOT USED" ref_des="PLA04"/>
+                    <element name="Maintenance Reason Code" usage="REQUIRED" ref_des="PLA05"
+                        data_element="1203" requirement="O" min="2" max="3" dat_type="ID">
+                        <code_definition code="14" description="Voluntary Withdrawal " code_source=""/>
+                        <code_definition code="22" description="Plan Change " code_source=""/>
+                        <code_definition code="46"
+                            description="Current Customer Information File in Error " code_source=""/>
+                        <code_definition code="AA" description="Dissatisfaction with Office Staff " code_source=""/>
+                        <code_definition code="AB"
+                            description="Dissatisfaction with Medical Care/Services Rendered " code_source=""/>
+                        <code_definition code="AC" description="Inconvenient Office Location " code_source=""/>
+                        <code_definition code="AD" description="Dissatisfaction with Office Hours " code_source=""/>
+                        <code_definition code="AE"
+                            description="Unable to Schedule Appointments in a Timely Manner " code_source=""/>
+                        <code_definition code="AF"
+                            description="Dissatisfaction with Physician's Referral Policy " code_source=""/>
+                        <code_definition code="AG"
+                            description="Less Respect and Attention Time Given than to Other Patients " code_source=""/>
+                        <code_definition code="AH" description="Patient Moved to a New Location " code_source=""/>
+                        <code_definition code="AI" description="No Reason Given " code_source=""/>
+                        <code_definition code="AJ"
+                            description="Appointment Times not Met in a Timely Manner " code_source=""/>
+                    </element>
+                </segment>
+            </loop>
+            <loop name="COORDINATION OF BENEFITS " id="2320" repeat="5" level="Detail" occurrence="">
+                <segment description="" name="Coordination of Benefits" id="COB" repeat="1"
+                    usage="SITUATIONAL" level="Detail" position="400" requirement="OPTIONAL" maxuse="1">
+                    <element name="Payer Responsibility Sequence Number Code" usage="REQUIRED"
+                        ref_des="COB01" data_element="1138" requirement="O" min="1" max="1" dat_type="ID">
+                        <code_definition code="P" description="Primary " code_source=""/>
+                        <code_definition code="S" description="Secondary " code_source=""/>
+                        <code_definition code="T" description="Tertiary " code_source=""/>
+                        <code_definition code="U" description="Unknown " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="SITUATIONAL" ref_des="COB02"
+                        data_element="127" requirement="O" min="1" max="30" dat_type="AN">
+                        <description>Insured Group or Policy Number </description>
+                    </element>
+                    <element name="Coordination of Benefits Code" usage="REQUIRED" ref_des="COB03"
+                        data_element="1143" requirement="O" min="1" max="1" dat_type="ID">
+                        <code_definition code="1" description="Coordination of Benefits " code_source=""/>
+                        <code_definition code="5" description="Unknown " code_source=""/>
+                        <code_definition code="6" description="No Coordination of Benefits " code_source=""/>
+                    </element>
+                </segment>
+                <segment description="" name="Reference Identification" id="REF" repeat="5"
+                    usage="SITUATIONAL" level="Detail" position="405" requirement="OPTIONAL" maxuse="&gt;1">
+                    <element name="Reference Identification Qualifier" usage="REQUIRED"
+                        ref_des="REF01" data_element="128" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="60" description="Account Suffix Code " code_source=""/>
+                        <code_definition code="6P" description="Group Number " code_source=""/>
+                        <code_definition code="A6" description="Employee Identification Number " code_source=""/>
+                        <code_definition code="SY" description="Social Security Number " code_source=""/>
+                        <code_definition code="ZZ" description="Mutually Defined " code_source=""/>
+                    </element>
+                    <element name="Reference Identification" usage="REQUIRED" ref_des="REF02"
+                        data_element="127" requirement="X" min="1" max="30" dat_type="AN">
+                        <description>Insured Group or Policy Number </description>
+                    </element>
+                    <element name="Description" usage="NOT USED" ref_des="REF03"/>
+                    <element name="" usage="NOT USED" ref_des="REF04"/>
+                </segment>
+                <segment description="" name="Name" id="N1" repeat="1" usage="SITUATIONAL"
+                    level="Detail" position="410" requirement="OPTIONAL" maxuse="1">
+                    <element name="Entity Identifier Code" usage="REQUIRED" ref_des="N101"
+                        data_element="98" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="IN" description="Insurer " code_source=""/>
+                    </element>
+                    <element name="Name" usage="SITUATIONAL" ref_des="N102" data_element="93"
+                        requirement="X" min="1" max="60" dat_type="AN">
+                        <description>Insurer Name </description>
+                    </element>
+                    <element name="Identification Code Qualifier" usage="SITUATIONAL" ref_des="N103"
+                        data_element="66" requirement="X" min="1" max="2" dat_type="ID">
+                        <code_definition code="FI"
+                            description="Federal Taxpayer's Identification Number " code_source=""/>
+                        <code_definition code="NI"
+                            description="National Association of Insurance Commissioners (NAIC) Identification " code_source=""/>
+                        <code_definition code="XV"
+                            description="Health Care Financing Administration National PlanID " code_source=""/>
+                    </element>
+                    <element name="Identification Code" usage="SITUATIONAL" ref_des="N104"
+                        data_element="67" requirement="X" min="2" max="80" dat_type="AN">
+                        <description>Insured Group or Policy Number </description>
+                    </element>
+                    <element name="Entity Relationship Code" usage="NOT USED" ref_des="N105"/>
+                    <element name="Entity Identifier Code" usage="NOT USED" ref_des="N106"/>
+                </segment>
+                <segment description="" name="Date or Time or Period" id="DTP" repeat="2"
+                    usage="SITUATIONAL" level="Detail" position="450" requirement="OPTIONAL" maxuse="2">
+                    <element name="Date/Time Qualifier" usage="REQUIRED" ref_des="DTP01"
+                        data_element="374" requirement="M" min="3" max="3" dat_type="ID">
+                        <description>Date Time Qualifier </description>
+                        <code_definition code="344" description="Coordination of Benefits Begin " code_source=""/>
+                        <code_definition code="345" description="Coordination of Benefits End " code_source=""/>
+                    </element>
+                    <element name="Date Time Period Format Qualifier" usage="REQUIRED"
+                        ref_des="DTP02" data_element="1250" requirement="M" min="2" max="3" dat_type="ID">
+                        <code_definition code="D8" description="Date Expressed in Format CCYYMMDD " code_source=""/>
+                    </element>
+                    <element name="Date Time Period" usage="REQUIRED" ref_des="DTP03"
+                        data_element="1251" requirement="M" min="1" max="35" dat_type="AN">
+                        <description>Coordination of Benefits Date </description>
+                    </element>
+                </segment>
+            </loop>
+        </loop>
+    </loop>
+    <segment description="" name="Transaction Set Trailer" id="SE" repeat="1" usage="REQUIRED"
+        level="Detail" position="690" requirement="MANDATORY" maxuse="1">
+        <element name="Number of Included Segments" usage="REQUIRED" ref_des="SE01"
+            data_element="96" requirement="M" min="1" max="10" dat_type="N0">
+            <description>Transaction Segment Count </description>
+        </element>
+        <element name="Transaction Set Control Number" usage="REQUIRED" ref_des="SE02"
+            data_element="329" requirement="M" min="4" max="9" dat_type="AN"/>
+    </segment>
+</transaction>
