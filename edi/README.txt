@@ -12,7 +12,6 @@ created can be placed at any location as application is self contained.
 Browse to 'edi4j' directory and in first level lie 2 start scripts. On windows double click
 start.bat, on unix, linux, or macintosh OSX execute start.sh
 
-An example class which demonstrates usage is available: com/leewardsoft/edi4j/EDI4JExample.java
 
 Known Issues
 -------------------------------------
